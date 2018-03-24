@@ -1,0 +1,6 @@
+keystore-local.p12
+admin-local.macaroon
+lnd-local.cert
+
+static/
+

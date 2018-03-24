@@ -1,0 +1,12 @@
+{
+  "blockChain": {
+    "totalBalance": 9999148247,
+    "confirmedBalance": 5949148147,
+    "unconfirmedBalance": 4939148147
+  },
+
+  "channels": {
+    "balance": 148247
+  }
+
+}

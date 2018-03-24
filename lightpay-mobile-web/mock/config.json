@@ -1,0 +1,11 @@
+{
+  "simulated-lag": 1000,
+  "cors": true,
+  "jsonp": false,
+  "variables": {
+    
+  },
+  "routes": [
+    "/api/payment/payreq/decode/:payreq"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "destination": "031d9668883f86b9fcb887ebcd7fc38d952f887b2581b809ab8b041131ed416cdc",
+  "paymentHash": "bb603bf04754ea7da556ab59bb105e035955f1c3fd3a05fd55eff12db527d87e",
+  "numSatoshis": 1000,
+  "timestamp": 1520249311,
+  "expiry": 3600,
+  "description": "",
+  "descriptionHash": "",
+  "fallbackAddr": "",
+  "cltvExpiry": 144
+}

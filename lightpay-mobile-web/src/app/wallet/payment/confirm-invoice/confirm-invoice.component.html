@@ -1,0 +1,19 @@
+<div class="page-contents">
+  <div *ngIf="currentPayReq" class="scroll-container">
+    <div class="payreq-wrapper">
+      <div class="info-block">
+          <div class="title">お支払いの確認</div>
+        <div class="payreq-label">お支払い金額</div>
+        <div class="payreq-value">
+          <span class="value">{{currentPayReq.numSatoshis | toBtcString}}</span>
+          <span class="unit">BTC</span>
+        </div>
+      </div>
+      <div class="description">
+        お支払い内容に問題がなければボタンを押して決済します
+      </div>
+      <button (click)="onSubmit()" class="pay-button">支払う</button>
+    </div>
+  </div>
+  <lp-loading-mask [name]="loadingName" [show]="loading"></lp-loading-mask>
+</div>

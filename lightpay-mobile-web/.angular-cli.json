@@ -1,0 +1,76 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "lightpay-mobile"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico",
+        "manifest.json"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "lp",
+      "styles": [
+        "styles.scss",
+        "assets/icons/flaticon.css",
+        "assets/fonts/Noto-Sans-CJK-JP/css/font.css"
+      ],
+      "scripts": [
+        "../node_modules/platform/platform.js",
+        "../node_modules/jsqr/dist/jsQR.js",
+        "../node_modules/qrious/dist/qrious.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      },
+      "serviceWorker": true
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "build": {
+      "showCircularDependencies": false
+    },
+    "serve": {
+      "host": "0.0.0.0",
+      "sslKey": "ssl/server.key",
+      "sslCert": "ssl/server.crt"
+    },
+    "styleExt": "scss",
+    "component": {}
+  }
+}

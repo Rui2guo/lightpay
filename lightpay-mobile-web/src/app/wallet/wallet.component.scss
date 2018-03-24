@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wallet-container {
+  float: left;
+  width: 100%;
+  height: calc(100% - 57px);
+
+  .wallet-page {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.tabbar {
+  width: 100%;
+  height: 57px;
+  background-color: #33343a;
+  display: flex;
+
+  .tab {
+    flex: 1;
+    color: #c7c7c7;
+
+    &.selected {
+      color: #e0b854;
+    }
+
+    .icon {
+      margin-top: 6px;
+      display: block;
+      text-align: center;
+
+      &:before {
+        margin-left: 0;
+        font-size: 26px;
+      }
+    }
+
+    .label {
+      text-align: center;
+      font-size: 0.7rem;
+    }
+  }
+}

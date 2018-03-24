@@ -1,0 +1,31 @@
+server:
+  port: 8443
+  # max-http-header-size: 100000
+  # tomcat:
+    # max-http-post-size: 300000
+  ssl:
+    enabled: true
+  session:
+    persistent: false
+    tracking-modes: "cookie"
+    cookie:
+      name: "SessionId"
+      secure: true
+
+security:
+  basic:
+    enabled: false
+  require-ssl: true
+  
+management:
+  port: 8081
+  ssl:
+    enabled: false
+  security:
+    enabled: false
+  add-application-context-header: false
+
+lightpay-backend:
+  jwt:
+    access-token-expiration-time: 900000
+    refresh-token-expiration-time: 2592000000

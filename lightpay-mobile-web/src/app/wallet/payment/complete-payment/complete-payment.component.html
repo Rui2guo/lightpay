@@ -1,0 +1,12 @@
+<div class="page-contents">
+  <div class="comp-contents-block">
+    <div class="check-wrapper" [class.check-animation]="checkAnimation">
+      <div class="white-pad"></div>
+      <div class="green-pad" [class.check-animation]="checkAnimation"></div>
+      <i class="check flaticon-circle"></i>
+    </div>
+    <div class="description">お支払いが完了しました</div>
+    <button (click)="backReadQR()" class="button-again">再度お支払いする</button>
+  </div>
+  <lp-loading-mask [name]="loadingName" [show]="loading"></lp-loading-mask>
+</div>

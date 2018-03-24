@@ -1,0 +1,25 @@
+<div class="page-contents">
+  <div *ngIf="paymentRequest" class="scroll-container">
+    <div *ngIf="!received" class="payreq-wrapper">
+      <div class="info-block">
+        <div class="description">QRコードを読み取って支払いを行ってください</div>
+        <lp-qr-code class="qr-code" [value]="paymentRequest" [size]="200"></lp-qr-code>
+        <div class="receiving-amount-label">請求額</div>
+        <div class="receiving-amount-value">
+          <span class="value">{{pageData.numSatoshis | toBtcString}}</span>
+          <span class="unit">BTC</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="received" class="comp-contents-block">
+      <div class="check-wrapper" [class.check-animation]="checkAnimation">
+        <div class="white-pad"></div>
+        <div class="green-pad" [class.check-animation]="checkAnimation"></div>
+        <i class="check flaticon-circle"></i>
+      </div>
+      <div class="description">受取りが完了しました</div>
+      <button (click)="backInvoiceForm()" class="button-again">再度受取りをする</button>
+    </div>
+  </div>
+  <lp-loading-mask [name]="loadingName" [show]="loading"></lp-loading-mask>
+</div>

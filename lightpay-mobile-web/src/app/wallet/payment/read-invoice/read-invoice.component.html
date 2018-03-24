@@ -1,0 +1,12 @@
+<div class="page-contents">
+  <div #videoWrapper class="video-wrapper">
+    <video #video autoplay playsinline></video>
+    <div class="read-area" 
+      [style.display]="readRectDisplay"
+      [style.width.px]="readRectSize"
+      [style.height.px]="readRectSize"
+      [style.left.px]="readRectPosX"
+      [style.top.px]="readRectPosY"></div>
+  </div>
+  <canvas #canvas></canvas>
+</div>

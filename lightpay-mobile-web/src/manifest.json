@@ -1,0 +1,9 @@
+{
+  "name": "LightPayMobile",
+  "short_name": "LightPay",
+  "theme_color": "#33343a",
+  "background_color": "#f5f5f5",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

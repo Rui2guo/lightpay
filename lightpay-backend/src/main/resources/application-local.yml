@@ -1,0 +1,19 @@
+server:
+  ssl:
+    key-store: classpath:keystore-local.p12
+    key-store-password: password
+    key-store-type: PKCS12
+    key-alias: tomcat
+
+lightpay-backend:
+  jwt:
+    secret-key: "test"
+    access-token-expiration-time: 60000
+    refresh-token-expiration-time: 120000
+  lnd:
+    host: localhost
+    port: 10001
+    ssl:
+      certificate-file-path: classpath:lnd-local.cert
+    macaroon:
+      file-path: classpath:admin-local.macaroon

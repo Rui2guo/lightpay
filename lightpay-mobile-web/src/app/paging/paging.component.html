@@ -1,0 +1,26 @@
+<div class="page-a"
+  [style.transition-duration.ms]="_transitionDuration"
+  [style.transition-delay.ms]="_transitionDelay"
+  [style.transition-timing-function]="transitionTimingFunction"
+  [style.display]="displayA ? 'block' : 'none'"
+  [style.top.px]="topA"
+  [style.left.px]="leftA"
+  [style.width.px]="widthA"
+  [style.height.px]="heightA"
+  [style.z-index]="zIndexA"
+  [class.moved]="pageMoved">
+  <ng-container #vcrA></ng-container>
+</div>
+<div class="page-b"
+  [style.transition-duration.ms]="_transitionDuration"
+  [style.transition-delay.ms]="_transitionDelay"
+  [style.transition-timing-function]="transitionTimingFunction"
+  [style.display]="displayB ? 'block' : 'none'"
+  [style.top.px]="topB"
+  [style.left.px]="leftB"
+  [style.width.px]="widthB"
+  [style.height.px]="heightB"
+  [style.z-index]="zIndexB"
+  [class.moved]="pageMoved">
+  <ng-container #vcrB></ng-container>
+</div>

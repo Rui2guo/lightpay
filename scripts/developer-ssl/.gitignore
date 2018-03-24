@@ -1,0 +1,8 @@
+server.key
+server.csr
+server.crt
+san.ext
+CA.crt
+CA.key
+CA.srl
+keystore-local.p12

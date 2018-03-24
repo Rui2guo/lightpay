@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.page-a,
+.page-b {
+  position: absolute;
+  transition-property: top;
+  transition-property: left;
+
+  &.moved {
+    position: static;
+    width: 100%;
+    height: 100%;
+  }
+}

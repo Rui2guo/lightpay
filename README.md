@@ -1,0 +1,2 @@
+# lightpay
+Lightning Networkを使用したbitcoin支払いのWebアプリケーション

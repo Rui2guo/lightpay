@@ -96,7 +96,7 @@ export class PaymentComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   backReadInvoice() {
-    this.pagingActionService.move(PaymentComponent.PAGING_NAME, ReadInvoiceComponent, null, PagingAction.PageAnimation.IMMEDIATE);
+    this.pagingActionService.move(PaymentComponent.PAGING_NAME, ReadInvoiceComponent, null, PagingAction.PageAnimation.BACK);
   }
 
 }

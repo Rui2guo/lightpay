@@ -7,6 +7,7 @@ import { PaymentForm, PaymentComponent } from 'app/wallet/payment/payment.compon
 import { Payload } from 'app/common/base/emitter';
 import { WalletComponent } from 'app/wallet/wallet.component';
 import { PagingAction } from '../../../paging/paging-action';
+import { _ } from 'app';
 
 @Component({
   selector: 'lp-read-invoice',
@@ -18,6 +19,8 @@ export class ReadInvoiceComponent extends PageBaseComponent implements OnInit, A
   static readonly READ_INTERVAL: number = 1000;
 
   static readonly READ_AREA_RATIO: number = 1 / 2;
+
+  static readonly IMAGE_FILE_WIDTH: number = 600;
 
   @HostBinding('style.display')
   display: string = "flex";
@@ -31,6 +34,9 @@ export class ReadInvoiceComponent extends PageBaseComponent implements OnInit, A
   @ViewChild("canvas")
   _canvasRef: ElementRef;
 
+  @ViewChild("imageInput")
+  _imageInputRef: ElementRef;
+
   readRectDisplay: string = "none";
 
   readRectSize: number = 0;
@@ -39,11 +45,19 @@ export class ReadInvoiceComponent extends PageBaseComponent implements OnInit, A
 
   readRectPosY: number = 0;
 
+  canUseVideo: boolean = false;
+
+  readError: boolean = false;
+
+  reading: boolean = false;
+
   private _videoWrapperEl: HTMLElement;
 
   private _videoEl: HTMLVideoElement;
 
   private _canvasEl: HTMLCanvasElement;
+
+  private _imageInputEl: HTMLInputElement;
   
   private timer: any;
 
@@ -54,20 +68,32 @@ export class ReadInvoiceComponent extends PageBaseComponent implements OnInit, A
     private pagingActionService: PagingActionService
   ) {
     super();
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      this.canUseVideo = true;
+    } else {
+      this.canUseVideo = false;
+    }
   }
 
   ngOnInit() {
   }
 
   ngAfterViewInit(): void {
-    this._videoWrapperEl = this._videoWrapperRef.nativeElement;
-    this._videoEl = this._videoRef.nativeElement;
     this._canvasEl = this._canvasRef.nativeElement;
-    this.startQRReader();
+
+    if (this.canUseVideo) {
+      this._videoWrapperEl = this._videoWrapperRef.nativeElement;
+      this._videoEl = this._videoRef.nativeElement;
+      this.startQRReader();
+    } else {
+      this._imageInputEl = this._imageInputRef.nativeElement;
+    }
   }
 
   ngOnDestroy() {
-    this.stopQRReader();
+    if (this.canUseVideo) {
+      this.stopQRReader();
+    }
   }
 
   private startQRReader() {
@@ -162,11 +188,45 @@ export class ReadInvoiceComponent extends PageBaseComponent implements OnInit, A
     }
   }
 
+  clickImageForm() {
+    this._imageInputEl.click();
+  }
+
+  readQRFromFile() {
+    this.reading = true;
+
+    _.defer(() => {
+
+      var reader = new FileReader();
+      reader.onload = () => {
+        var img: HTMLImageElement = new Image();
+        img.onload = () => {
+          var width: number = this._canvasEl.width = ReadInvoiceComponent.IMAGE_FILE_WIDTH;
+          var height: number = this._canvasEl.height = Math.floor(img.naturalHeight * (width / img.naturalWidth));
+
+          var ctx: CanvasRenderingContext2D = this._canvasEl.getContext("2d");    
+          ctx.drawImage(img, 0, 0, width, height);
+          var image: Uint8ClampedArray = ctx.getImageData(0, 0, width, height).data;
+          var result = eval("jsQR(image, " + width + ", " + height + ")");
+          if (result) {
+            this.moveConfirm(result);
+          } else {
+            this.readError = true;
+            this.reading = false;
+          }
+        }
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(this._imageInputEl.files[0]);
+
+    });
+  }
+
   private moveConfirm(result: any) {
     var form: PaymentForm = {
       payreq: result.data
     };
-    this.pagingActionService.move(PaymentComponent.PAGING_NAME, ConfirmInvoiceComponent, form, PagingAction.PageAnimation.IMMEDIATE);
+    this.pagingActionService.move(PaymentComponent.PAGING_NAME, ConfirmInvoiceComponent, form, PagingAction.PageAnimation.NEXT);
   }
 
 }

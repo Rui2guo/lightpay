@@ -40,7 +40,7 @@ export class WalletComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     _.defer(() => {
-      this.selectBalance();
+      this.selectPayment();
     });
   }
 

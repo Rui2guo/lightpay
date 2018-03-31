@@ -60,7 +60,7 @@ export class CompletePaymentComponent extends PageBaseComponent implements OnIni
   }
 
   backReadQR() {
-    this.pagingActionService.move(PaymentComponent.PAGING_NAME, ReadInvoiceComponent, null, PagingAction.PageAnimation.IMMEDIATE);
+    this.pagingActionService.move(PaymentComponent.PAGING_NAME, ReadInvoiceComponent, null, PagingAction.PageAnimation.BACK);
   }
 
   private onCompletePayment(payload: Payload) {

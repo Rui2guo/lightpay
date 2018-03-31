@@ -1,4 +1,4 @@
-<div class="page-contents">
+<div *ngIf="canUseVideo" class="page-contents">
   <div #videoWrapper class="video-wrapper">
     <video #video autoplay playsinline></video>
     <div class="read-area" 
@@ -8,5 +8,38 @@
       [style.left.px]="readRectPosX"
       [style.top.px]="readRectPosY"></div>
   </div>
-  <canvas #canvas></canvas>
 </div>
+<div *ngIf="!canUseVideo" class="page-contents no-video">
+  <div *ngIf="!reading" class="image-form-wrapper">
+    <div *ngIf="!readError" class="message">QRコードを撮影してください</div>
+    <div *ngIf="readError" class="error-message">QRコードの読み取りに失敗しました</div>
+    <button type="button" (click)="clickImageForm()" class="upload-btn">
+      <span *ngIf="!readError">QRコードを撮影</span>
+      <span *ngIf="readError">再度QRコードを撮影</span>
+    </button>
+  </div>
+  <button type="button" 
+          class="loading-btn"
+          [disabled]="true"
+          [style.visibility]="reading ? '' : 'hidden'"
+          [style.width.px]="reading ? 50 : 0">
+    <div class="sk-cube-grid">
+      <div class="sk-cube sk-cube1"></div>
+      <div class="sk-cube sk-cube2"></div>
+      <div class="sk-cube sk-cube3"></div>
+      <div class="sk-cube sk-cube4"></div>
+      <div class="sk-cube sk-cube5"></div>
+      <div class="sk-cube sk-cube6"></div>
+      <div class="sk-cube sk-cube7"></div>
+      <div class="sk-cube sk-cube8"></div>
+      <div class="sk-cube sk-cube9"></div>
+    </div>
+  </button>
+  <input #imageInput type=file
+        accept="image/*"
+        capture=environment
+        (change)="readQRFromFile()"
+        tabindex=-1
+        class="qr-image">
+</div>
+<canvas #canvas></canvas>

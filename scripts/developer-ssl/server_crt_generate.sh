@@ -12,7 +12,7 @@ if [ $? -ne 0 ]; then
   exit 9;
 fi
 
-echo subjectAltName=DNS.1:localhost,IP:$1 > ${SSL_DIR}/san.ext
+echo subjectAltName=DNS.1:localhost,IP.1:$1 > ${SSL_DIR}/san.ext
 if [ $? -ne 0 ]; then
   exit 9;
 fi

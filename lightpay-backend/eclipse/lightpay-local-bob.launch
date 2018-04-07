@@ -12,6 +12,6 @@
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="lightpay.LightPayBackendApplication"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--spring.profiles.active=local&#10;--server.port=8443&#10;--management.port=8083&#10;--lightpay-api.lnd.port=10003"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--spring.profiles.active=local&#10;--server.port=8443&#10;--management.port=8083&#10;--lightpay-backend.lnd.port=10003"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="lightpay-backend"/>
 </launchConfiguration>

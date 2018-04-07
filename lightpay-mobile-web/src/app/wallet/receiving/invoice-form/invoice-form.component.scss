@@ -10,7 +10,7 @@
     overflow-y: scroll;
 
     .invoice-form-wrapper {
-      padding: 15px;
+      padding: 15px 15px 0 15px;
       text-align: center;
   
       .info-block {
@@ -50,23 +50,33 @@
           justify-content: center;
           align-items: center;
           margin-bottom: 15px;
+          height: 40vh;
+          min-height: 170px;
+          max-height: 300px;
 
-          .key {
-            width: 80px;
-            height: 55px;
-            background-color: #e0b854;
-            color: #f5f5f5;
-            font-size: 1.4rem;
-            border: 1px solid #f5f5f5;
+          table {
+            width: 100%;
+            height: 100%;
+            max-width: 400px;
+            padding: 0 20px;
 
-            &.hidden {
-              visibility: hidden;
-            }
-
-            .backspace {
-              &:before {
-                margin-left: 0;
-                font-size: 1.4rem;
+            .key {
+              width: 33%;
+              height: 25%;
+              background-color: #e0b854;
+              color: #f5f5f5;
+              font-size: 1.4rem;
+              border: 1px solid #f5f5f5;
+  
+              &.hidden {
+                visibility: hidden;
+              }
+  
+              .backspace {
+                &:before {
+                  margin-left: 0;
+                  font-size: 1.4rem;
+                }
               }
             }
           }

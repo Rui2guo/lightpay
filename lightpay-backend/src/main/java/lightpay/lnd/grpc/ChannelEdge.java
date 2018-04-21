@@ -8,7 +8,7 @@ package lightpay.lnd.grpc;
  **
  *A fully authenticated channel along with all its unique attributes.
  *Once an authenticated channel announcement has been processed on the network,
- *then a instance of ChannelEdgeInfo encapsulating the channels attributes is
+ *then an instance of ChannelEdgeInfo encapsulating the channels attributes is
  *stored. The other portions relevant to routing policy of a channel are stored
  *within a ChannelEdgePolicy for each direction of the channel.
  * </pre>
@@ -567,7 +567,7 @@ private static final long serialVersionUID = 0L;
    **
    *A fully authenticated channel along with all its unique attributes.
    *Once an authenticated channel announcement has been processed on the network,
-   *then a instance of ChannelEdgeInfo encapsulating the channels attributes is
+   *then an instance of ChannelEdgeInfo encapsulating the channels attributes is
    *stored. The other portions relevant to routing policy of a channel are stored
    *within a ChannelEdgePolicy for each direction of the channel.
    * </pre>

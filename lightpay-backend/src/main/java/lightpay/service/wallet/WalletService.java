@@ -18,7 +18,6 @@ public class WalletService {
 
     public WalletBalanceRes getWalletBalance() {
         WalletBalanceRequest walletBalanceRequest = WalletBalanceRequest.newBuilder()
-            .setWitnessOnly(false)
             .build();
 
         WalletBalanceResponse walletBalanceResponse = lndBlockingStub.getInstance()

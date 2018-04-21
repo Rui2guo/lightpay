@@ -29,6 +29,8 @@ private static final long serialVersionUID = 0L;
     totalFees_ = 0L;
     totalAmt_ = 0L;
     hops_ = java.util.Collections.emptyList();
+    totalFeesMsat_ = 0L;
+    totalAmtMsat_ = 0L;
   }
 
   @java.lang.Override
@@ -86,6 +88,16 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(lightpay.lnd.grpc.Hop.parser(), extensionRegistry));
             break;
           }
+          case 40: {
+
+            totalFeesMsat_ = input.readInt64();
+            break;
+          }
+          case 48: {
+
+            totalAmtMsat_ = input.readInt64();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -141,9 +153,9 @@ private static final long serialVersionUID = 0L;
    *it ourself.
    * </pre>
    *
-   * <code>int64 total_fees = 2[json_name = "total_fees"];</code>
+   * <code>int64 total_fees = 2[json_name = "total_fees", deprecated = true];</code>
    */
-  public long getTotalFees() {
+  @java.lang.Deprecated public long getTotalFees() {
     return totalFees_;
   }
 
@@ -159,9 +171,9 @@ private static final long serialVersionUID = 0L;
    *insufficient amount of fees.
    * </pre>
    *
-   * <code>int64 total_amt = 3[json_name = "total_amt"];</code>
+   * <code>int64 total_amt = 3[json_name = "total_amt", deprecated = true];</code>
    */
-  public long getTotalAmt() {
+  @java.lang.Deprecated public long getTotalAmt() {
     return totalAmt_;
   }
 
@@ -225,6 +237,34 @@ private static final long serialVersionUID = 0L;
     return hops_.get(index);
   }
 
+  public static final int TOTAL_FEES_MSAT_FIELD_NUMBER = 5;
+  private long totalFeesMsat_;
+  /**
+   * <pre>
+   **
+   *The total fees in millisatoshis.
+   * </pre>
+   *
+   * <code>int64 total_fees_msat = 5[json_name = "total_fees_msat"];</code>
+   */
+  public long getTotalFeesMsat() {
+    return totalFeesMsat_;
+  }
+
+  public static final int TOTAL_AMT_MSAT_FIELD_NUMBER = 6;
+  private long totalAmtMsat_;
+  /**
+   * <pre>
+   **
+   *The total amount in millisatoshis.
+   * </pre>
+   *
+   * <code>int64 total_amt_msat = 6[json_name = "total_amt_msat"];</code>
+   */
+  public long getTotalAmtMsat() {
+    return totalAmtMsat_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -248,6 +288,12 @@ private static final long serialVersionUID = 0L;
     }
     for (int i = 0; i < hops_.size(); i++) {
       output.writeMessage(4, hops_.get(i));
+    }
+    if (totalFeesMsat_ != 0L) {
+      output.writeInt64(5, totalFeesMsat_);
+    }
+    if (totalAmtMsat_ != 0L) {
+      output.writeInt64(6, totalAmtMsat_);
     }
     unknownFields.writeTo(output);
   }
@@ -273,6 +319,14 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, hops_.get(i));
     }
+    if (totalFeesMsat_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(5, totalFeesMsat_);
+    }
+    if (totalAmtMsat_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(6, totalAmtMsat_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -297,6 +351,10 @@ private static final long serialVersionUID = 0L;
         == other.getTotalAmt());
     result = result && getHopsList()
         .equals(other.getHopsList());
+    result = result && (getTotalFeesMsat()
+        == other.getTotalFeesMsat());
+    result = result && (getTotalAmtMsat()
+        == other.getTotalAmtMsat());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -320,6 +378,12 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + HOPS_FIELD_NUMBER;
       hash = (53 * hash) + getHopsList().hashCode();
     }
+    hash = (37 * hash) + TOTAL_FEES_MSAT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getTotalFeesMsat());
+    hash = (37 * hash) + TOTAL_AMT_MSAT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getTotalAmtMsat());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -471,6 +535,10 @@ private static final long serialVersionUID = 0L;
       } else {
         hopsBuilder_.clear();
       }
+      totalFeesMsat_ = 0L;
+
+      totalAmtMsat_ = 0L;
+
       return this;
     }
 
@@ -507,6 +575,8 @@ private static final long serialVersionUID = 0L;
       } else {
         result.hops_ = hopsBuilder_.build();
       }
+      result.totalFeesMsat_ = totalFeesMsat_;
+      result.totalAmtMsat_ = totalAmtMsat_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -583,6 +653,12 @@ private static final long serialVersionUID = 0L;
             hopsBuilder_.addAllMessages(other.hops_);
           }
         }
+      }
+      if (other.getTotalFeesMsat() != 0L) {
+        setTotalFeesMsat(other.getTotalFeesMsat());
+      }
+      if (other.getTotalAmtMsat() != 0L) {
+        setTotalAmtMsat(other.getTotalAmtMsat());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -671,9 +747,9 @@ private static final long serialVersionUID = 0L;
      *it ourself.
      * </pre>
      *
-     * <code>int64 total_fees = 2[json_name = "total_fees"];</code>
+     * <code>int64 total_fees = 2[json_name = "total_fees", deprecated = true];</code>
      */
-    public long getTotalFees() {
+    @java.lang.Deprecated public long getTotalFees() {
       return totalFees_;
     }
     /**
@@ -684,9 +760,9 @@ private static final long serialVersionUID = 0L;
      *it ourself.
      * </pre>
      *
-     * <code>int64 total_fees = 2[json_name = "total_fees"];</code>
+     * <code>int64 total_fees = 2[json_name = "total_fees", deprecated = true];</code>
      */
-    public Builder setTotalFees(long value) {
+    @java.lang.Deprecated public Builder setTotalFees(long value) {
       
       totalFees_ = value;
       onChanged();
@@ -700,9 +776,9 @@ private static final long serialVersionUID = 0L;
      *it ourself.
      * </pre>
      *
-     * <code>int64 total_fees = 2[json_name = "total_fees"];</code>
+     * <code>int64 total_fees = 2[json_name = "total_fees", deprecated = true];</code>
      */
-    public Builder clearTotalFees() {
+    @java.lang.Deprecated public Builder clearTotalFees() {
       
       totalFees_ = 0L;
       onChanged();
@@ -720,9 +796,9 @@ private static final long serialVersionUID = 0L;
      *insufficient amount of fees.
      * </pre>
      *
-     * <code>int64 total_amt = 3[json_name = "total_amt"];</code>
+     * <code>int64 total_amt = 3[json_name = "total_amt", deprecated = true];</code>
      */
-    public long getTotalAmt() {
+    @java.lang.Deprecated public long getTotalAmt() {
       return totalAmt_;
     }
     /**
@@ -735,9 +811,9 @@ private static final long serialVersionUID = 0L;
      *insufficient amount of fees.
      * </pre>
      *
-     * <code>int64 total_amt = 3[json_name = "total_amt"];</code>
+     * <code>int64 total_amt = 3[json_name = "total_amt", deprecated = true];</code>
      */
-    public Builder setTotalAmt(long value) {
+    @java.lang.Deprecated public Builder setTotalAmt(long value) {
       
       totalAmt_ = value;
       onChanged();
@@ -753,9 +829,9 @@ private static final long serialVersionUID = 0L;
      *insufficient amount of fees.
      * </pre>
      *
-     * <code>int64 total_amt = 3[json_name = "total_amt"];</code>
+     * <code>int64 total_amt = 3[json_name = "total_amt", deprecated = true];</code>
      */
-    public Builder clearTotalAmt() {
+    @java.lang.Deprecated public Builder clearTotalAmt() {
       
       totalAmt_ = 0L;
       onChanged();
@@ -1090,6 +1166,88 @@ private static final long serialVersionUID = 0L;
         hops_ = null;
       }
       return hopsBuilder_;
+    }
+
+    private long totalFeesMsat_ ;
+    /**
+     * <pre>
+     **
+     *The total fees in millisatoshis.
+     * </pre>
+     *
+     * <code>int64 total_fees_msat = 5[json_name = "total_fees_msat"];</code>
+     */
+    public long getTotalFeesMsat() {
+      return totalFeesMsat_;
+    }
+    /**
+     * <pre>
+     **
+     *The total fees in millisatoshis.
+     * </pre>
+     *
+     * <code>int64 total_fees_msat = 5[json_name = "total_fees_msat"];</code>
+     */
+    public Builder setTotalFeesMsat(long value) {
+      
+      totalFeesMsat_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *The total fees in millisatoshis.
+     * </pre>
+     *
+     * <code>int64 total_fees_msat = 5[json_name = "total_fees_msat"];</code>
+     */
+    public Builder clearTotalFeesMsat() {
+      
+      totalFeesMsat_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long totalAmtMsat_ ;
+    /**
+     * <pre>
+     **
+     *The total amount in millisatoshis.
+     * </pre>
+     *
+     * <code>int64 total_amt_msat = 6[json_name = "total_amt_msat"];</code>
+     */
+    public long getTotalAmtMsat() {
+      return totalAmtMsat_;
+    }
+    /**
+     * <pre>
+     **
+     *The total amount in millisatoshis.
+     * </pre>
+     *
+     * <code>int64 total_amt_msat = 6[json_name = "total_amt_msat"];</code>
+     */
+    public Builder setTotalAmtMsat(long value) {
+      
+      totalAmtMsat_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *The total amount in millisatoshis.
+     * </pre>
+     *
+     * <code>int64 total_amt_msat = 6[json_name = "total_amt_msat"];</code>
+     */
+    public Builder clearTotalAmtMsat() {
+      
+      totalAmtMsat_ = 0L;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

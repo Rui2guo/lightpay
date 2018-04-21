@@ -15,4 +15,13 @@ public interface ChannelBalanceResponseOrBuilder extends
    * <code>int64 balance = 1[json_name = "balance"];</code>
    */
   long getBalance();
+
+  /**
+   * <pre>
+   *&#47; Sum of channels pending balances denominated in satoshis
+   * </pre>
+   *
+   * <code>int64 pending_open_balance = 2[json_name = "pending_open_balance"];</code>
+   */
+  long getPendingOpenBalance();
 }

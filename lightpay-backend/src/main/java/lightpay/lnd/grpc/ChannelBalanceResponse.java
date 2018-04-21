@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private ChannelBalanceResponse() {
     balance_ = 0L;
+    pendingOpenBalance_ = 0L;
   }
 
   @java.lang.Override
@@ -53,6 +54,11 @@ private static final long serialVersionUID = 0L;
           case 8: {
 
             balance_ = input.readInt64();
+            break;
+          }
+          case 16: {
+
+            pendingOpenBalance_ = input.readInt64();
             break;
           }
         }
@@ -92,6 +98,19 @@ private static final long serialVersionUID = 0L;
     return balance_;
   }
 
+  public static final int PENDING_OPEN_BALANCE_FIELD_NUMBER = 2;
+  private long pendingOpenBalance_;
+  /**
+   * <pre>
+   *&#47; Sum of channels pending balances denominated in satoshis
+   * </pre>
+   *
+   * <code>int64 pending_open_balance = 2[json_name = "pending_open_balance"];</code>
+   */
+  public long getPendingOpenBalance() {
+    return pendingOpenBalance_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -107,6 +126,9 @@ private static final long serialVersionUID = 0L;
     if (balance_ != 0L) {
       output.writeInt64(1, balance_);
     }
+    if (pendingOpenBalance_ != 0L) {
+      output.writeInt64(2, pendingOpenBalance_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -118,6 +140,10 @@ private static final long serialVersionUID = 0L;
     if (balance_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(1, balance_);
+    }
+    if (pendingOpenBalance_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, pendingOpenBalance_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -137,6 +163,8 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && (getBalance()
         == other.getBalance());
+    result = result && (getPendingOpenBalance()
+        == other.getPendingOpenBalance());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -151,6 +179,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + BALANCE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getBalance());
+    hash = (37 * hash) + PENDING_OPEN_BALANCE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getPendingOpenBalance());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -282,6 +313,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       balance_ = 0L;
 
+      pendingOpenBalance_ = 0L;
+
       return this;
     }
 
@@ -305,6 +338,7 @@ private static final long serialVersionUID = 0L;
     public lightpay.lnd.grpc.ChannelBalanceResponse buildPartial() {
       lightpay.lnd.grpc.ChannelBalanceResponse result = new lightpay.lnd.grpc.ChannelBalanceResponse(this);
       result.balance_ = balance_;
+      result.pendingOpenBalance_ = pendingOpenBalance_;
       onBuilt();
       return result;
     }
@@ -348,6 +382,9 @@ private static final long serialVersionUID = 0L;
       if (other == lightpay.lnd.grpc.ChannelBalanceResponse.getDefaultInstance()) return this;
       if (other.getBalance() != 0L) {
         setBalance(other.getBalance());
+      }
+      if (other.getPendingOpenBalance() != 0L) {
+        setPendingOpenBalance(other.getPendingOpenBalance());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -410,6 +447,44 @@ private static final long serialVersionUID = 0L;
     public Builder clearBalance() {
       
       balance_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long pendingOpenBalance_ ;
+    /**
+     * <pre>
+     *&#47; Sum of channels pending balances denominated in satoshis
+     * </pre>
+     *
+     * <code>int64 pending_open_balance = 2[json_name = "pending_open_balance"];</code>
+     */
+    public long getPendingOpenBalance() {
+      return pendingOpenBalance_;
+    }
+    /**
+     * <pre>
+     *&#47; Sum of channels pending balances denominated in satoshis
+     * </pre>
+     *
+     * <code>int64 pending_open_balance = 2[json_name = "pending_open_balance"];</code>
+     */
+    public Builder setPendingOpenBalance(long value) {
+      
+      pendingOpenBalance_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; Sum of channels pending balances denominated in satoshis
+     * </pre>
+     *
+     * <code>int64 pending_open_balance = 2[json_name = "pending_open_balance"];</code>
+     */
+    public Builder clearPendingOpenBalance() {
+      
+      pendingOpenBalance_ = 0L;
       onChanged();
       return this;
     }

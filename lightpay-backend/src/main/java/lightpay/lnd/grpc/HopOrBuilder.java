@@ -25,17 +25,27 @@ public interface HopOrBuilder extends
   long getChanCapacity();
 
   /**
-   * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward"];</code>
+   * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward", deprecated = true];</code>
    */
-  long getAmtToForward();
+  @java.lang.Deprecated long getAmtToForward();
 
   /**
-   * <code>int64 fee = 4[json_name = "fee"];</code>
+   * <code>int64 fee = 4[json_name = "fee", deprecated = true];</code>
    */
-  long getFee();
+  @java.lang.Deprecated long getFee();
 
   /**
    * <code>uint32 expiry = 5[json_name = "expiry"];</code>
    */
   int getExpiry();
+
+  /**
+   * <code>int64 amt_to_forward_msat = 6[json_name = "amt_to_forward_msat"];</code>
+   */
+  long getAmtToForwardMsat();
+
+  /**
+   * <code>int64 fee_msat = 7[json_name = "fee_msat"];</code>
+   */
+  long getFeeMsat();
 }

@@ -101,10 +101,6 @@ private static final long serialVersionUID = 0L;
      * <code>NESTED_PUBKEY_HASH = 1;</code>
      */
     NESTED_PUBKEY_HASH(1),
-    /**
-     * <code>PUBKEY_HASH = 2;</code>
-     */
-    PUBKEY_HASH(2),
     UNRECOGNIZED(-1),
     ;
 
@@ -116,10 +112,6 @@ private static final long serialVersionUID = 0L;
      * <code>NESTED_PUBKEY_HASH = 1;</code>
      */
     public static final int NESTED_PUBKEY_HASH_VALUE = 1;
-    /**
-     * <code>PUBKEY_HASH = 2;</code>
-     */
-    public static final int PUBKEY_HASH_VALUE = 2;
 
 
     public final int getNumber() {
@@ -142,7 +134,6 @@ private static final long serialVersionUID = 0L;
       switch (value) {
         case 0: return WITNESS_PUBKEY_HASH;
         case 1: return NESTED_PUBKEY_HASH;
-        case 2: return PUBKEY_HASH;
         default: return null;
       }
     }

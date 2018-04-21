@@ -24,6 +24,7 @@ private static final long serialVersionUID = 0L;
     satPerByte_ = 0L;
     private_ = false;
     minHtlcMsat_ = 0L;
+    remoteCsvDelay_ = 0;
   }
 
   @java.lang.Override
@@ -96,6 +97,11 @@ private static final long serialVersionUID = 0L;
           case 72: {
 
             minHtlcMsat_ = input.readInt64();
+            break;
+          }
+          case 80: {
+
+            remoteCsvDelay_ = input.readUInt32();
             break;
           }
         }
@@ -207,7 +213,7 @@ private static final long serialVersionUID = 0L;
   private int targetConf_;
   /**
    * <pre>
-   *&#47; The target number of blocks that the closure transaction should be confirmed by.
+   *&#47; The target number of blocks that the funding transaction should be confirmed by.
    * </pre>
    *
    * <code>int32 target_conf = 6;</code>
@@ -220,7 +226,7 @@ private static final long serialVersionUID = 0L;
   private long satPerByte_;
   /**
    * <pre>
-   *&#47; A manual fee rate set in sat/byte that should be used when crafting the closure transaction.
+   *&#47; A manual fee rate set in sat/byte that should be used when crafting the funding transaction.
    * </pre>
    *
    * <code>int64 sat_per_byte = 7;</code>
@@ -253,6 +259,19 @@ private static final long serialVersionUID = 0L;
    */
   public long getMinHtlcMsat() {
     return minHtlcMsat_;
+  }
+
+  public static final int REMOTE_CSV_DELAY_FIELD_NUMBER = 10;
+  private int remoteCsvDelay_;
+  /**
+   * <pre>
+   *&#47; The delay we require on the remote's commitment transaction. If this is not set, it will be scaled automatically with the channel size.
+   * </pre>
+   *
+   * <code>uint32 remote_csv_delay = 10[json_name = "remote_csv_delay"];</code>
+   */
+  public int getRemoteCsvDelay() {
+    return remoteCsvDelay_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -290,6 +309,9 @@ private static final long serialVersionUID = 0L;
     }
     if (minHtlcMsat_ != 0L) {
       output.writeInt64(9, minHtlcMsat_);
+    }
+    if (remoteCsvDelay_ != 0) {
+      output.writeUInt32(10, remoteCsvDelay_);
     }
     unknownFields.writeTo(output);
   }
@@ -330,6 +352,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(9, minHtlcMsat_);
     }
+    if (remoteCsvDelay_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt32Size(10, remoteCsvDelay_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -362,6 +388,8 @@ private static final long serialVersionUID = 0L;
         == other.getPrivate());
     result = result && (getMinHtlcMsat()
         == other.getMinHtlcMsat());
+    result = result && (getRemoteCsvDelay()
+        == other.getRemoteCsvDelay());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -394,6 +422,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + MIN_HTLC_MSAT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getMinHtlcMsat());
+    hash = (37 * hash) + REMOTE_CSV_DELAY_FIELD_NUMBER;
+    hash = (53 * hash) + getRemoteCsvDelay();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -539,6 +569,8 @@ private static final long serialVersionUID = 0L;
 
       minHtlcMsat_ = 0L;
 
+      remoteCsvDelay_ = 0;
+
       return this;
     }
 
@@ -569,6 +601,7 @@ private static final long serialVersionUID = 0L;
       result.satPerByte_ = satPerByte_;
       result.private_ = private_;
       result.minHtlcMsat_ = minHtlcMsat_;
+      result.remoteCsvDelay_ = remoteCsvDelay_;
       onBuilt();
       return result;
     }
@@ -634,6 +667,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getMinHtlcMsat() != 0L) {
         setMinHtlcMsat(other.getMinHtlcMsat());
+      }
+      if (other.getRemoteCsvDelay() != 0) {
+        setRemoteCsvDelay(other.getRemoteCsvDelay());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -871,7 +907,7 @@ private static final long serialVersionUID = 0L;
     private int targetConf_ ;
     /**
      * <pre>
-     *&#47; The target number of blocks that the closure transaction should be confirmed by.
+     *&#47; The target number of blocks that the funding transaction should be confirmed by.
      * </pre>
      *
      * <code>int32 target_conf = 6;</code>
@@ -881,7 +917,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *&#47; The target number of blocks that the closure transaction should be confirmed by.
+     *&#47; The target number of blocks that the funding transaction should be confirmed by.
      * </pre>
      *
      * <code>int32 target_conf = 6;</code>
@@ -894,7 +930,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *&#47; The target number of blocks that the closure transaction should be confirmed by.
+     *&#47; The target number of blocks that the funding transaction should be confirmed by.
      * </pre>
      *
      * <code>int32 target_conf = 6;</code>
@@ -909,7 +945,7 @@ private static final long serialVersionUID = 0L;
     private long satPerByte_ ;
     /**
      * <pre>
-     *&#47; A manual fee rate set in sat/byte that should be used when crafting the closure transaction.
+     *&#47; A manual fee rate set in sat/byte that should be used when crafting the funding transaction.
      * </pre>
      *
      * <code>int64 sat_per_byte = 7;</code>
@@ -919,7 +955,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *&#47; A manual fee rate set in sat/byte that should be used when crafting the closure transaction.
+     *&#47; A manual fee rate set in sat/byte that should be used when crafting the funding transaction.
      * </pre>
      *
      * <code>int64 sat_per_byte = 7;</code>
@@ -932,7 +968,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     *&#47; A manual fee rate set in sat/byte that should be used when crafting the closure transaction.
+     *&#47; A manual fee rate set in sat/byte that should be used when crafting the funding transaction.
      * </pre>
      *
      * <code>int64 sat_per_byte = 7;</code>
@@ -1016,6 +1052,44 @@ private static final long serialVersionUID = 0L;
     public Builder clearMinHtlcMsat() {
       
       minHtlcMsat_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private int remoteCsvDelay_ ;
+    /**
+     * <pre>
+     *&#47; The delay we require on the remote's commitment transaction. If this is not set, it will be scaled automatically with the channel size.
+     * </pre>
+     *
+     * <code>uint32 remote_csv_delay = 10[json_name = "remote_csv_delay"];</code>
+     */
+    public int getRemoteCsvDelay() {
+      return remoteCsvDelay_;
+    }
+    /**
+     * <pre>
+     *&#47; The delay we require on the remote's commitment transaction. If this is not set, it will be scaled automatically with the channel size.
+     * </pre>
+     *
+     * <code>uint32 remote_csv_delay = 10[json_name = "remote_csv_delay"];</code>
+     */
+    public Builder setRemoteCsvDelay(int value) {
+      
+      remoteCsvDelay_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; The delay we require on the remote's commitment transaction. If this is not set, it will be scaled automatically with the channel size.
+     * </pre>
+     *
+     * <code>uint32 remote_csv_delay = 10[json_name = "remote_csv_delay"];</code>
+     */
+    public Builder clearRemoteCsvDelay() {
+      
+      remoteCsvDelay_ = 0;
       onChanged();
       return this;
     }

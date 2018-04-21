@@ -6,4 +6,24 @@ package lightpay.lnd.grpc;
 public interface ListChannelsRequestOrBuilder extends
     // @@protoc_insertion_point(interface_extends:lnrpc.ListChannelsRequest)
     com.google.protobuf.MessageOrBuilder {
+
+  /**
+   * <code>bool active_only = 1;</code>
+   */
+  boolean getActiveOnly();
+
+  /**
+   * <code>bool inactive_only = 2;</code>
+   */
+  boolean getInactiveOnly();
+
+  /**
+   * <code>bool public_only = 3;</code>
+   */
+  boolean getPublicOnly();
+
+  /**
+   * <code>bool private_only = 4;</code>
+   */
+  boolean getPrivateOnly();
 }

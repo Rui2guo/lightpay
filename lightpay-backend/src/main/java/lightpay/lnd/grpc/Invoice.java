@@ -29,6 +29,8 @@ private static final long serialVersionUID = 0L;
     expiry_ = 0L;
     fallbackAddr_ = "";
     cltvExpiry_ = 0L;
+    routeHints_ = java.util.Collections.emptyList();
+    private_ = false;
   }
 
   @java.lang.Override
@@ -130,6 +132,20 @@ private static final long serialVersionUID = 0L;
             cltvExpiry_ = input.readUInt64();
             break;
           }
+          case 114: {
+            if (!((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
+              routeHints_ = new java.util.ArrayList<lightpay.lnd.grpc.RouteHint>();
+              mutable_bitField0_ |= 0x00002000;
+            }
+            routeHints_.add(
+                input.readMessage(lightpay.lnd.grpc.RouteHint.parser(), extensionRegistry));
+            break;
+          }
+          case 120: {
+
+            private_ = input.readBool();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -138,6 +154,9 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00002000) == 0x00002000)) {
+        routeHints_ = java.util.Collections.unmodifiableList(routeHints_);
+      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -154,6 +173,7 @@ private static final long serialVersionUID = 0L;
             lightpay.lnd.grpc.Invoice.class, lightpay.lnd.grpc.Invoice.Builder.class);
   }
 
+  private int bitField0_;
   public static final int MEMO_FIELD_NUMBER = 1;
   private volatile java.lang.Object memo_;
   /**
@@ -429,6 +449,84 @@ private static final long serialVersionUID = 0L;
     return cltvExpiry_;
   }
 
+  public static final int ROUTE_HINTS_FIELD_NUMBER = 14;
+  private java.util.List<lightpay.lnd.grpc.RouteHint> routeHints_;
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  public java.util.List<lightpay.lnd.grpc.RouteHint> getRouteHintsList() {
+    return routeHints_;
+  }
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  public java.util.List<? extends lightpay.lnd.grpc.RouteHintOrBuilder> 
+      getRouteHintsOrBuilderList() {
+    return routeHints_;
+  }
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  public int getRouteHintsCount() {
+    return routeHints_.size();
+  }
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  public lightpay.lnd.grpc.RouteHint getRouteHints(int index) {
+    return routeHints_.get(index);
+  }
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  public lightpay.lnd.grpc.RouteHintOrBuilder getRouteHintsOrBuilder(
+      int index) {
+    return routeHints_.get(index);
+  }
+
+  public static final int PRIVATE_FIELD_NUMBER = 15;
+  private boolean private_;
+  /**
+   * <pre>
+   *&#47; Whether this invoice should include routing hints for private channels.
+   * </pre>
+   *
+   * <code>bool private = 15[json_name = "private"];</code>
+   */
+  public boolean getPrivate() {
+    return private_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -479,6 +577,12 @@ private static final long serialVersionUID = 0L;
     }
     if (cltvExpiry_ != 0L) {
       output.writeUInt64(13, cltvExpiry_);
+    }
+    for (int i = 0; i < routeHints_.size(); i++) {
+      output.writeMessage(14, routeHints_.get(i));
+    }
+    if (private_ != false) {
+      output.writeBool(15, private_);
     }
     unknownFields.writeTo(output);
   }
@@ -537,6 +641,14 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeUInt64Size(13, cltvExpiry_);
     }
+    for (int i = 0; i < routeHints_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(14, routeHints_.get(i));
+    }
+    if (private_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(15, private_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -579,6 +691,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getFallbackAddr());
     result = result && (getCltvExpiry()
         == other.getCltvExpiry());
+    result = result && getRouteHintsList()
+        .equals(other.getRouteHintsList());
+    result = result && (getPrivate()
+        == other.getPrivate());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -622,6 +738,13 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + CLTV_EXPIRY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getCltvExpiry());
+    if (getRouteHintsCount() > 0) {
+      hash = (37 * hash) + ROUTE_HINTS_FIELD_NUMBER;
+      hash = (53 * hash) + getRouteHintsList().hashCode();
+    }
+    hash = (37 * hash) + PRIVATE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getPrivate());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -747,6 +870,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getRouteHintsFieldBuilder();
       }
     }
     public Builder clear() {
@@ -777,6 +901,14 @@ private static final long serialVersionUID = 0L;
 
       cltvExpiry_ = 0L;
 
+      if (routeHintsBuilder_ == null) {
+        routeHints_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00002000);
+      } else {
+        routeHintsBuilder_.clear();
+      }
+      private_ = false;
+
       return this;
     }
 
@@ -799,6 +931,8 @@ private static final long serialVersionUID = 0L;
 
     public lightpay.lnd.grpc.Invoice buildPartial() {
       lightpay.lnd.grpc.Invoice result = new lightpay.lnd.grpc.Invoice(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       result.memo_ = memo_;
       result.receipt_ = receipt_;
       result.rPreimage_ = rPreimage_;
@@ -812,6 +946,17 @@ private static final long serialVersionUID = 0L;
       result.expiry_ = expiry_;
       result.fallbackAddr_ = fallbackAddr_;
       result.cltvExpiry_ = cltvExpiry_;
+      if (routeHintsBuilder_ == null) {
+        if (((bitField0_ & 0x00002000) == 0x00002000)) {
+          routeHints_ = java.util.Collections.unmodifiableList(routeHints_);
+          bitField0_ = (bitField0_ & ~0x00002000);
+        }
+        result.routeHints_ = routeHints_;
+      } else {
+        result.routeHints_ = routeHintsBuilder_.build();
+      }
+      result.private_ = private_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -895,6 +1040,35 @@ private static final long serialVersionUID = 0L;
       if (other.getCltvExpiry() != 0L) {
         setCltvExpiry(other.getCltvExpiry());
       }
+      if (routeHintsBuilder_ == null) {
+        if (!other.routeHints_.isEmpty()) {
+          if (routeHints_.isEmpty()) {
+            routeHints_ = other.routeHints_;
+            bitField0_ = (bitField0_ & ~0x00002000);
+          } else {
+            ensureRouteHintsIsMutable();
+            routeHints_.addAll(other.routeHints_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.routeHints_.isEmpty()) {
+          if (routeHintsBuilder_.isEmpty()) {
+            routeHintsBuilder_.dispose();
+            routeHintsBuilder_ = null;
+            routeHints_ = other.routeHints_;
+            bitField0_ = (bitField0_ & ~0x00002000);
+            routeHintsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getRouteHintsFieldBuilder() : null;
+          } else {
+            routeHintsBuilder_.addAllMessages(other.routeHints_);
+          }
+        }
+      }
+      if (other.getPrivate() != false) {
+        setPrivate(other.getPrivate());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -921,6 +1095,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
     private java.lang.Object memo_ = "";
     /**
@@ -1627,6 +1802,392 @@ private static final long serialVersionUID = 0L;
     public Builder clearCltvExpiry() {
       
       cltvExpiry_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private java.util.List<lightpay.lnd.grpc.RouteHint> routeHints_ =
+      java.util.Collections.emptyList();
+    private void ensureRouteHintsIsMutable() {
+      if (!((bitField0_ & 0x00002000) == 0x00002000)) {
+        routeHints_ = new java.util.ArrayList<lightpay.lnd.grpc.RouteHint>(routeHints_);
+        bitField0_ |= 0x00002000;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        lightpay.lnd.grpc.RouteHint, lightpay.lnd.grpc.RouteHint.Builder, lightpay.lnd.grpc.RouteHintOrBuilder> routeHintsBuilder_;
+
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public java.util.List<lightpay.lnd.grpc.RouteHint> getRouteHintsList() {
+      if (routeHintsBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(routeHints_);
+      } else {
+        return routeHintsBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public int getRouteHintsCount() {
+      if (routeHintsBuilder_ == null) {
+        return routeHints_.size();
+      } else {
+        return routeHintsBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public lightpay.lnd.grpc.RouteHint getRouteHints(int index) {
+      if (routeHintsBuilder_ == null) {
+        return routeHints_.get(index);
+      } else {
+        return routeHintsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder setRouteHints(
+        int index, lightpay.lnd.grpc.RouteHint value) {
+      if (routeHintsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureRouteHintsIsMutable();
+        routeHints_.set(index, value);
+        onChanged();
+      } else {
+        routeHintsBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder setRouteHints(
+        int index, lightpay.lnd.grpc.RouteHint.Builder builderForValue) {
+      if (routeHintsBuilder_ == null) {
+        ensureRouteHintsIsMutable();
+        routeHints_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        routeHintsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder addRouteHints(lightpay.lnd.grpc.RouteHint value) {
+      if (routeHintsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureRouteHintsIsMutable();
+        routeHints_.add(value);
+        onChanged();
+      } else {
+        routeHintsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder addRouteHints(
+        int index, lightpay.lnd.grpc.RouteHint value) {
+      if (routeHintsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureRouteHintsIsMutable();
+        routeHints_.add(index, value);
+        onChanged();
+      } else {
+        routeHintsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder addRouteHints(
+        lightpay.lnd.grpc.RouteHint.Builder builderForValue) {
+      if (routeHintsBuilder_ == null) {
+        ensureRouteHintsIsMutable();
+        routeHints_.add(builderForValue.build());
+        onChanged();
+      } else {
+        routeHintsBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder addRouteHints(
+        int index, lightpay.lnd.grpc.RouteHint.Builder builderForValue) {
+      if (routeHintsBuilder_ == null) {
+        ensureRouteHintsIsMutable();
+        routeHints_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        routeHintsBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder addAllRouteHints(
+        java.lang.Iterable<? extends lightpay.lnd.grpc.RouteHint> values) {
+      if (routeHintsBuilder_ == null) {
+        ensureRouteHintsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, routeHints_);
+        onChanged();
+      } else {
+        routeHintsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder clearRouteHints() {
+      if (routeHintsBuilder_ == null) {
+        routeHints_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00002000);
+        onChanged();
+      } else {
+        routeHintsBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public Builder removeRouteHints(int index) {
+      if (routeHintsBuilder_ == null) {
+        ensureRouteHintsIsMutable();
+        routeHints_.remove(index);
+        onChanged();
+      } else {
+        routeHintsBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public lightpay.lnd.grpc.RouteHint.Builder getRouteHintsBuilder(
+        int index) {
+      return getRouteHintsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public lightpay.lnd.grpc.RouteHintOrBuilder getRouteHintsOrBuilder(
+        int index) {
+      if (routeHintsBuilder_ == null) {
+        return routeHints_.get(index);  } else {
+        return routeHintsBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public java.util.List<? extends lightpay.lnd.grpc.RouteHintOrBuilder> 
+         getRouteHintsOrBuilderList() {
+      if (routeHintsBuilder_ != null) {
+        return routeHintsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(routeHints_);
+      }
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public lightpay.lnd.grpc.RouteHint.Builder addRouteHintsBuilder() {
+      return getRouteHintsFieldBuilder().addBuilder(
+          lightpay.lnd.grpc.RouteHint.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public lightpay.lnd.grpc.RouteHint.Builder addRouteHintsBuilder(
+        int index) {
+      return getRouteHintsFieldBuilder().addBuilder(
+          index, lightpay.lnd.grpc.RouteHint.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     **
+     *Route hints that can each be individually used to assist in reaching the
+     *invoice's destination.
+     * </pre>
+     *
+     * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+     */
+    public java.util.List<lightpay.lnd.grpc.RouteHint.Builder> 
+         getRouteHintsBuilderList() {
+      return getRouteHintsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        lightpay.lnd.grpc.RouteHint, lightpay.lnd.grpc.RouteHint.Builder, lightpay.lnd.grpc.RouteHintOrBuilder> 
+        getRouteHintsFieldBuilder() {
+      if (routeHintsBuilder_ == null) {
+        routeHintsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            lightpay.lnd.grpc.RouteHint, lightpay.lnd.grpc.RouteHint.Builder, lightpay.lnd.grpc.RouteHintOrBuilder>(
+                routeHints_,
+                ((bitField0_ & 0x00002000) == 0x00002000),
+                getParentForChildren(),
+                isClean());
+        routeHints_ = null;
+      }
+      return routeHintsBuilder_;
+    }
+
+    private boolean private_ ;
+    /**
+     * <pre>
+     *&#47; Whether this invoice should include routing hints for private channels.
+     * </pre>
+     *
+     * <code>bool private = 15[json_name = "private"];</code>
+     */
+    public boolean getPrivate() {
+      return private_;
+    }
+    /**
+     * <pre>
+     *&#47; Whether this invoice should include routing hints for private channels.
+     * </pre>
+     *
+     * <code>bool private = 15[json_name = "private"];</code>
+     */
+    public Builder setPrivate(boolean value) {
+      
+      private_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; Whether this invoice should include routing hints for private channels.
+     * </pre>
+     *
+     * <code>bool private = 15[json_name = "private"];</code>
+     */
+    public Builder clearPrivate() {
+      
+      private_ = false;
       onChanged();
       return this;
     }

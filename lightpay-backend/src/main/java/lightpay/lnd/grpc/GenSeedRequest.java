@@ -4,19 +4,20 @@
 package lightpay.lnd.grpc;
 
 /**
- * Protobuf type {@code lnrpc.CreateWalletRequest}
+ * Protobuf type {@code lnrpc.GenSeedRequest}
  */
-public  final class CreateWalletRequest extends
+public  final class GenSeedRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:lnrpc.CreateWalletRequest)
-    CreateWalletRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:lnrpc.GenSeedRequest)
+    GenSeedRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use CreateWalletRequest.newBuilder() to construct.
-  private CreateWalletRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use GenSeedRequest.newBuilder() to construct.
+  private GenSeedRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private CreateWalletRequest() {
-    password_ = com.google.protobuf.ByteString.EMPTY;
+  private GenSeedRequest() {
+    aezeedPassphrase_ = com.google.protobuf.ByteString.EMPTY;
+    seedEntropy_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -24,7 +25,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private CreateWalletRequest(
+  private GenSeedRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -52,7 +53,12 @@ private static final long serialVersionUID = 0L;
           }
           case 10: {
 
-            password_ = input.readBytes();
+            aezeedPassphrase_ = input.readBytes();
+            break;
+          }
+          case 18: {
+
+            seedEntropy_ = input.readBytes();
             break;
           }
         }
@@ -69,23 +75,44 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletRequest_descriptor;
+    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_GenSeedRequest_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletRequest_fieldAccessorTable
+    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_GenSeedRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            lightpay.lnd.grpc.CreateWalletRequest.class, lightpay.lnd.grpc.CreateWalletRequest.Builder.class);
+            lightpay.lnd.grpc.GenSeedRequest.class, lightpay.lnd.grpc.GenSeedRequest.Builder.class);
   }
 
-  public static final int PASSWORD_FIELD_NUMBER = 1;
-  private com.google.protobuf.ByteString password_;
+  public static final int AEZEED_PASSPHRASE_FIELD_NUMBER = 1;
+  private com.google.protobuf.ByteString aezeedPassphrase_;
   /**
-   * <code>bytes password = 1;</code>
+   * <pre>
+   **
+   *aezeed_passphrase is an optional user provided passphrase that will be used
+   *to encrypt the generated aezeed cipher seed.
+   * </pre>
+   *
+   * <code>bytes aezeed_passphrase = 1;</code>
    */
-  public com.google.protobuf.ByteString getPassword() {
-    return password_;
+  public com.google.protobuf.ByteString getAezeedPassphrase() {
+    return aezeedPassphrase_;
+  }
+
+  public static final int SEED_ENTROPY_FIELD_NUMBER = 2;
+  private com.google.protobuf.ByteString seedEntropy_;
+  /**
+   * <pre>
+   **
+   *seed_entropy is an optional 16-bytes generated via CSPRNG. If not
+   *specified, then a fresh set of randomness will be used to create the seed.
+   * </pre>
+   *
+   * <code>bytes seed_entropy = 2;</code>
+   */
+  public com.google.protobuf.ByteString getSeedEntropy() {
+    return seedEntropy_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -100,8 +127,11 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!password_.isEmpty()) {
-      output.writeBytes(1, password_);
+    if (!aezeedPassphrase_.isEmpty()) {
+      output.writeBytes(1, aezeedPassphrase_);
+    }
+    if (!seedEntropy_.isEmpty()) {
+      output.writeBytes(2, seedEntropy_);
     }
     unknownFields.writeTo(output);
   }
@@ -111,9 +141,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!password_.isEmpty()) {
+    if (!aezeedPassphrase_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(1, password_);
+        .computeBytesSize(1, aezeedPassphrase_);
+    }
+    if (!seedEntropy_.isEmpty()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(2, seedEntropy_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -125,14 +159,16 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof lightpay.lnd.grpc.CreateWalletRequest)) {
+    if (!(obj instanceof lightpay.lnd.grpc.GenSeedRequest)) {
       return super.equals(obj);
     }
-    lightpay.lnd.grpc.CreateWalletRequest other = (lightpay.lnd.grpc.CreateWalletRequest) obj;
+    lightpay.lnd.grpc.GenSeedRequest other = (lightpay.lnd.grpc.GenSeedRequest) obj;
 
     boolean result = true;
-    result = result && getPassword()
-        .equals(other.getPassword());
+    result = result && getAezeedPassphrase()
+        .equals(other.getAezeedPassphrase());
+    result = result && getSeedEntropy()
+        .equals(other.getSeedEntropy());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -144,76 +180,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-    hash = (53 * hash) + getPassword().hashCode();
+    hash = (37 * hash) + AEZEED_PASSPHRASE_FIELD_NUMBER;
+    hash = (53 * hash) + getAezeedPassphrase().hashCode();
+    hash = (37 * hash) + SEED_ENTROPY_FIELD_NUMBER;
+    hash = (53 * hash) + getSeedEntropy().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(byte[] data)
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(java.io.InputStream input)
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseDelimitedFrom(java.io.InputStream input)
+  public static lightpay.lnd.grpc.GenSeedRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseDelimitedFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.CreateWalletRequest parseFrom(
+  public static lightpay.lnd.grpc.GenSeedRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -225,7 +263,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(lightpay.lnd.grpc.CreateWalletRequest prototype) {
+  public static Builder newBuilder(lightpay.lnd.grpc.GenSeedRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -240,25 +278,25 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code lnrpc.CreateWalletRequest}
+   * Protobuf type {@code lnrpc.GenSeedRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:lnrpc.CreateWalletRequest)
-      lightpay.lnd.grpc.CreateWalletRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:lnrpc.GenSeedRequest)
+      lightpay.lnd.grpc.GenSeedRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletRequest_descriptor;
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_GenSeedRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletRequest_fieldAccessorTable
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_GenSeedRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              lightpay.lnd.grpc.CreateWalletRequest.class, lightpay.lnd.grpc.CreateWalletRequest.Builder.class);
+              lightpay.lnd.grpc.GenSeedRequest.class, lightpay.lnd.grpc.GenSeedRequest.Builder.class);
     }
 
-    // Construct using lightpay.lnd.grpc.CreateWalletRequest.newBuilder()
+    // Construct using lightpay.lnd.grpc.GenSeedRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -275,31 +313,34 @@ private static final long serialVersionUID = 0L;
     }
     public Builder clear() {
       super.clear();
-      password_ = com.google.protobuf.ByteString.EMPTY;
+      aezeedPassphrase_ = com.google.protobuf.ByteString.EMPTY;
+
+      seedEntropy_ = com.google.protobuf.ByteString.EMPTY;
 
       return this;
     }
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletRequest_descriptor;
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_GenSeedRequest_descriptor;
     }
 
-    public lightpay.lnd.grpc.CreateWalletRequest getDefaultInstanceForType() {
-      return lightpay.lnd.grpc.CreateWalletRequest.getDefaultInstance();
+    public lightpay.lnd.grpc.GenSeedRequest getDefaultInstanceForType() {
+      return lightpay.lnd.grpc.GenSeedRequest.getDefaultInstance();
     }
 
-    public lightpay.lnd.grpc.CreateWalletRequest build() {
-      lightpay.lnd.grpc.CreateWalletRequest result = buildPartial();
+    public lightpay.lnd.grpc.GenSeedRequest build() {
+      lightpay.lnd.grpc.GenSeedRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public lightpay.lnd.grpc.CreateWalletRequest buildPartial() {
-      lightpay.lnd.grpc.CreateWalletRequest result = new lightpay.lnd.grpc.CreateWalletRequest(this);
-      result.password_ = password_;
+    public lightpay.lnd.grpc.GenSeedRequest buildPartial() {
+      lightpay.lnd.grpc.GenSeedRequest result = new lightpay.lnd.grpc.GenSeedRequest(this);
+      result.aezeedPassphrase_ = aezeedPassphrase_;
+      result.seedEntropy_ = seedEntropy_;
       onBuilt();
       return result;
     }
@@ -331,18 +372,21 @@ private static final long serialVersionUID = 0L;
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof lightpay.lnd.grpc.CreateWalletRequest) {
-        return mergeFrom((lightpay.lnd.grpc.CreateWalletRequest)other);
+      if (other instanceof lightpay.lnd.grpc.GenSeedRequest) {
+        return mergeFrom((lightpay.lnd.grpc.GenSeedRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(lightpay.lnd.grpc.CreateWalletRequest other) {
-      if (other == lightpay.lnd.grpc.CreateWalletRequest.getDefaultInstance()) return this;
-      if (other.getPassword() != com.google.protobuf.ByteString.EMPTY) {
-        setPassword(other.getPassword());
+    public Builder mergeFrom(lightpay.lnd.grpc.GenSeedRequest other) {
+      if (other == lightpay.lnd.grpc.GenSeedRequest.getDefaultInstance()) return this;
+      if (other.getAezeedPassphrase() != com.google.protobuf.ByteString.EMPTY) {
+        setAezeedPassphrase(other.getAezeedPassphrase());
+      }
+      if (other.getSeedEntropy() != com.google.protobuf.ByteString.EMPTY) {
+        setSeedEntropy(other.getSeedEntropy());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -357,11 +401,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      lightpay.lnd.grpc.CreateWalletRequest parsedMessage = null;
+      lightpay.lnd.grpc.GenSeedRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (lightpay.lnd.grpc.CreateWalletRequest) e.getUnfinishedMessage();
+        parsedMessage = (lightpay.lnd.grpc.GenSeedRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -371,31 +415,96 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.ByteString password_ = com.google.protobuf.ByteString.EMPTY;
+    private com.google.protobuf.ByteString aezeedPassphrase_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes password = 1;</code>
+     * <pre>
+     **
+     *aezeed_passphrase is an optional user provided passphrase that will be used
+     *to encrypt the generated aezeed cipher seed.
+     * </pre>
+     *
+     * <code>bytes aezeed_passphrase = 1;</code>
      */
-    public com.google.protobuf.ByteString getPassword() {
-      return password_;
+    public com.google.protobuf.ByteString getAezeedPassphrase() {
+      return aezeedPassphrase_;
     }
     /**
-     * <code>bytes password = 1;</code>
+     * <pre>
+     **
+     *aezeed_passphrase is an optional user provided passphrase that will be used
+     *to encrypt the generated aezeed cipher seed.
+     * </pre>
+     *
+     * <code>bytes aezeed_passphrase = 1;</code>
      */
-    public Builder setPassword(com.google.protobuf.ByteString value) {
+    public Builder setAezeedPassphrase(com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      password_ = value;
+      aezeedPassphrase_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bytes password = 1;</code>
+     * <pre>
+     **
+     *aezeed_passphrase is an optional user provided passphrase that will be used
+     *to encrypt the generated aezeed cipher seed.
+     * </pre>
+     *
+     * <code>bytes aezeed_passphrase = 1;</code>
      */
-    public Builder clearPassword() {
+    public Builder clearAezeedPassphrase() {
       
-      password_ = getDefaultInstance().getPassword();
+      aezeedPassphrase_ = getDefaultInstance().getAezeedPassphrase();
+      onChanged();
+      return this;
+    }
+
+    private com.google.protobuf.ByteString seedEntropy_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     **
+     *seed_entropy is an optional 16-bytes generated via CSPRNG. If not
+     *specified, then a fresh set of randomness will be used to create the seed.
+     * </pre>
+     *
+     * <code>bytes seed_entropy = 2;</code>
+     */
+    public com.google.protobuf.ByteString getSeedEntropy() {
+      return seedEntropy_;
+    }
+    /**
+     * <pre>
+     **
+     *seed_entropy is an optional 16-bytes generated via CSPRNG. If not
+     *specified, then a fresh set of randomness will be used to create the seed.
+     * </pre>
+     *
+     * <code>bytes seed_entropy = 2;</code>
+     */
+    public Builder setSeedEntropy(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      seedEntropy_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     **
+     *seed_entropy is an optional 16-bytes generated via CSPRNG. If not
+     *specified, then a fresh set of randomness will be used to create the seed.
+     * </pre>
+     *
+     * <code>bytes seed_entropy = 2;</code>
+     */
+    public Builder clearSeedEntropy() {
+      
+      seedEntropy_ = getDefaultInstance().getSeedEntropy();
       onChanged();
       return this;
     }
@@ -410,39 +519,39 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:lnrpc.CreateWalletRequest)
+    // @@protoc_insertion_point(builder_scope:lnrpc.GenSeedRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:lnrpc.CreateWalletRequest)
-  private static final lightpay.lnd.grpc.CreateWalletRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:lnrpc.GenSeedRequest)
+  private static final lightpay.lnd.grpc.GenSeedRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new lightpay.lnd.grpc.CreateWalletRequest();
+    DEFAULT_INSTANCE = new lightpay.lnd.grpc.GenSeedRequest();
   }
 
-  public static lightpay.lnd.grpc.CreateWalletRequest getDefaultInstance() {
+  public static lightpay.lnd.grpc.GenSeedRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<CreateWalletRequest>
-      PARSER = new com.google.protobuf.AbstractParser<CreateWalletRequest>() {
-    public CreateWalletRequest parsePartialFrom(
+  private static final com.google.protobuf.Parser<GenSeedRequest>
+      PARSER = new com.google.protobuf.AbstractParser<GenSeedRequest>() {
+    public GenSeedRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new CreateWalletRequest(input, extensionRegistry);
+      return new GenSeedRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<CreateWalletRequest> parser() {
+  public static com.google.protobuf.Parser<GenSeedRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<CreateWalletRequest> getParserForType() {
+  public com.google.protobuf.Parser<GenSeedRequest> getParserForType() {
     return PARSER;
   }
 
-  public lightpay.lnd.grpc.CreateWalletRequest getDefaultInstanceForType() {
+  public lightpay.lnd.grpc.GenSeedRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

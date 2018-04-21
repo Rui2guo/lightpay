@@ -8,7 +8,14 @@ public interface UnlockWalletRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bytes password = 1;</code>
+   * <pre>
+   **
+   *wallet_password should be the current valid passphrase for the daemon. This
+   *will be required to decrypt on-disk material that the daemon requires to
+   *function properly.
+   * </pre>
+   *
+   * <code>bytes wallet_password = 1;</code>
    */
-  com.google.protobuf.ByteString getPassword();
+  com.google.protobuf.ByteString getWalletPassword();
 }

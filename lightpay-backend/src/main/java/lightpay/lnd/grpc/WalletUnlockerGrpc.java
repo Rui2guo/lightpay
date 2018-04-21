@@ -32,41 +32,78 @@ public final class WalletUnlockerGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  @java.lang.Deprecated // Use {@link #getCreateWalletMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<lightpay.lnd.grpc.CreateWalletRequest,
-      lightpay.lnd.grpc.CreateWalletResponse> METHOD_CREATE_WALLET = getCreateWalletMethodHelper();
+  @java.lang.Deprecated // Use {@link #getGenSeedMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<lightpay.lnd.grpc.GenSeedRequest,
+      lightpay.lnd.grpc.GenSeedResponse> METHOD_GEN_SEED = getGenSeedMethodHelper();
 
-  private static volatile io.grpc.MethodDescriptor<lightpay.lnd.grpc.CreateWalletRequest,
-      lightpay.lnd.grpc.CreateWalletResponse> getCreateWalletMethod;
+  private static volatile io.grpc.MethodDescriptor<lightpay.lnd.grpc.GenSeedRequest,
+      lightpay.lnd.grpc.GenSeedResponse> getGenSeedMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<lightpay.lnd.grpc.CreateWalletRequest,
-      lightpay.lnd.grpc.CreateWalletResponse> getCreateWalletMethod() {
-    return getCreateWalletMethodHelper();
+  public static io.grpc.MethodDescriptor<lightpay.lnd.grpc.GenSeedRequest,
+      lightpay.lnd.grpc.GenSeedResponse> getGenSeedMethod() {
+    return getGenSeedMethodHelper();
   }
 
-  private static io.grpc.MethodDescriptor<lightpay.lnd.grpc.CreateWalletRequest,
-      lightpay.lnd.grpc.CreateWalletResponse> getCreateWalletMethodHelper() {
-    io.grpc.MethodDescriptor<lightpay.lnd.grpc.CreateWalletRequest, lightpay.lnd.grpc.CreateWalletResponse> getCreateWalletMethod;
-    if ((getCreateWalletMethod = WalletUnlockerGrpc.getCreateWalletMethod) == null) {
+  private static io.grpc.MethodDescriptor<lightpay.lnd.grpc.GenSeedRequest,
+      lightpay.lnd.grpc.GenSeedResponse> getGenSeedMethodHelper() {
+    io.grpc.MethodDescriptor<lightpay.lnd.grpc.GenSeedRequest, lightpay.lnd.grpc.GenSeedResponse> getGenSeedMethod;
+    if ((getGenSeedMethod = WalletUnlockerGrpc.getGenSeedMethod) == null) {
       synchronized (WalletUnlockerGrpc.class) {
-        if ((getCreateWalletMethod = WalletUnlockerGrpc.getCreateWalletMethod) == null) {
-          WalletUnlockerGrpc.getCreateWalletMethod = getCreateWalletMethod = 
-              io.grpc.MethodDescriptor.<lightpay.lnd.grpc.CreateWalletRequest, lightpay.lnd.grpc.CreateWalletResponse>newBuilder()
+        if ((getGenSeedMethod = WalletUnlockerGrpc.getGenSeedMethod) == null) {
+          WalletUnlockerGrpc.getGenSeedMethod = getGenSeedMethod = 
+              io.grpc.MethodDescriptor.<lightpay.lnd.grpc.GenSeedRequest, lightpay.lnd.grpc.GenSeedResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "lnrpc.WalletUnlocker", "CreateWallet"))
+                  "lnrpc.WalletUnlocker", "GenSeed"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  lightpay.lnd.grpc.CreateWalletRequest.getDefaultInstance()))
+                  lightpay.lnd.grpc.GenSeedRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  lightpay.lnd.grpc.CreateWalletResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new WalletUnlockerMethodDescriptorSupplier("CreateWallet"))
+                  lightpay.lnd.grpc.GenSeedResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new WalletUnlockerMethodDescriptorSupplier("GenSeed"))
                   .build();
           }
         }
      }
-     return getCreateWalletMethod;
+     return getGenSeedMethod;
+  }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getInitWalletMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<lightpay.lnd.grpc.InitWalletRequest,
+      lightpay.lnd.grpc.InitWalletResponse> METHOD_INIT_WALLET = getInitWalletMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<lightpay.lnd.grpc.InitWalletRequest,
+      lightpay.lnd.grpc.InitWalletResponse> getInitWalletMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<lightpay.lnd.grpc.InitWalletRequest,
+      lightpay.lnd.grpc.InitWalletResponse> getInitWalletMethod() {
+    return getInitWalletMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<lightpay.lnd.grpc.InitWalletRequest,
+      lightpay.lnd.grpc.InitWalletResponse> getInitWalletMethodHelper() {
+    io.grpc.MethodDescriptor<lightpay.lnd.grpc.InitWalletRequest, lightpay.lnd.grpc.InitWalletResponse> getInitWalletMethod;
+    if ((getInitWalletMethod = WalletUnlockerGrpc.getInitWalletMethod) == null) {
+      synchronized (WalletUnlockerGrpc.class) {
+        if ((getInitWalletMethod = WalletUnlockerGrpc.getInitWalletMethod) == null) {
+          WalletUnlockerGrpc.getInitWalletMethod = getInitWalletMethod = 
+              io.grpc.MethodDescriptor.<lightpay.lnd.grpc.InitWalletRequest, lightpay.lnd.grpc.InitWalletResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "lnrpc.WalletUnlocker", "InitWallet"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  lightpay.lnd.grpc.InitWalletRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  lightpay.lnd.grpc.InitWalletResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new WalletUnlockerMethodDescriptorSupplier("InitWallet"))
+                  .build();
+          }
+        }
+     }
+     return getInitWalletMethod;
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getUnlockWalletMethod()} instead. 
@@ -139,14 +176,39 @@ public final class WalletUnlockerGrpc {
 
     /**
      * <pre>
-     ** lncli: `create`
-     *CreateWallet is used at lnd startup to set the encryption password for
-     *the wallet database.
+     **
+     *GenSeed is the first method that should be used to instantiate a new lnd
+     *instance. This method allows a caller to generate a new aezeed cipher seed
+     *given an optional passphrase. If provided, the passphrase will be necessary
+     *to decrypt the cipherseed to expose the internal wallet seed.
+     *Once the cipherseed is obtained and verified by the user, the InitWallet
+     *method should be used to commit the newly generated seed, and create the
+     *wallet.
      * </pre>
      */
-    public void createWallet(lightpay.lnd.grpc.CreateWalletRequest request,
-        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.CreateWalletResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getCreateWalletMethodHelper(), responseObserver);
+    public void genSeed(lightpay.lnd.grpc.GenSeedRequest request,
+        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.GenSeedResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getGenSeedMethodHelper(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     **
+     *InitWallet is used when lnd is starting up for the first time to fully
+     *initialize the daemon and its internal wallet. At the very least a wallet
+     *password must be provided. This will be used to encrypt sensitive material
+     *on disk.
+     *In the case of a recovery scenario, the user can also specify their aezeed
+     *mnemonic and passphrase. If set, then the daemon will use this prior state
+     *to initialize its internal wallet.
+     *Alternatively, this can be used along with the GenSeed RPC to obtain a
+     *seed, then present it to the user. Once it has been verified by the user,
+     *the seed can be fed into this RPC in order to commit the new wallet.
+     * </pre>
+     */
+    public void initWallet(lightpay.lnd.grpc.InitWalletRequest request,
+        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.InitWalletResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getInitWalletMethodHelper(), responseObserver);
     }
 
     /**
@@ -164,12 +226,19 @@ public final class WalletUnlockerGrpc {
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getCreateWalletMethodHelper(),
+            getGenSeedMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
-                lightpay.lnd.grpc.CreateWalletRequest,
-                lightpay.lnd.grpc.CreateWalletResponse>(
-                  this, METHODID_CREATE_WALLET)))
+                lightpay.lnd.grpc.GenSeedRequest,
+                lightpay.lnd.grpc.GenSeedResponse>(
+                  this, METHODID_GEN_SEED)))
+          .addMethod(
+            getInitWalletMethodHelper(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                lightpay.lnd.grpc.InitWalletRequest,
+                lightpay.lnd.grpc.InitWalletResponse>(
+                  this, METHODID_INIT_WALLET)))
           .addMethod(
             getUnlockWalletMethodHelper(),
             asyncUnaryCall(
@@ -205,15 +274,41 @@ public final class WalletUnlockerGrpc {
 
     /**
      * <pre>
-     ** lncli: `create`
-     *CreateWallet is used at lnd startup to set the encryption password for
-     *the wallet database.
+     **
+     *GenSeed is the first method that should be used to instantiate a new lnd
+     *instance. This method allows a caller to generate a new aezeed cipher seed
+     *given an optional passphrase. If provided, the passphrase will be necessary
+     *to decrypt the cipherseed to expose the internal wallet seed.
+     *Once the cipherseed is obtained and verified by the user, the InitWallet
+     *method should be used to commit the newly generated seed, and create the
+     *wallet.
      * </pre>
      */
-    public void createWallet(lightpay.lnd.grpc.CreateWalletRequest request,
-        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.CreateWalletResponse> responseObserver) {
+    public void genSeed(lightpay.lnd.grpc.GenSeedRequest request,
+        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.GenSeedResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getCreateWalletMethodHelper(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGenSeedMethodHelper(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     **
+     *InitWallet is used when lnd is starting up for the first time to fully
+     *initialize the daemon and its internal wallet. At the very least a wallet
+     *password must be provided. This will be used to encrypt sensitive material
+     *on disk.
+     *In the case of a recovery scenario, the user can also specify their aezeed
+     *mnemonic and passphrase. If set, then the daemon will use this prior state
+     *to initialize its internal wallet.
+     *Alternatively, this can be used along with the GenSeed RPC to obtain a
+     *seed, then present it to the user. Once it has been verified by the user,
+     *the seed can be fed into this RPC in order to commit the new wallet.
+     * </pre>
+     */
+    public void initWallet(lightpay.lnd.grpc.InitWalletRequest request,
+        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.InitWalletResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getInitWalletMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -254,14 +349,39 @@ public final class WalletUnlockerGrpc {
 
     /**
      * <pre>
-     ** lncli: `create`
-     *CreateWallet is used at lnd startup to set the encryption password for
-     *the wallet database.
+     **
+     *GenSeed is the first method that should be used to instantiate a new lnd
+     *instance. This method allows a caller to generate a new aezeed cipher seed
+     *given an optional passphrase. If provided, the passphrase will be necessary
+     *to decrypt the cipherseed to expose the internal wallet seed.
+     *Once the cipherseed is obtained and verified by the user, the InitWallet
+     *method should be used to commit the newly generated seed, and create the
+     *wallet.
      * </pre>
      */
-    public lightpay.lnd.grpc.CreateWalletResponse createWallet(lightpay.lnd.grpc.CreateWalletRequest request) {
+    public lightpay.lnd.grpc.GenSeedResponse genSeed(lightpay.lnd.grpc.GenSeedRequest request) {
       return blockingUnaryCall(
-          getChannel(), getCreateWalletMethodHelper(), getCallOptions(), request);
+          getChannel(), getGenSeedMethodHelper(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     **
+     *InitWallet is used when lnd is starting up for the first time to fully
+     *initialize the daemon and its internal wallet. At the very least a wallet
+     *password must be provided. This will be used to encrypt sensitive material
+     *on disk.
+     *In the case of a recovery scenario, the user can also specify their aezeed
+     *mnemonic and passphrase. If set, then the daemon will use this prior state
+     *to initialize its internal wallet.
+     *Alternatively, this can be used along with the GenSeed RPC to obtain a
+     *seed, then present it to the user. Once it has been verified by the user,
+     *the seed can be fed into this RPC in order to commit the new wallet.
+     * </pre>
+     */
+    public lightpay.lnd.grpc.InitWalletResponse initWallet(lightpay.lnd.grpc.InitWalletRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getInitWalletMethodHelper(), getCallOptions(), request);
     }
 
     /**
@@ -301,15 +421,41 @@ public final class WalletUnlockerGrpc {
 
     /**
      * <pre>
-     ** lncli: `create`
-     *CreateWallet is used at lnd startup to set the encryption password for
-     *the wallet database.
+     **
+     *GenSeed is the first method that should be used to instantiate a new lnd
+     *instance. This method allows a caller to generate a new aezeed cipher seed
+     *given an optional passphrase. If provided, the passphrase will be necessary
+     *to decrypt the cipherseed to expose the internal wallet seed.
+     *Once the cipherseed is obtained and verified by the user, the InitWallet
+     *method should be used to commit the newly generated seed, and create the
+     *wallet.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<lightpay.lnd.grpc.CreateWalletResponse> createWallet(
-        lightpay.lnd.grpc.CreateWalletRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<lightpay.lnd.grpc.GenSeedResponse> genSeed(
+        lightpay.lnd.grpc.GenSeedRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getCreateWalletMethodHelper(), getCallOptions()), request);
+          getChannel().newCall(getGenSeedMethodHelper(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     **
+     *InitWallet is used when lnd is starting up for the first time to fully
+     *initialize the daemon and its internal wallet. At the very least a wallet
+     *password must be provided. This will be used to encrypt sensitive material
+     *on disk.
+     *In the case of a recovery scenario, the user can also specify their aezeed
+     *mnemonic and passphrase. If set, then the daemon will use this prior state
+     *to initialize its internal wallet.
+     *Alternatively, this can be used along with the GenSeed RPC to obtain a
+     *seed, then present it to the user. Once it has been verified by the user,
+     *the seed can be fed into this RPC in order to commit the new wallet.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<lightpay.lnd.grpc.InitWalletResponse> initWallet(
+        lightpay.lnd.grpc.InitWalletRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getInitWalletMethodHelper(), getCallOptions()), request);
     }
 
     /**
@@ -326,8 +472,9 @@ public final class WalletUnlockerGrpc {
     }
   }
 
-  private static final int METHODID_CREATE_WALLET = 0;
-  private static final int METHODID_UNLOCK_WALLET = 1;
+  private static final int METHODID_GEN_SEED = 0;
+  private static final int METHODID_INIT_WALLET = 1;
+  private static final int METHODID_UNLOCK_WALLET = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -346,9 +493,13 @@ public final class WalletUnlockerGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_CREATE_WALLET:
-          serviceImpl.createWallet((lightpay.lnd.grpc.CreateWalletRequest) request,
-              (io.grpc.stub.StreamObserver<lightpay.lnd.grpc.CreateWalletResponse>) responseObserver);
+        case METHODID_GEN_SEED:
+          serviceImpl.genSeed((lightpay.lnd.grpc.GenSeedRequest) request,
+              (io.grpc.stub.StreamObserver<lightpay.lnd.grpc.GenSeedResponse>) responseObserver);
+          break;
+        case METHODID_INIT_WALLET:
+          serviceImpl.initWallet((lightpay.lnd.grpc.InitWalletRequest) request,
+              (io.grpc.stub.StreamObserver<lightpay.lnd.grpc.InitWalletResponse>) responseObserver);
           break;
         case METHODID_UNLOCK_WALLET:
           serviceImpl.unlockWallet((lightpay.lnd.grpc.UnlockWalletRequest) request,
@@ -415,7 +566,8 @@ public final class WalletUnlockerGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new WalletUnlockerFileDescriptorSupplier())
-              .addMethod(getCreateWalletMethodHelper())
+              .addMethod(getGenSeedMethodHelper())
+              .addMethod(getInitWalletMethodHelper())
               .addMethod(getUnlockWalletMethodHelper())
               .build();
         }

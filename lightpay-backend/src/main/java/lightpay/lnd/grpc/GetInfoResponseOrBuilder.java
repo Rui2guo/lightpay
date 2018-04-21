@@ -184,4 +184,31 @@ public interface GetInfoResponseOrBuilder extends
    */
   com.google.protobuf.ByteString
       getUrisBytes(int index);
+
+  /**
+   * <pre>
+   *&#47; Timestamp of the block best known to the wallet
+   * </pre>
+   *
+   * <code>int64 best_header_timestamp = 13[json_name = "best_header_timestamp"];</code>
+   */
+  long getBestHeaderTimestamp();
+
+  /**
+   * <pre>
+   *&#47; The version of the LND software that the node is running.
+   * </pre>
+   *
+   * <code>string version = 14[json_name = "version"];</code>
+   */
+  java.lang.String getVersion();
+  /**
+   * <pre>
+   *&#47; The version of the LND software that the node is running.
+   * </pre>
+   *
+   * <code>string version = 14[json_name = "version"];</code>
+   */
+  com.google.protobuf.ByteString
+      getVersionBytes();
 }

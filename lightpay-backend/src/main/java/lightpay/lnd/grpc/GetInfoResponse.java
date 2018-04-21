@@ -27,6 +27,8 @@ private static final long serialVersionUID = 0L;
     testnet_ = false;
     chains_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     uris_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    bestHeaderTimestamp_ = 0L;
+    version_ = "";
   }
 
   @java.lang.Override
@@ -124,6 +126,17 @@ private static final long serialVersionUID = 0L;
               mutable_bitField0_ |= 0x00000400;
             }
             uris_.add(s);
+            break;
+          }
+          case 104: {
+
+            bestHeaderTimestamp_ = input.readInt64();
+            break;
+          }
+          case 114: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            version_ = s;
             break;
           }
         }
@@ -451,6 +464,61 @@ private static final long serialVersionUID = 0L;
     return uris_.getByteString(index);
   }
 
+  public static final int BEST_HEADER_TIMESTAMP_FIELD_NUMBER = 13;
+  private long bestHeaderTimestamp_;
+  /**
+   * <pre>
+   *&#47; Timestamp of the block best known to the wallet
+   * </pre>
+   *
+   * <code>int64 best_header_timestamp = 13[json_name = "best_header_timestamp"];</code>
+   */
+  public long getBestHeaderTimestamp() {
+    return bestHeaderTimestamp_;
+  }
+
+  public static final int VERSION_FIELD_NUMBER = 14;
+  private volatile java.lang.Object version_;
+  /**
+   * <pre>
+   *&#47; The version of the LND software that the node is running.
+   * </pre>
+   *
+   * <code>string version = 14[json_name = "version"];</code>
+   */
+  public java.lang.String getVersion() {
+    java.lang.Object ref = version_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      version_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   *&#47; The version of the LND software that the node is running.
+   * </pre>
+   *
+   * <code>string version = 14[json_name = "version"];</code>
+   */
+  public com.google.protobuf.ByteString
+      getVersionBytes() {
+    java.lang.Object ref = version_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      version_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -495,6 +563,12 @@ private static final long serialVersionUID = 0L;
     }
     for (int i = 0; i < uris_.size(); i++) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 12, uris_.getRaw(i));
+    }
+    if (bestHeaderTimestamp_ != 0L) {
+      output.writeInt64(13, bestHeaderTimestamp_);
+    }
+    if (!getVersionBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 14, version_);
     }
     unknownFields.writeTo(output);
   }
@@ -553,6 +627,13 @@ private static final long serialVersionUID = 0L;
       size += dataSize;
       size += 1 * getUrisList().size();
     }
+    if (bestHeaderTimestamp_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(13, bestHeaderTimestamp_);
+    }
+    if (!getVersionBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(14, version_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -591,6 +672,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getChainsList());
     result = result && getUrisList()
         .equals(other.getUrisList());
+    result = result && (getBestHeaderTimestamp()
+        == other.getBestHeaderTimestamp());
+    result = result && getVersion()
+        .equals(other.getVersion());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -630,6 +715,11 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + URIS_FIELD_NUMBER;
       hash = (53 * hash) + getUrisList().hashCode();
     }
+    hash = (37 * hash) + BEST_HEADER_TIMESTAMP_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getBestHeaderTimestamp());
+    hash = (37 * hash) + VERSION_FIELD_NUMBER;
+    hash = (53 * hash) + getVersion().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -781,6 +871,10 @@ private static final long serialVersionUID = 0L;
       bitField0_ = (bitField0_ & ~0x00000200);
       uris_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       bitField0_ = (bitField0_ & ~0x00000400);
+      bestHeaderTimestamp_ = 0L;
+
+      version_ = "";
+
       return this;
     }
 
@@ -824,6 +918,8 @@ private static final long serialVersionUID = 0L;
         bitField0_ = (bitField0_ & ~0x00000400);
       }
       result.uris_ = uris_;
+      result.bestHeaderTimestamp_ = bestHeaderTimestamp_;
+      result.version_ = version_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -914,6 +1010,13 @@ private static final long serialVersionUID = 0L;
           ensureUrisIsMutable();
           uris_.addAll(other.uris_);
         }
+        onChanged();
+      }
+      if (other.getBestHeaderTimestamp() != 0L) {
+        setBestHeaderTimestamp(other.getBestHeaderTimestamp());
+      }
+      if (!other.getVersion().isEmpty()) {
+        version_ = other.version_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -1695,6 +1798,133 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       ensureUrisIsMutable();
       uris_.add(value);
+      onChanged();
+      return this;
+    }
+
+    private long bestHeaderTimestamp_ ;
+    /**
+     * <pre>
+     *&#47; Timestamp of the block best known to the wallet
+     * </pre>
+     *
+     * <code>int64 best_header_timestamp = 13[json_name = "best_header_timestamp"];</code>
+     */
+    public long getBestHeaderTimestamp() {
+      return bestHeaderTimestamp_;
+    }
+    /**
+     * <pre>
+     *&#47; Timestamp of the block best known to the wallet
+     * </pre>
+     *
+     * <code>int64 best_header_timestamp = 13[json_name = "best_header_timestamp"];</code>
+     */
+    public Builder setBestHeaderTimestamp(long value) {
+      
+      bestHeaderTimestamp_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; Timestamp of the block best known to the wallet
+     * </pre>
+     *
+     * <code>int64 best_header_timestamp = 13[json_name = "best_header_timestamp"];</code>
+     */
+    public Builder clearBestHeaderTimestamp() {
+      
+      bestHeaderTimestamp_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object version_ = "";
+    /**
+     * <pre>
+     *&#47; The version of the LND software that the node is running.
+     * </pre>
+     *
+     * <code>string version = 14[json_name = "version"];</code>
+     */
+    public java.lang.String getVersion() {
+      java.lang.Object ref = version_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        version_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     *&#47; The version of the LND software that the node is running.
+     * </pre>
+     *
+     * <code>string version = 14[json_name = "version"];</code>
+     */
+    public com.google.protobuf.ByteString
+        getVersionBytes() {
+      java.lang.Object ref = version_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        version_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     *&#47; The version of the LND software that the node is running.
+     * </pre>
+     *
+     * <code>string version = 14[json_name = "version"];</code>
+     */
+    public Builder setVersion(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      version_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; The version of the LND software that the node is running.
+     * </pre>
+     *
+     * <code>string version = 14[json_name = "version"];</code>
+     */
+    public Builder clearVersion() {
+      
+      version_ = getDefaultInstance().getVersion();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; The version of the LND software that the node is running.
+     * </pre>
+     *
+     * <code>string version = 14[json_name = "version"];</code>
+     */
+    public Builder setVersionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      version_ = value;
       onChanged();
       return this;
     }

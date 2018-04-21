@@ -3,7 +3,7 @@
 
 package lightpay.lnd.grpc;
 
-public interface CreateWalletResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:lnrpc.CreateWalletResponse)
+public interface InitWalletResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:lnrpc.InitWalletResponse)
     com.google.protobuf.MessageOrBuilder {
 }

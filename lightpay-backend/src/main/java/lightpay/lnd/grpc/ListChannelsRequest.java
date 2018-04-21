@@ -16,6 +16,10 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ListChannelsRequest() {
+    activeOnly_ = false;
+    inactiveOnly_ = false;
+    publicOnly_ = false;
+    privateOnly_ = false;
   }
 
   @java.lang.Override
@@ -31,6 +35,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -46,6 +51,26 @@ private static final long serialVersionUID = 0L;
                 input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
+            break;
+          }
+          case 8: {
+
+            activeOnly_ = input.readBool();
+            break;
+          }
+          case 16: {
+
+            inactiveOnly_ = input.readBool();
+            break;
+          }
+          case 24: {
+
+            publicOnly_ = input.readBool();
+            break;
+          }
+          case 32: {
+
+            privateOnly_ = input.readBool();
             break;
           }
         }
@@ -72,6 +97,42 @@ private static final long serialVersionUID = 0L;
             lightpay.lnd.grpc.ListChannelsRequest.class, lightpay.lnd.grpc.ListChannelsRequest.Builder.class);
   }
 
+  public static final int ACTIVE_ONLY_FIELD_NUMBER = 1;
+  private boolean activeOnly_;
+  /**
+   * <code>bool active_only = 1;</code>
+   */
+  public boolean getActiveOnly() {
+    return activeOnly_;
+  }
+
+  public static final int INACTIVE_ONLY_FIELD_NUMBER = 2;
+  private boolean inactiveOnly_;
+  /**
+   * <code>bool inactive_only = 2;</code>
+   */
+  public boolean getInactiveOnly() {
+    return inactiveOnly_;
+  }
+
+  public static final int PUBLIC_ONLY_FIELD_NUMBER = 3;
+  private boolean publicOnly_;
+  /**
+   * <code>bool public_only = 3;</code>
+   */
+  public boolean getPublicOnly() {
+    return publicOnly_;
+  }
+
+  public static final int PRIVATE_ONLY_FIELD_NUMBER = 4;
+  private boolean privateOnly_;
+  /**
+   * <code>bool private_only = 4;</code>
+   */
+  public boolean getPrivateOnly() {
+    return privateOnly_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -84,6 +145,18 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (activeOnly_ != false) {
+      output.writeBool(1, activeOnly_);
+    }
+    if (inactiveOnly_ != false) {
+      output.writeBool(2, inactiveOnly_);
+    }
+    if (publicOnly_ != false) {
+      output.writeBool(3, publicOnly_);
+    }
+    if (privateOnly_ != false) {
+      output.writeBool(4, privateOnly_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -92,6 +165,22 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (activeOnly_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(1, activeOnly_);
+    }
+    if (inactiveOnly_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(2, inactiveOnly_);
+    }
+    if (publicOnly_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(3, publicOnly_);
+    }
+    if (privateOnly_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, privateOnly_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -108,6 +197,14 @@ private static final long serialVersionUID = 0L;
     lightpay.lnd.grpc.ListChannelsRequest other = (lightpay.lnd.grpc.ListChannelsRequest) obj;
 
     boolean result = true;
+    result = result && (getActiveOnly()
+        == other.getActiveOnly());
+    result = result && (getInactiveOnly()
+        == other.getInactiveOnly());
+    result = result && (getPublicOnly()
+        == other.getPublicOnly());
+    result = result && (getPrivateOnly()
+        == other.getPrivateOnly());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -119,6 +216,18 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + ACTIVE_ONLY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getActiveOnly());
+    hash = (37 * hash) + INACTIVE_ONLY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getInactiveOnly());
+    hash = (37 * hash) + PUBLIC_ONLY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getPublicOnly());
+    hash = (37 * hash) + PRIVATE_ONLY_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getPrivateOnly());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -248,6 +357,14 @@ private static final long serialVersionUID = 0L;
     }
     public Builder clear() {
       super.clear();
+      activeOnly_ = false;
+
+      inactiveOnly_ = false;
+
+      publicOnly_ = false;
+
+      privateOnly_ = false;
+
       return this;
     }
 
@@ -270,6 +387,10 @@ private static final long serialVersionUID = 0L;
 
     public lightpay.lnd.grpc.ListChannelsRequest buildPartial() {
       lightpay.lnd.grpc.ListChannelsRequest result = new lightpay.lnd.grpc.ListChannelsRequest(this);
+      result.activeOnly_ = activeOnly_;
+      result.inactiveOnly_ = inactiveOnly_;
+      result.publicOnly_ = publicOnly_;
+      result.privateOnly_ = privateOnly_;
       onBuilt();
       return result;
     }
@@ -311,6 +432,18 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(lightpay.lnd.grpc.ListChannelsRequest other) {
       if (other == lightpay.lnd.grpc.ListChannelsRequest.getDefaultInstance()) return this;
+      if (other.getActiveOnly() != false) {
+        setActiveOnly(other.getActiveOnly());
+      }
+      if (other.getInactiveOnly() != false) {
+        setInactiveOnly(other.getInactiveOnly());
+      }
+      if (other.getPublicOnly() != false) {
+        setPublicOnly(other.getPublicOnly());
+      }
+      if (other.getPrivateOnly() != false) {
+        setPrivateOnly(other.getPrivateOnly());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -335,6 +468,110 @@ private static final long serialVersionUID = 0L;
           mergeFrom(parsedMessage);
         }
       }
+      return this;
+    }
+
+    private boolean activeOnly_ ;
+    /**
+     * <code>bool active_only = 1;</code>
+     */
+    public boolean getActiveOnly() {
+      return activeOnly_;
+    }
+    /**
+     * <code>bool active_only = 1;</code>
+     */
+    public Builder setActiveOnly(boolean value) {
+      
+      activeOnly_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool active_only = 1;</code>
+     */
+    public Builder clearActiveOnly() {
+      
+      activeOnly_ = false;
+      onChanged();
+      return this;
+    }
+
+    private boolean inactiveOnly_ ;
+    /**
+     * <code>bool inactive_only = 2;</code>
+     */
+    public boolean getInactiveOnly() {
+      return inactiveOnly_;
+    }
+    /**
+     * <code>bool inactive_only = 2;</code>
+     */
+    public Builder setInactiveOnly(boolean value) {
+      
+      inactiveOnly_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool inactive_only = 2;</code>
+     */
+    public Builder clearInactiveOnly() {
+      
+      inactiveOnly_ = false;
+      onChanged();
+      return this;
+    }
+
+    private boolean publicOnly_ ;
+    /**
+     * <code>bool public_only = 3;</code>
+     */
+    public boolean getPublicOnly() {
+      return publicOnly_;
+    }
+    /**
+     * <code>bool public_only = 3;</code>
+     */
+    public Builder setPublicOnly(boolean value) {
+      
+      publicOnly_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool public_only = 3;</code>
+     */
+    public Builder clearPublicOnly() {
+      
+      publicOnly_ = false;
+      onChanged();
+      return this;
+    }
+
+    private boolean privateOnly_ ;
+    /**
+     * <code>bool private_only = 4;</code>
+     */
+    public boolean getPrivateOnly() {
+      return privateOnly_;
+    }
+    /**
+     * <code>bool private_only = 4;</code>
+     */
+    public Builder setPrivateOnly(boolean value) {
+      
+      privateOnly_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool private_only = 4;</code>
+     */
+    public Builder clearPrivateOnly() {
+      
+      privateOnly_ = false;
+      onChanged();
       return this;
     }
     public final Builder setUnknownFields(

@@ -52,11 +52,11 @@ private static final long serialVersionUID = 0L;
           }
           case 90: {
             if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-              channels_ = new java.util.ArrayList<lightpay.lnd.grpc.ActiveChannel>();
+              channels_ = new java.util.ArrayList<lightpay.lnd.grpc.Channel>();
               mutable_bitField0_ |= 0x00000001;
             }
             channels_.add(
-                input.readMessage(lightpay.lnd.grpc.ActiveChannel.parser(), extensionRegistry));
+                input.readMessage(lightpay.lnd.grpc.Channel.parser(), extensionRegistry));
             break;
           }
         }
@@ -87,15 +87,15 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int CHANNELS_FIELD_NUMBER = 11;
-  private java.util.List<lightpay.lnd.grpc.ActiveChannel> channels_;
+  private java.util.List<lightpay.lnd.grpc.Channel> channels_;
   /**
    * <pre>
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  public java.util.List<lightpay.lnd.grpc.ActiveChannel> getChannelsList() {
+  public java.util.List<lightpay.lnd.grpc.Channel> getChannelsList() {
     return channels_;
   }
   /**
@@ -103,9 +103,9 @@ private static final long serialVersionUID = 0L;
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  public java.util.List<? extends lightpay.lnd.grpc.ActiveChannelOrBuilder> 
+  public java.util.List<? extends lightpay.lnd.grpc.ChannelOrBuilder> 
       getChannelsOrBuilderList() {
     return channels_;
   }
@@ -114,7 +114,7 @@ private static final long serialVersionUID = 0L;
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
   public int getChannelsCount() {
     return channels_.size();
@@ -124,9 +124,9 @@ private static final long serialVersionUID = 0L;
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  public lightpay.lnd.grpc.ActiveChannel getChannels(int index) {
+  public lightpay.lnd.grpc.Channel getChannels(int index) {
     return channels_.get(index);
   }
   /**
@@ -134,9 +134,9 @@ private static final long serialVersionUID = 0L;
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  public lightpay.lnd.grpc.ActiveChannelOrBuilder getChannelsOrBuilder(
+  public lightpay.lnd.grpc.ChannelOrBuilder getChannelsOrBuilder(
       int index) {
     return channels_.get(index);
   }
@@ -464,26 +464,26 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.util.List<lightpay.lnd.grpc.ActiveChannel> channels_ =
+    private java.util.List<lightpay.lnd.grpc.Channel> channels_ =
       java.util.Collections.emptyList();
     private void ensureChannelsIsMutable() {
       if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-        channels_ = new java.util.ArrayList<lightpay.lnd.grpc.ActiveChannel>(channels_);
+        channels_ = new java.util.ArrayList<lightpay.lnd.grpc.Channel>(channels_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        lightpay.lnd.grpc.ActiveChannel, lightpay.lnd.grpc.ActiveChannel.Builder, lightpay.lnd.grpc.ActiveChannelOrBuilder> channelsBuilder_;
+        lightpay.lnd.grpc.Channel, lightpay.lnd.grpc.Channel.Builder, lightpay.lnd.grpc.ChannelOrBuilder> channelsBuilder_;
 
     /**
      * <pre>
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public java.util.List<lightpay.lnd.grpc.ActiveChannel> getChannelsList() {
+    public java.util.List<lightpay.lnd.grpc.Channel> getChannelsList() {
       if (channelsBuilder_ == null) {
         return java.util.Collections.unmodifiableList(channels_);
       } else {
@@ -495,7 +495,7 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public int getChannelsCount() {
       if (channelsBuilder_ == null) {
@@ -509,9 +509,9 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public lightpay.lnd.grpc.ActiveChannel getChannels(int index) {
+    public lightpay.lnd.grpc.Channel getChannels(int index) {
       if (channelsBuilder_ == null) {
         return channels_.get(index);
       } else {
@@ -523,10 +523,10 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder setChannels(
-        int index, lightpay.lnd.grpc.ActiveChannel value) {
+        int index, lightpay.lnd.grpc.Channel value) {
       if (channelsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -544,10 +544,10 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder setChannels(
-        int index, lightpay.lnd.grpc.ActiveChannel.Builder builderForValue) {
+        int index, lightpay.lnd.grpc.Channel.Builder builderForValue) {
       if (channelsBuilder_ == null) {
         ensureChannelsIsMutable();
         channels_.set(index, builderForValue.build());
@@ -562,9 +562,9 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public Builder addChannels(lightpay.lnd.grpc.ActiveChannel value) {
+    public Builder addChannels(lightpay.lnd.grpc.Channel value) {
       if (channelsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -582,10 +582,10 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder addChannels(
-        int index, lightpay.lnd.grpc.ActiveChannel value) {
+        int index, lightpay.lnd.grpc.Channel value) {
       if (channelsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -603,10 +603,10 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder addChannels(
-        lightpay.lnd.grpc.ActiveChannel.Builder builderForValue) {
+        lightpay.lnd.grpc.Channel.Builder builderForValue) {
       if (channelsBuilder_ == null) {
         ensureChannelsIsMutable();
         channels_.add(builderForValue.build());
@@ -621,10 +621,10 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder addChannels(
-        int index, lightpay.lnd.grpc.ActiveChannel.Builder builderForValue) {
+        int index, lightpay.lnd.grpc.Channel.Builder builderForValue) {
       if (channelsBuilder_ == null) {
         ensureChannelsIsMutable();
         channels_.add(index, builderForValue.build());
@@ -639,10 +639,10 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder addAllChannels(
-        java.lang.Iterable<? extends lightpay.lnd.grpc.ActiveChannel> values) {
+        java.lang.Iterable<? extends lightpay.lnd.grpc.Channel> values) {
       if (channelsBuilder_ == null) {
         ensureChannelsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -658,7 +658,7 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder clearChannels() {
       if (channelsBuilder_ == null) {
@@ -675,7 +675,7 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
     public Builder removeChannels(int index) {
       if (channelsBuilder_ == null) {
@@ -692,9 +692,9 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public lightpay.lnd.grpc.ActiveChannel.Builder getChannelsBuilder(
+    public lightpay.lnd.grpc.Channel.Builder getChannelsBuilder(
         int index) {
       return getChannelsFieldBuilder().getBuilder(index);
     }
@@ -703,9 +703,9 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public lightpay.lnd.grpc.ActiveChannelOrBuilder getChannelsOrBuilder(
+    public lightpay.lnd.grpc.ChannelOrBuilder getChannelsOrBuilder(
         int index) {
       if (channelsBuilder_ == null) {
         return channels_.get(index);  } else {
@@ -717,9 +717,9 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public java.util.List<? extends lightpay.lnd.grpc.ActiveChannelOrBuilder> 
+    public java.util.List<? extends lightpay.lnd.grpc.ChannelOrBuilder> 
          getChannelsOrBuilderList() {
       if (channelsBuilder_ != null) {
         return channelsBuilder_.getMessageOrBuilderList();
@@ -732,41 +732,41 @@ private static final long serialVersionUID = 0L;
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public lightpay.lnd.grpc.ActiveChannel.Builder addChannelsBuilder() {
+    public lightpay.lnd.grpc.Channel.Builder addChannelsBuilder() {
       return getChannelsFieldBuilder().addBuilder(
-          lightpay.lnd.grpc.ActiveChannel.getDefaultInstance());
+          lightpay.lnd.grpc.Channel.getDefaultInstance());
     }
     /**
      * <pre>
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public lightpay.lnd.grpc.ActiveChannel.Builder addChannelsBuilder(
+    public lightpay.lnd.grpc.Channel.Builder addChannelsBuilder(
         int index) {
       return getChannelsFieldBuilder().addBuilder(
-          index, lightpay.lnd.grpc.ActiveChannel.getDefaultInstance());
+          index, lightpay.lnd.grpc.Channel.getDefaultInstance());
     }
     /**
      * <pre>
      *&#47; The list of active channels
      * </pre>
      *
-     * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+     * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
      */
-    public java.util.List<lightpay.lnd.grpc.ActiveChannel.Builder> 
+    public java.util.List<lightpay.lnd.grpc.Channel.Builder> 
          getChannelsBuilderList() {
       return getChannelsFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        lightpay.lnd.grpc.ActiveChannel, lightpay.lnd.grpc.ActiveChannel.Builder, lightpay.lnd.grpc.ActiveChannelOrBuilder> 
+        lightpay.lnd.grpc.Channel, lightpay.lnd.grpc.Channel.Builder, lightpay.lnd.grpc.ChannelOrBuilder> 
         getChannelsFieldBuilder() {
       if (channelsBuilder_ == null) {
         channelsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            lightpay.lnd.grpc.ActiveChannel, lightpay.lnd.grpc.ActiveChannel.Builder, lightpay.lnd.grpc.ActiveChannelOrBuilder>(
+            lightpay.lnd.grpc.Channel, lightpay.lnd.grpc.Channel.Builder, lightpay.lnd.grpc.ChannelOrBuilder>(
                 channels_,
                 ((bitField0_ & 0x00000001) == 0x00000001),
                 getParentForChildren(),

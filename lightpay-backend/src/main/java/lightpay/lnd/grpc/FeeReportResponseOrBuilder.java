@@ -50,4 +50,31 @@ public interface FeeReportResponseOrBuilder extends
    */
   lightpay.lnd.grpc.ChannelFeeReportOrBuilder getChannelFeesOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 24 hrs.
+   * </pre>
+   *
+   * <code>uint64 day_fee_sum = 2[json_name = "day_fee_sum"];</code>
+   */
+  long getDayFeeSum();
+
+  /**
+   * <pre>
+   *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 week.
+   * </pre>
+   *
+   * <code>uint64 week_fee_sum = 3[json_name = "week_fee_sum"];</code>
+   */
+  long getWeekFeeSum();
+
+  /**
+   * <pre>
+   *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 month.
+   * </pre>
+   *
+   * <code>uint64 month_fee_sum = 4[json_name = "month_fee_sum"];</code>
+   */
+  long getMonthFeeSum();
 }

@@ -21,6 +21,8 @@ private static final long serialVersionUID = 0L;
     amtToForward_ = 0L;
     fee_ = 0L;
     expiry_ = 0;
+    amtToForwardMsat_ = 0L;
+    feeMsat_ = 0L;
   }
 
   @java.lang.Override
@@ -79,6 +81,16 @@ private static final long serialVersionUID = 0L;
             expiry_ = input.readUInt32();
             break;
           }
+          case 48: {
+
+            amtToForwardMsat_ = input.readInt64();
+            break;
+          }
+          case 56: {
+
+            feeMsat_ = input.readInt64();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -131,18 +143,18 @@ private static final long serialVersionUID = 0L;
   public static final int AMT_TO_FORWARD_FIELD_NUMBER = 3;
   private long amtToForward_;
   /**
-   * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward"];</code>
+   * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward", deprecated = true];</code>
    */
-  public long getAmtToForward() {
+  @java.lang.Deprecated public long getAmtToForward() {
     return amtToForward_;
   }
 
   public static final int FEE_FIELD_NUMBER = 4;
   private long fee_;
   /**
-   * <code>int64 fee = 4[json_name = "fee"];</code>
+   * <code>int64 fee = 4[json_name = "fee", deprecated = true];</code>
    */
-  public long getFee() {
+  @java.lang.Deprecated public long getFee() {
     return fee_;
   }
 
@@ -153,6 +165,24 @@ private static final long serialVersionUID = 0L;
    */
   public int getExpiry() {
     return expiry_;
+  }
+
+  public static final int AMT_TO_FORWARD_MSAT_FIELD_NUMBER = 6;
+  private long amtToForwardMsat_;
+  /**
+   * <code>int64 amt_to_forward_msat = 6[json_name = "amt_to_forward_msat"];</code>
+   */
+  public long getAmtToForwardMsat() {
+    return amtToForwardMsat_;
+  }
+
+  public static final int FEE_MSAT_FIELD_NUMBER = 7;
+  private long feeMsat_;
+  /**
+   * <code>int64 fee_msat = 7[json_name = "fee_msat"];</code>
+   */
+  public long getFeeMsat() {
+    return feeMsat_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -182,6 +212,12 @@ private static final long serialVersionUID = 0L;
     if (expiry_ != 0) {
       output.writeUInt32(5, expiry_);
     }
+    if (amtToForwardMsat_ != 0L) {
+      output.writeInt64(6, amtToForwardMsat_);
+    }
+    if (feeMsat_ != 0L) {
+      output.writeInt64(7, feeMsat_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -210,6 +246,14 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeUInt32Size(5, expiry_);
     }
+    if (amtToForwardMsat_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(6, amtToForwardMsat_);
+    }
+    if (feeMsat_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(7, feeMsat_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -236,6 +280,10 @@ private static final long serialVersionUID = 0L;
         == other.getFee());
     result = result && (getExpiry()
         == other.getExpiry());
+    result = result && (getAmtToForwardMsat()
+        == other.getAmtToForwardMsat());
+    result = result && (getFeeMsat()
+        == other.getFeeMsat());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -261,6 +309,12 @@ private static final long serialVersionUID = 0L;
         getFee());
     hash = (37 * hash) + EXPIRY_FIELD_NUMBER;
     hash = (53 * hash) + getExpiry();
+    hash = (37 * hash) + AMT_TO_FORWARD_MSAT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getAmtToForwardMsat());
+    hash = (37 * hash) + FEE_MSAT_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getFeeMsat());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -400,6 +454,10 @@ private static final long serialVersionUID = 0L;
 
       expiry_ = 0;
 
+      amtToForwardMsat_ = 0L;
+
+      feeMsat_ = 0L;
+
       return this;
     }
 
@@ -427,6 +485,8 @@ private static final long serialVersionUID = 0L;
       result.amtToForward_ = amtToForward_;
       result.fee_ = fee_;
       result.expiry_ = expiry_;
+      result.amtToForwardMsat_ = amtToForwardMsat_;
+      result.feeMsat_ = feeMsat_;
       onBuilt();
       return result;
     }
@@ -482,6 +542,12 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getExpiry() != 0) {
         setExpiry(other.getExpiry());
+      }
+      if (other.getAmtToForwardMsat() != 0L) {
+        setAmtToForwardMsat(other.getAmtToForwardMsat());
+      }
+      if (other.getFeeMsat() != 0L) {
+        setFeeMsat(other.getFeeMsat());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -585,24 +651,24 @@ private static final long serialVersionUID = 0L;
 
     private long amtToForward_ ;
     /**
-     * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward"];</code>
+     * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward", deprecated = true];</code>
      */
-    public long getAmtToForward() {
+    @java.lang.Deprecated public long getAmtToForward() {
       return amtToForward_;
     }
     /**
-     * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward"];</code>
+     * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward", deprecated = true];</code>
      */
-    public Builder setAmtToForward(long value) {
+    @java.lang.Deprecated public Builder setAmtToForward(long value) {
       
       amtToForward_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward"];</code>
+     * <code>int64 amt_to_forward = 3[json_name = "amt_to_forward", deprecated = true];</code>
      */
-    public Builder clearAmtToForward() {
+    @java.lang.Deprecated public Builder clearAmtToForward() {
       
       amtToForward_ = 0L;
       onChanged();
@@ -611,24 +677,24 @@ private static final long serialVersionUID = 0L;
 
     private long fee_ ;
     /**
-     * <code>int64 fee = 4[json_name = "fee"];</code>
+     * <code>int64 fee = 4[json_name = "fee", deprecated = true];</code>
      */
-    public long getFee() {
+    @java.lang.Deprecated public long getFee() {
       return fee_;
     }
     /**
-     * <code>int64 fee = 4[json_name = "fee"];</code>
+     * <code>int64 fee = 4[json_name = "fee", deprecated = true];</code>
      */
-    public Builder setFee(long value) {
+    @java.lang.Deprecated public Builder setFee(long value) {
       
       fee_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int64 fee = 4[json_name = "fee"];</code>
+     * <code>int64 fee = 4[json_name = "fee", deprecated = true];</code>
      */
-    public Builder clearFee() {
+    @java.lang.Deprecated public Builder clearFee() {
       
       fee_ = 0L;
       onChanged();
@@ -657,6 +723,58 @@ private static final long serialVersionUID = 0L;
     public Builder clearExpiry() {
       
       expiry_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private long amtToForwardMsat_ ;
+    /**
+     * <code>int64 amt_to_forward_msat = 6[json_name = "amt_to_forward_msat"];</code>
+     */
+    public long getAmtToForwardMsat() {
+      return amtToForwardMsat_;
+    }
+    /**
+     * <code>int64 amt_to_forward_msat = 6[json_name = "amt_to_forward_msat"];</code>
+     */
+    public Builder setAmtToForwardMsat(long value) {
+      
+      amtToForwardMsat_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 amt_to_forward_msat = 6[json_name = "amt_to_forward_msat"];</code>
+     */
+    public Builder clearAmtToForwardMsat() {
+      
+      amtToForwardMsat_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long feeMsat_ ;
+    /**
+     * <code>int64 fee_msat = 7[json_name = "fee_msat"];</code>
+     */
+    public long getFeeMsat() {
+      return feeMsat_;
+    }
+    /**
+     * <code>int64 fee_msat = 7[json_name = "fee_msat"];</code>
+     */
+    public Builder setFeeMsat(long value) {
+      
+      feeMsat_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 fee_msat = 7[json_name = "fee_msat"];</code>
+     */
+    public Builder clearFeeMsat() {
+      
+      feeMsat_ = 0L;
       onChanged();
       return this;
     }

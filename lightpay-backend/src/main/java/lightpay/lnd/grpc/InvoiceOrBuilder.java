@@ -169,4 +169,67 @@ public interface InvoiceOrBuilder extends
    * <code>uint64 cltv_expiry = 13[json_name = "cltv_expiry"];</code>
    */
   long getCltvExpiry();
+
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  java.util.List<lightpay.lnd.grpc.RouteHint> 
+      getRouteHintsList();
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  lightpay.lnd.grpc.RouteHint getRouteHints(int index);
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  int getRouteHintsCount();
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  java.util.List<? extends lightpay.lnd.grpc.RouteHintOrBuilder> 
+      getRouteHintsOrBuilderList();
+  /**
+   * <pre>
+   **
+   *Route hints that can each be individually used to assist in reaching the
+   *invoice's destination.
+   * </pre>
+   *
+   * <code>repeated .lnrpc.RouteHint route_hints = 14[json_name = "route_hints"];</code>
+   */
+  lightpay.lnd.grpc.RouteHintOrBuilder getRouteHintsOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   *&#47; Whether this invoice should include routing hints for private channels.
+   * </pre>
+   *
+   * <code>bool private = 15[json_name = "private"];</code>
+   */
+  boolean getPrivate();
 }

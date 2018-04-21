@@ -4,18 +4,18 @@
 package lightpay.lnd.grpc;
 
 /**
- * Protobuf type {@code lnrpc.ActiveChannel}
+ * Protobuf type {@code lnrpc.Channel}
  */
-public  final class ActiveChannel extends
+public  final class Channel extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:lnrpc.ActiveChannel)
-    ActiveChannelOrBuilder {
+    // @@protoc_insertion_point(message_implements:lnrpc.Channel)
+    ChannelOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ActiveChannel.newBuilder() to construct.
-  private ActiveChannel(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Channel.newBuilder() to construct.
+  private Channel(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ActiveChannel() {
+  private Channel() {
     active_ = false;
     remotePubkey_ = "";
     channelPoint_ = "";
@@ -32,6 +32,7 @@ private static final long serialVersionUID = 0L;
     numUpdates_ = 0L;
     pendingHtlcs_ = java.util.Collections.emptyList();
     csvDelay_ = 0;
+    private_ = false;
   }
 
   @java.lang.Override
@@ -39,7 +40,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private ActiveChannel(
+  private Channel(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -151,6 +152,11 @@ private static final long serialVersionUID = 0L;
             csvDelay_ = input.readUInt32();
             break;
           }
+          case 136: {
+
+            private_ = input.readBool();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -168,14 +174,14 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_ActiveChannel_descriptor;
+    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_Channel_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_ActiveChannel_fieldAccessorTable
+    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_Channel_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            lightpay.lnd.grpc.ActiveChannel.class, lightpay.lnd.grpc.ActiveChannel.Builder.class);
+            lightpay.lnd.grpc.Channel.class, lightpay.lnd.grpc.Channel.Builder.class);
   }
 
   private int bitField0_;
@@ -514,6 +520,19 @@ private static final long serialVersionUID = 0L;
     return csvDelay_;
   }
 
+  public static final int PRIVATE_FIELD_NUMBER = 17;
+  private boolean private_;
+  /**
+   * <pre>
+   *&#47; Whether this channel is advertised to the network or not
+   * </pre>
+   *
+   * <code>bool private = 17[json_name = "private"];</code>
+   */
+  public boolean getPrivate() {
+    return private_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -573,6 +592,9 @@ private static final long serialVersionUID = 0L;
     }
     if (csvDelay_ != 0) {
       output.writeUInt32(16, csvDelay_);
+    }
+    if (private_ != false) {
+      output.writeBool(17, private_);
     }
     unknownFields.writeTo(output);
   }
@@ -644,6 +666,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeUInt32Size(16, csvDelay_);
     }
+    if (private_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(17, private_);
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -654,10 +680,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof lightpay.lnd.grpc.ActiveChannel)) {
+    if (!(obj instanceof lightpay.lnd.grpc.Channel)) {
       return super.equals(obj);
     }
-    lightpay.lnd.grpc.ActiveChannel other = (lightpay.lnd.grpc.ActiveChannel) obj;
+    lightpay.lnd.grpc.Channel other = (lightpay.lnd.grpc.Channel) obj;
 
     boolean result = true;
     result = result && (getActive()
@@ -692,6 +718,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getPendingHtlcsList());
     result = result && (getCsvDelay()
         == other.getCsvDelay());
+    result = result && (getPrivate()
+        == other.getPrivate());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -749,74 +777,77 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + CSV_DELAY_FIELD_NUMBER;
     hash = (53 * hash) + getCsvDelay();
+    hash = (37 * hash) + PRIVATE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getPrivate());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(byte[] data)
+  public static lightpay.lnd.grpc.Channel parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(java.io.InputStream input)
+  public static lightpay.lnd.grpc.Channel parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseDelimitedFrom(java.io.InputStream input)
+  public static lightpay.lnd.grpc.Channel parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseDelimitedFrom(
+  public static lightpay.lnd.grpc.Channel parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.ActiveChannel parseFrom(
+  public static lightpay.lnd.grpc.Channel parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -828,7 +859,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(lightpay.lnd.grpc.ActiveChannel prototype) {
+  public static Builder newBuilder(lightpay.lnd.grpc.Channel prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -843,25 +874,25 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code lnrpc.ActiveChannel}
+   * Protobuf type {@code lnrpc.Channel}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:lnrpc.ActiveChannel)
-      lightpay.lnd.grpc.ActiveChannelOrBuilder {
+      // @@protoc_insertion_point(builder_implements:lnrpc.Channel)
+      lightpay.lnd.grpc.ChannelOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_ActiveChannel_descriptor;
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_Channel_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_ActiveChannel_fieldAccessorTable
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_Channel_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              lightpay.lnd.grpc.ActiveChannel.class, lightpay.lnd.grpc.ActiveChannel.Builder.class);
+              lightpay.lnd.grpc.Channel.class, lightpay.lnd.grpc.Channel.Builder.class);
     }
 
-    // Construct using lightpay.lnd.grpc.ActiveChannel.newBuilder()
+    // Construct using lightpay.lnd.grpc.Channel.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -915,28 +946,30 @@ private static final long serialVersionUID = 0L;
       }
       csvDelay_ = 0;
 
+      private_ = false;
+
       return this;
     }
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_ActiveChannel_descriptor;
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_Channel_descriptor;
     }
 
-    public lightpay.lnd.grpc.ActiveChannel getDefaultInstanceForType() {
-      return lightpay.lnd.grpc.ActiveChannel.getDefaultInstance();
+    public lightpay.lnd.grpc.Channel getDefaultInstanceForType() {
+      return lightpay.lnd.grpc.Channel.getDefaultInstance();
     }
 
-    public lightpay.lnd.grpc.ActiveChannel build() {
-      lightpay.lnd.grpc.ActiveChannel result = buildPartial();
+    public lightpay.lnd.grpc.Channel build() {
+      lightpay.lnd.grpc.Channel result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public lightpay.lnd.grpc.ActiveChannel buildPartial() {
-      lightpay.lnd.grpc.ActiveChannel result = new lightpay.lnd.grpc.ActiveChannel(this);
+    public lightpay.lnd.grpc.Channel buildPartial() {
+      lightpay.lnd.grpc.Channel result = new lightpay.lnd.grpc.Channel(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       result.active_ = active_;
@@ -963,6 +996,7 @@ private static final long serialVersionUID = 0L;
         result.pendingHtlcs_ = pendingHtlcsBuilder_.build();
       }
       result.csvDelay_ = csvDelay_;
+      result.private_ = private_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -995,16 +1029,16 @@ private static final long serialVersionUID = 0L;
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof lightpay.lnd.grpc.ActiveChannel) {
-        return mergeFrom((lightpay.lnd.grpc.ActiveChannel)other);
+      if (other instanceof lightpay.lnd.grpc.Channel) {
+        return mergeFrom((lightpay.lnd.grpc.Channel)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(lightpay.lnd.grpc.ActiveChannel other) {
-      if (other == lightpay.lnd.grpc.ActiveChannel.getDefaultInstance()) return this;
+    public Builder mergeFrom(lightpay.lnd.grpc.Channel other) {
+      if (other == lightpay.lnd.grpc.Channel.getDefaultInstance()) return this;
       if (other.getActive() != false) {
         setActive(other.getActive());
       }
@@ -1078,6 +1112,9 @@ private static final long serialVersionUID = 0L;
       if (other.getCsvDelay() != 0) {
         setCsvDelay(other.getCsvDelay());
       }
+      if (other.getPrivate() != false) {
+        setPrivate(other.getPrivate());
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -1091,11 +1128,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      lightpay.lnd.grpc.ActiveChannel parsedMessage = null;
+      lightpay.lnd.grpc.Channel parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (lightpay.lnd.grpc.ActiveChannel) e.getUnfinishedMessage();
+        parsedMessage = (lightpay.lnd.grpc.Channel) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -2170,6 +2207,44 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    private boolean private_ ;
+    /**
+     * <pre>
+     *&#47; Whether this channel is advertised to the network or not
+     * </pre>
+     *
+     * <code>bool private = 17[json_name = "private"];</code>
+     */
+    public boolean getPrivate() {
+      return private_;
+    }
+    /**
+     * <pre>
+     *&#47; Whether this channel is advertised to the network or not
+     * </pre>
+     *
+     * <code>bool private = 17[json_name = "private"];</code>
+     */
+    public Builder setPrivate(boolean value) {
+      
+      private_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; Whether this channel is advertised to the network or not
+     * </pre>
+     *
+     * <code>bool private = 17[json_name = "private"];</code>
+     */
+    public Builder clearPrivate() {
+      
+      private_ = false;
+      onChanged();
+      return this;
+    }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFieldsProto3(unknownFields);
@@ -2181,39 +2256,39 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:lnrpc.ActiveChannel)
+    // @@protoc_insertion_point(builder_scope:lnrpc.Channel)
   }
 
-  // @@protoc_insertion_point(class_scope:lnrpc.ActiveChannel)
-  private static final lightpay.lnd.grpc.ActiveChannel DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:lnrpc.Channel)
+  private static final lightpay.lnd.grpc.Channel DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new lightpay.lnd.grpc.ActiveChannel();
+    DEFAULT_INSTANCE = new lightpay.lnd.grpc.Channel();
   }
 
-  public static lightpay.lnd.grpc.ActiveChannel getDefaultInstance() {
+  public static lightpay.lnd.grpc.Channel getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ActiveChannel>
-      PARSER = new com.google.protobuf.AbstractParser<ActiveChannel>() {
-    public ActiveChannel parsePartialFrom(
+  private static final com.google.protobuf.Parser<Channel>
+      PARSER = new com.google.protobuf.AbstractParser<Channel>() {
+    public Channel parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ActiveChannel(input, extensionRegistry);
+      return new Channel(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<ActiveChannel> parser() {
+  public static com.google.protobuf.Parser<Channel> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ActiveChannel> getParserForType() {
+  public com.google.protobuf.Parser<Channel> getParserForType() {
     return PARSER;
   }
 
-  public lightpay.lnd.grpc.ActiveChannel getDefaultInstanceForType() {
+  public lightpay.lnd.grpc.Channel getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

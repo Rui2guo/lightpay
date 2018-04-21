@@ -17,6 +17,9 @@ private static final long serialVersionUID = 0L;
   }
   private FeeReportResponse() {
     channelFees_ = java.util.Collections.emptyList();
+    dayFeeSum_ = 0L;
+    weekFeeSum_ = 0L;
+    monthFeeSum_ = 0L;
   }
 
   @java.lang.Override
@@ -59,6 +62,21 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(lightpay.lnd.grpc.ChannelFeeReport.parser(), extensionRegistry));
             break;
           }
+          case 16: {
+
+            dayFeeSum_ = input.readUInt64();
+            break;
+          }
+          case 24: {
+
+            weekFeeSum_ = input.readUInt64();
+            break;
+          }
+          case 32: {
+
+            monthFeeSum_ = input.readUInt64();
+            break;
+          }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -86,6 +104,7 @@ private static final long serialVersionUID = 0L;
             lightpay.lnd.grpc.FeeReportResponse.class, lightpay.lnd.grpc.FeeReportResponse.Builder.class);
   }
 
+  private int bitField0_;
   public static final int CHANNEL_FEES_FIELD_NUMBER = 1;
   private java.util.List<lightpay.lnd.grpc.ChannelFeeReport> channelFees_;
   /**
@@ -141,6 +160,45 @@ private static final long serialVersionUID = 0L;
     return channelFees_.get(index);
   }
 
+  public static final int DAY_FEE_SUM_FIELD_NUMBER = 2;
+  private long dayFeeSum_;
+  /**
+   * <pre>
+   *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 24 hrs.
+   * </pre>
+   *
+   * <code>uint64 day_fee_sum = 2[json_name = "day_fee_sum"];</code>
+   */
+  public long getDayFeeSum() {
+    return dayFeeSum_;
+  }
+
+  public static final int WEEK_FEE_SUM_FIELD_NUMBER = 3;
+  private long weekFeeSum_;
+  /**
+   * <pre>
+   *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 week.
+   * </pre>
+   *
+   * <code>uint64 week_fee_sum = 3[json_name = "week_fee_sum"];</code>
+   */
+  public long getWeekFeeSum() {
+    return weekFeeSum_;
+  }
+
+  public static final int MONTH_FEE_SUM_FIELD_NUMBER = 4;
+  private long monthFeeSum_;
+  /**
+   * <pre>
+   *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 month.
+   * </pre>
+   *
+   * <code>uint64 month_fee_sum = 4[json_name = "month_fee_sum"];</code>
+   */
+  public long getMonthFeeSum() {
+    return monthFeeSum_;
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -156,6 +214,15 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < channelFees_.size(); i++) {
       output.writeMessage(1, channelFees_.get(i));
     }
+    if (dayFeeSum_ != 0L) {
+      output.writeUInt64(2, dayFeeSum_);
+    }
+    if (weekFeeSum_ != 0L) {
+      output.writeUInt64(3, weekFeeSum_);
+    }
+    if (monthFeeSum_ != 0L) {
+      output.writeUInt64(4, monthFeeSum_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -167,6 +234,18 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < channelFees_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, channelFees_.get(i));
+    }
+    if (dayFeeSum_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt64Size(2, dayFeeSum_);
+    }
+    if (weekFeeSum_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt64Size(3, weekFeeSum_);
+    }
+    if (monthFeeSum_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt64Size(4, monthFeeSum_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -186,6 +265,12 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && getChannelFeesList()
         .equals(other.getChannelFeesList());
+    result = result && (getDayFeeSum()
+        == other.getDayFeeSum());
+    result = result && (getWeekFeeSum()
+        == other.getWeekFeeSum());
+    result = result && (getMonthFeeSum()
+        == other.getMonthFeeSum());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -201,6 +286,15 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + CHANNEL_FEES_FIELD_NUMBER;
       hash = (53 * hash) + getChannelFeesList().hashCode();
     }
+    hash = (37 * hash) + DAY_FEE_SUM_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getDayFeeSum());
+    hash = (37 * hash) + WEEK_FEE_SUM_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getWeekFeeSum());
+    hash = (37 * hash) + MONTH_FEE_SUM_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getMonthFeeSum());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -337,6 +431,12 @@ private static final long serialVersionUID = 0L;
       } else {
         channelFeesBuilder_.clear();
       }
+      dayFeeSum_ = 0L;
+
+      weekFeeSum_ = 0L;
+
+      monthFeeSum_ = 0L;
+
       return this;
     }
 
@@ -360,6 +460,7 @@ private static final long serialVersionUID = 0L;
     public lightpay.lnd.grpc.FeeReportResponse buildPartial() {
       lightpay.lnd.grpc.FeeReportResponse result = new lightpay.lnd.grpc.FeeReportResponse(this);
       int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (channelFeesBuilder_ == null) {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           channelFees_ = java.util.Collections.unmodifiableList(channelFees_);
@@ -369,6 +470,10 @@ private static final long serialVersionUID = 0L;
       } else {
         result.channelFees_ = channelFeesBuilder_.build();
       }
+      result.dayFeeSum_ = dayFeeSum_;
+      result.weekFeeSum_ = weekFeeSum_;
+      result.monthFeeSum_ = monthFeeSum_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -435,6 +540,15 @@ private static final long serialVersionUID = 0L;
             channelFeesBuilder_.addAllMessages(other.channelFees_);
           }
         }
+      }
+      if (other.getDayFeeSum() != 0L) {
+        setDayFeeSum(other.getDayFeeSum());
+      }
+      if (other.getWeekFeeSum() != 0L) {
+        setWeekFeeSum(other.getWeekFeeSum());
+      }
+      if (other.getMonthFeeSum() != 0L) {
+        setMonthFeeSum(other.getMonthFeeSum());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -774,6 +888,120 @@ private static final long serialVersionUID = 0L;
         channelFees_ = null;
       }
       return channelFeesBuilder_;
+    }
+
+    private long dayFeeSum_ ;
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 24 hrs.
+     * </pre>
+     *
+     * <code>uint64 day_fee_sum = 2[json_name = "day_fee_sum"];</code>
+     */
+    public long getDayFeeSum() {
+      return dayFeeSum_;
+    }
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 24 hrs.
+     * </pre>
+     *
+     * <code>uint64 day_fee_sum = 2[json_name = "day_fee_sum"];</code>
+     */
+    public Builder setDayFeeSum(long value) {
+      
+      dayFeeSum_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 24 hrs.
+     * </pre>
+     *
+     * <code>uint64 day_fee_sum = 2[json_name = "day_fee_sum"];</code>
+     */
+    public Builder clearDayFeeSum() {
+      
+      dayFeeSum_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long weekFeeSum_ ;
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 week.
+     * </pre>
+     *
+     * <code>uint64 week_fee_sum = 3[json_name = "week_fee_sum"];</code>
+     */
+    public long getWeekFeeSum() {
+      return weekFeeSum_;
+    }
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 week.
+     * </pre>
+     *
+     * <code>uint64 week_fee_sum = 3[json_name = "week_fee_sum"];</code>
+     */
+    public Builder setWeekFeeSum(long value) {
+      
+      weekFeeSum_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 week.
+     * </pre>
+     *
+     * <code>uint64 week_fee_sum = 3[json_name = "week_fee_sum"];</code>
+     */
+    public Builder clearWeekFeeSum() {
+      
+      weekFeeSum_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private long monthFeeSum_ ;
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 month.
+     * </pre>
+     *
+     * <code>uint64 month_fee_sum = 4[json_name = "month_fee_sum"];</code>
+     */
+    public long getMonthFeeSum() {
+      return monthFeeSum_;
+    }
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 month.
+     * </pre>
+     *
+     * <code>uint64 month_fee_sum = 4[json_name = "month_fee_sum"];</code>
+     */
+    public Builder setMonthFeeSum(long value) {
+      
+      monthFeeSum_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     *&#47; The total amount of fee revenue (in satoshis) the switch has collected over the past 1 month.
+     * </pre>
+     *
+     * <code>uint64 month_fee_sum = 4[json_name = "month_fee_sum"];</code>
+     */
+    public Builder clearMonthFeeSum() {
+      
+      monthFeeSum_ = 0L;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

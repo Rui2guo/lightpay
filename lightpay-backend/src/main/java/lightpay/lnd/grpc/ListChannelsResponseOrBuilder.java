@@ -12,24 +12,24 @@ public interface ListChannelsResponseOrBuilder extends
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  java.util.List<lightpay.lnd.grpc.ActiveChannel> 
+  java.util.List<lightpay.lnd.grpc.Channel> 
       getChannelsList();
   /**
    * <pre>
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  lightpay.lnd.grpc.ActiveChannel getChannels(int index);
+  lightpay.lnd.grpc.Channel getChannels(int index);
   /**
    * <pre>
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
   int getChannelsCount();
   /**
@@ -37,17 +37,17 @@ public interface ListChannelsResponseOrBuilder extends
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  java.util.List<? extends lightpay.lnd.grpc.ActiveChannelOrBuilder> 
+  java.util.List<? extends lightpay.lnd.grpc.ChannelOrBuilder> 
       getChannelsOrBuilderList();
   /**
    * <pre>
    *&#47; The list of active channels
    * </pre>
    *
-   * <code>repeated .lnrpc.ActiveChannel channels = 11[json_name = "channels"];</code>
+   * <code>repeated .lnrpc.Channel channels = 11[json_name = "channels"];</code>
    */
-  lightpay.lnd.grpc.ActiveChannelOrBuilder getChannelsOrBuilder(
+  lightpay.lnd.grpc.ChannelOrBuilder getChannelsOrBuilder(
       int index);
 }

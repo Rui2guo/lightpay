@@ -28,9 +28,9 @@ public interface RouteOrBuilder extends
    *it ourself.
    * </pre>
    *
-   * <code>int64 total_fees = 2[json_name = "total_fees"];</code>
+   * <code>int64 total_fees = 2[json_name = "total_fees", deprecated = true];</code>
    */
-  long getTotalFees();
+  @java.lang.Deprecated long getTotalFees();
 
   /**
    * <pre>
@@ -42,9 +42,9 @@ public interface RouteOrBuilder extends
    *insufficient amount of fees.
    * </pre>
    *
-   * <code>int64 total_amt = 3[json_name = "total_amt"];</code>
+   * <code>int64 total_amt = 3[json_name = "total_amt", deprecated = true];</code>
    */
-  long getTotalAmt();
+  @java.lang.Deprecated long getTotalAmt();
 
   /**
    * <pre>
@@ -94,4 +94,24 @@ public interface RouteOrBuilder extends
    */
   lightpay.lnd.grpc.HopOrBuilder getHopsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   **
+   *The total fees in millisatoshis.
+   * </pre>
+   *
+   * <code>int64 total_fees_msat = 5[json_name = "total_fees_msat"];</code>
+   */
+  long getTotalFeesMsat();
+
+  /**
+   * <pre>
+   **
+   *The total amount in millisatoshis.
+   * </pre>
+   *
+   * <code>int64 total_amt_msat = 6[json_name = "total_amt_msat"];</code>
+   */
+  long getTotalAmtMsat();
 }

@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private UnlockWalletRequest() {
-    password_ = com.google.protobuf.ByteString.EMPTY;
+    walletPassword_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -52,7 +52,7 @@ private static final long serialVersionUID = 0L;
           }
           case 10: {
 
-            password_ = input.readBytes();
+            walletPassword_ = input.readBytes();
             break;
           }
         }
@@ -79,13 +79,20 @@ private static final long serialVersionUID = 0L;
             lightpay.lnd.grpc.UnlockWalletRequest.class, lightpay.lnd.grpc.UnlockWalletRequest.Builder.class);
   }
 
-  public static final int PASSWORD_FIELD_NUMBER = 1;
-  private com.google.protobuf.ByteString password_;
+  public static final int WALLET_PASSWORD_FIELD_NUMBER = 1;
+  private com.google.protobuf.ByteString walletPassword_;
   /**
-   * <code>bytes password = 1;</code>
+   * <pre>
+   **
+   *wallet_password should be the current valid passphrase for the daemon. This
+   *will be required to decrypt on-disk material that the daemon requires to
+   *function properly.
+   * </pre>
+   *
+   * <code>bytes wallet_password = 1;</code>
    */
-  public com.google.protobuf.ByteString getPassword() {
-    return password_;
+  public com.google.protobuf.ByteString getWalletPassword() {
+    return walletPassword_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -100,8 +107,8 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!password_.isEmpty()) {
-      output.writeBytes(1, password_);
+    if (!walletPassword_.isEmpty()) {
+      output.writeBytes(1, walletPassword_);
     }
     unknownFields.writeTo(output);
   }
@@ -111,9 +118,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!password_.isEmpty()) {
+    if (!walletPassword_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(1, password_);
+        .computeBytesSize(1, walletPassword_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -131,8 +138,8 @@ private static final long serialVersionUID = 0L;
     lightpay.lnd.grpc.UnlockWalletRequest other = (lightpay.lnd.grpc.UnlockWalletRequest) obj;
 
     boolean result = true;
-    result = result && getPassword()
-        .equals(other.getPassword());
+    result = result && getWalletPassword()
+        .equals(other.getWalletPassword());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -144,8 +151,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
-    hash = (53 * hash) + getPassword().hashCode();
+    hash = (37 * hash) + WALLET_PASSWORD_FIELD_NUMBER;
+    hash = (53 * hash) + getWalletPassword().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -275,7 +282,7 @@ private static final long serialVersionUID = 0L;
     }
     public Builder clear() {
       super.clear();
-      password_ = com.google.protobuf.ByteString.EMPTY;
+      walletPassword_ = com.google.protobuf.ByteString.EMPTY;
 
       return this;
     }
@@ -299,7 +306,7 @@ private static final long serialVersionUID = 0L;
 
     public lightpay.lnd.grpc.UnlockWalletRequest buildPartial() {
       lightpay.lnd.grpc.UnlockWalletRequest result = new lightpay.lnd.grpc.UnlockWalletRequest(this);
-      result.password_ = password_;
+      result.walletPassword_ = walletPassword_;
       onBuilt();
       return result;
     }
@@ -341,8 +348,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(lightpay.lnd.grpc.UnlockWalletRequest other) {
       if (other == lightpay.lnd.grpc.UnlockWalletRequest.getDefaultInstance()) return this;
-      if (other.getPassword() != com.google.protobuf.ByteString.EMPTY) {
-        setPassword(other.getPassword());
+      if (other.getWalletPassword() != com.google.protobuf.ByteString.EMPTY) {
+        setWalletPassword(other.getWalletPassword());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -371,31 +378,52 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.ByteString password_ = com.google.protobuf.ByteString.EMPTY;
+    private com.google.protobuf.ByteString walletPassword_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes password = 1;</code>
+     * <pre>
+     **
+     *wallet_password should be the current valid passphrase for the daemon. This
+     *will be required to decrypt on-disk material that the daemon requires to
+     *function properly.
+     * </pre>
+     *
+     * <code>bytes wallet_password = 1;</code>
      */
-    public com.google.protobuf.ByteString getPassword() {
-      return password_;
+    public com.google.protobuf.ByteString getWalletPassword() {
+      return walletPassword_;
     }
     /**
-     * <code>bytes password = 1;</code>
+     * <pre>
+     **
+     *wallet_password should be the current valid passphrase for the daemon. This
+     *will be required to decrypt on-disk material that the daemon requires to
+     *function properly.
+     * </pre>
+     *
+     * <code>bytes wallet_password = 1;</code>
      */
-    public Builder setPassword(com.google.protobuf.ByteString value) {
+    public Builder setWalletPassword(com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      password_ = value;
+      walletPassword_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bytes password = 1;</code>
+     * <pre>
+     **
+     *wallet_password should be the current valid passphrase for the daemon. This
+     *will be required to decrypt on-disk material that the daemon requires to
+     *function properly.
+     * </pre>
+     *
+     * <code>bytes wallet_password = 1;</code>
      */
-    public Builder clearPassword() {
+    public Builder clearWalletPassword() {
       
-      password_ = getDefaultInstance().getPassword();
+      walletPassword_ = getDefaultInstance().getWalletPassword();
       onChanged();
       return this;
     }

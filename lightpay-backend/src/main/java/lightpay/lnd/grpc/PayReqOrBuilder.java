@@ -76,4 +76,28 @@ public interface PayReqOrBuilder extends
    * <code>int64 cltv_expiry = 9[json_name = "cltv_expiry"];</code>
    */
   long getCltvExpiry();
+
+  /**
+   * <code>repeated .lnrpc.RouteHint route_hints = 10[json_name = "route_hints"];</code>
+   */
+  java.util.List<lightpay.lnd.grpc.RouteHint> 
+      getRouteHintsList();
+  /**
+   * <code>repeated .lnrpc.RouteHint route_hints = 10[json_name = "route_hints"];</code>
+   */
+  lightpay.lnd.grpc.RouteHint getRouteHints(int index);
+  /**
+   * <code>repeated .lnrpc.RouteHint route_hints = 10[json_name = "route_hints"];</code>
+   */
+  int getRouteHintsCount();
+  /**
+   * <code>repeated .lnrpc.RouteHint route_hints = 10[json_name = "route_hints"];</code>
+   */
+  java.util.List<? extends lightpay.lnd.grpc.RouteHintOrBuilder> 
+      getRouteHintsOrBuilderList();
+  /**
+   * <code>repeated .lnrpc.RouteHint route_hints = 10[json_name = "route_hints"];</code>
+   */
+  lightpay.lnd.grpc.RouteHintOrBuilder getRouteHintsOrBuilder(
+      int index);
 }

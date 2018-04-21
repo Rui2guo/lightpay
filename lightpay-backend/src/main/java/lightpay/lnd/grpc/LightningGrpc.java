@@ -1433,6 +1433,43 @@ public final class LightningGrpc {
      }
      return getUpdateChannelPolicyMethod;
   }
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  @java.lang.Deprecated // Use {@link #getForwardingHistoryMethod()} instead. 
+  public static final io.grpc.MethodDescriptor<lightpay.lnd.grpc.ForwardingHistoryRequest,
+      lightpay.lnd.grpc.ForwardingHistoryResponse> METHOD_FORWARDING_HISTORY = getForwardingHistoryMethodHelper();
+
+  private static volatile io.grpc.MethodDescriptor<lightpay.lnd.grpc.ForwardingHistoryRequest,
+      lightpay.lnd.grpc.ForwardingHistoryResponse> getForwardingHistoryMethod;
+
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static io.grpc.MethodDescriptor<lightpay.lnd.grpc.ForwardingHistoryRequest,
+      lightpay.lnd.grpc.ForwardingHistoryResponse> getForwardingHistoryMethod() {
+    return getForwardingHistoryMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<lightpay.lnd.grpc.ForwardingHistoryRequest,
+      lightpay.lnd.grpc.ForwardingHistoryResponse> getForwardingHistoryMethodHelper() {
+    io.grpc.MethodDescriptor<lightpay.lnd.grpc.ForwardingHistoryRequest, lightpay.lnd.grpc.ForwardingHistoryResponse> getForwardingHistoryMethod;
+    if ((getForwardingHistoryMethod = LightningGrpc.getForwardingHistoryMethod) == null) {
+      synchronized (LightningGrpc.class) {
+        if ((getForwardingHistoryMethod = LightningGrpc.getForwardingHistoryMethod) == null) {
+          LightningGrpc.getForwardingHistoryMethod = getForwardingHistoryMethod = 
+              io.grpc.MethodDescriptor.<lightpay.lnd.grpc.ForwardingHistoryRequest, lightpay.lnd.grpc.ForwardingHistoryResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "lnrpc.Lightning", "ForwardingHistory"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  lightpay.lnd.grpc.ForwardingHistoryRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  lightpay.lnd.grpc.ForwardingHistoryResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new LightningMethodDescriptorSupplier("ForwardingHistory"))
+                  .build();
+          }
+        }
+     }
+     return getForwardingHistoryMethod;
+  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -1464,9 +1501,9 @@ public final class LightningGrpc {
     /**
      * <pre>
      ** lncli: `walletbalance`
-     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all confirmed unspent outputs and all unconfirmed unspent outputs under control
-     *by the wallet. This method can be modified by having the request specify
-     *only witness outputs should be factored into the final output sum.
+     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+     *confirmed unspent outputs and all unconfirmed unspent outputs under control
+     *of the wallet.
      * </pre>
      */
     public void walletBalance(lightpay.lnd.grpc.WalletBalanceRequest request,
@@ -1959,6 +1996,25 @@ public final class LightningGrpc {
       asyncUnimplementedUnaryCall(getUpdateChannelPolicyMethodHelper(), responseObserver);
     }
 
+    /**
+     * <pre>
+     ** lncli: `fwdinghistory`
+     *ForwardingHistory allows the caller to query the htlcswitch for a record of
+     *all HTLC's forwarded within the target time range, and integer offset
+     *within that time range. If no time-range is specified, then the first chunk
+     *of the past 24 hrs of forwarding history are returned.
+     *A list of forwarding events are returned. The size of each forwarding event
+     *is 40 bytes, and the max message size able to be returned in gRPC is 4 MiB.
+     *As a result each message can only contain 50k entries.  Each response has
+     *the index offset of the last entry. The index offset can be provided to the
+     *request to allow the caller to skip a series of records.
+     * </pre>
+     */
+    public void forwardingHistory(lightpay.lnd.grpc.ForwardingHistoryRequest request,
+        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.ForwardingHistoryResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getForwardingHistoryMethodHelper(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -2227,6 +2283,13 @@ public final class LightningGrpc {
                 lightpay.lnd.grpc.PolicyUpdateRequest,
                 lightpay.lnd.grpc.PolicyUpdateResponse>(
                   this, METHODID_UPDATE_CHANNEL_POLICY)))
+          .addMethod(
+            getForwardingHistoryMethodHelper(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                lightpay.lnd.grpc.ForwardingHistoryRequest,
+                lightpay.lnd.grpc.ForwardingHistoryResponse>(
+                  this, METHODID_FORWARDING_HISTORY)))
           .build();
     }
   }
@@ -2252,9 +2315,9 @@ public final class LightningGrpc {
     /**
      * <pre>
      ** lncli: `walletbalance`
-     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all confirmed unspent outputs and all unconfirmed unspent outputs under control
-     *by the wallet. This method can be modified by having the request specify
-     *only witness outputs should be factored into the final output sum.
+     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+     *confirmed unspent outputs and all unconfirmed unspent outputs under control
+     *of the wallet.
      * </pre>
      */
     public void walletBalance(lightpay.lnd.grpc.WalletBalanceRequest request,
@@ -2784,6 +2847,26 @@ public final class LightningGrpc {
       asyncUnaryCall(
           getChannel().newCall(getUpdateChannelPolicyMethodHelper(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     ** lncli: `fwdinghistory`
+     *ForwardingHistory allows the caller to query the htlcswitch for a record of
+     *all HTLC's forwarded within the target time range, and integer offset
+     *within that time range. If no time-range is specified, then the first chunk
+     *of the past 24 hrs of forwarding history are returned.
+     *A list of forwarding events are returned. The size of each forwarding event
+     *is 40 bytes, and the max message size able to be returned in gRPC is 4 MiB.
+     *As a result each message can only contain 50k entries.  Each response has
+     *the index offset of the last entry. The index offset can be provided to the
+     *request to allow the caller to skip a series of records.
+     * </pre>
+     */
+    public void forwardingHistory(lightpay.lnd.grpc.ForwardingHistoryRequest request,
+        io.grpc.stub.StreamObserver<lightpay.lnd.grpc.ForwardingHistoryResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getForwardingHistoryMethodHelper(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -2807,9 +2890,9 @@ public final class LightningGrpc {
     /**
      * <pre>
      ** lncli: `walletbalance`
-     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all confirmed unspent outputs and all unconfirmed unspent outputs under control
-     *by the wallet. This method can be modified by having the request specify
-     *only witness outputs should be factored into the final output sum.
+     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+     *confirmed unspent outputs and all unconfirmed unspent outputs under control
+     *of the wallet.
      * </pre>
      */
     public lightpay.lnd.grpc.WalletBalanceResponse walletBalance(lightpay.lnd.grpc.WalletBalanceRequest request) {
@@ -3292,6 +3375,25 @@ public final class LightningGrpc {
       return blockingUnaryCall(
           getChannel(), getUpdateChannelPolicyMethodHelper(), getCallOptions(), request);
     }
+
+    /**
+     * <pre>
+     ** lncli: `fwdinghistory`
+     *ForwardingHistory allows the caller to query the htlcswitch for a record of
+     *all HTLC's forwarded within the target time range, and integer offset
+     *within that time range. If no time-range is specified, then the first chunk
+     *of the past 24 hrs of forwarding history are returned.
+     *A list of forwarding events are returned. The size of each forwarding event
+     *is 40 bytes, and the max message size able to be returned in gRPC is 4 MiB.
+     *As a result each message can only contain 50k entries.  Each response has
+     *the index offset of the last entry. The index offset can be provided to the
+     *request to allow the caller to skip a series of records.
+     * </pre>
+     */
+    public lightpay.lnd.grpc.ForwardingHistoryResponse forwardingHistory(lightpay.lnd.grpc.ForwardingHistoryRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getForwardingHistoryMethodHelper(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -3315,9 +3417,9 @@ public final class LightningGrpc {
     /**
      * <pre>
      ** lncli: `walletbalance`
-     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all confirmed unspent outputs and all unconfirmed unspent outputs under control
-     *by the wallet. This method can be modified by having the request specify
-     *only witness outputs should be factored into the final output sum.
+     *WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+     *confirmed unspent outputs and all unconfirmed unspent outputs under control
+     *of the wallet.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<lightpay.lnd.grpc.WalletBalanceResponse> walletBalance(
@@ -3754,6 +3856,26 @@ public final class LightningGrpc {
       return futureUnaryCall(
           getChannel().newCall(getUpdateChannelPolicyMethodHelper(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     ** lncli: `fwdinghistory`
+     *ForwardingHistory allows the caller to query the htlcswitch for a record of
+     *all HTLC's forwarded within the target time range, and integer offset
+     *within that time range. If no time-range is specified, then the first chunk
+     *of the past 24 hrs of forwarding history are returned.
+     *A list of forwarding events are returned. The size of each forwarding event
+     *is 40 bytes, and the max message size able to be returned in gRPC is 4 MiB.
+     *As a result each message can only contain 50k entries.  Each response has
+     *the index offset of the last entry. The index offset can be provided to the
+     *request to allow the caller to skip a series of records.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<lightpay.lnd.grpc.ForwardingHistoryResponse> forwardingHistory(
+        lightpay.lnd.grpc.ForwardingHistoryRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getForwardingHistoryMethodHelper(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_WALLET_BALANCE = 0;
@@ -3793,7 +3915,8 @@ public final class LightningGrpc {
   private static final int METHODID_DEBUG_LEVEL = 34;
   private static final int METHODID_FEE_REPORT = 35;
   private static final int METHODID_UPDATE_CHANNEL_POLICY = 36;
-  private static final int METHODID_SEND_PAYMENT = 37;
+  private static final int METHODID_FORWARDING_HISTORY = 37;
+  private static final int METHODID_SEND_PAYMENT = 38;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -3960,6 +4083,10 @@ public final class LightningGrpc {
           serviceImpl.updateChannelPolicy((lightpay.lnd.grpc.PolicyUpdateRequest) request,
               (io.grpc.stub.StreamObserver<lightpay.lnd.grpc.PolicyUpdateResponse>) responseObserver);
           break;
+        case METHODID_FORWARDING_HISTORY:
+          serviceImpl.forwardingHistory((lightpay.lnd.grpc.ForwardingHistoryRequest) request,
+              (io.grpc.stub.StreamObserver<lightpay.lnd.grpc.ForwardingHistoryResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -4062,6 +4189,7 @@ public final class LightningGrpc {
               .addMethod(getDebugLevelMethodHelper())
               .addMethod(getFeeReportMethodHelper())
               .addMethod(getUpdateChannelPolicyMethodHelper())
+              .addMethod(getForwardingHistoryMethodHelper())
               .build();
         }
       }

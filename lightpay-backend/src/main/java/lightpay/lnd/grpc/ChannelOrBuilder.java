@@ -3,8 +3,8 @@
 
 package lightpay.lnd.grpc;
 
-public interface ActiveChannelOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:lnrpc.ActiveChannel)
+public interface ChannelOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:lnrpc.Channel)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -230,4 +230,13 @@ public interface ActiveChannelOrBuilder extends
    * <code>uint32 csv_delay = 16[json_name = "csv_delay"];</code>
    */
   int getCsvDelay();
+
+  /**
+   * <pre>
+   *&#47; Whether this channel is advertised to the network or not
+   * </pre>
+   *
+   * <code>bool private = 17[json_name = "private"];</code>
+   */
+  boolean getPrivate();
 }

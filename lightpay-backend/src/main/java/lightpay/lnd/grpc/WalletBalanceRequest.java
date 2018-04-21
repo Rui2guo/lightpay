@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private WalletBalanceRequest() {
-    witnessOnly_ = false;
   }
 
   @java.lang.Override
@@ -32,7 +31,6 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
-    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -48,11 +46,6 @@ private static final long serialVersionUID = 0L;
                 input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
-            break;
-          }
-          case 8: {
-
-            witnessOnly_ = input.readBool();
             break;
           }
         }
@@ -79,19 +72,6 @@ private static final long serialVersionUID = 0L;
             lightpay.lnd.grpc.WalletBalanceRequest.class, lightpay.lnd.grpc.WalletBalanceRequest.Builder.class);
   }
 
-  public static final int WITNESS_ONLY_FIELD_NUMBER = 1;
-  private boolean witnessOnly_;
-  /**
-   * <pre>
-   *&#47; If only witness outputs should be considered when calculating the wallet's balance
-   * </pre>
-   *
-   * <code>bool witness_only = 1;</code>
-   */
-  public boolean getWitnessOnly() {
-    return witnessOnly_;
-  }
-
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -104,9 +84,6 @@ private static final long serialVersionUID = 0L;
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (witnessOnly_ != false) {
-      output.writeBool(1, witnessOnly_);
-    }
     unknownFields.writeTo(output);
   }
 
@@ -115,10 +92,6 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (witnessOnly_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(1, witnessOnly_);
-    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -135,8 +108,6 @@ private static final long serialVersionUID = 0L;
     lightpay.lnd.grpc.WalletBalanceRequest other = (lightpay.lnd.grpc.WalletBalanceRequest) obj;
 
     boolean result = true;
-    result = result && (getWitnessOnly()
-        == other.getWitnessOnly());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -148,9 +119,6 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + WITNESS_ONLY_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getWitnessOnly());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -280,8 +248,6 @@ private static final long serialVersionUID = 0L;
     }
     public Builder clear() {
       super.clear();
-      witnessOnly_ = false;
-
       return this;
     }
 
@@ -304,7 +270,6 @@ private static final long serialVersionUID = 0L;
 
     public lightpay.lnd.grpc.WalletBalanceRequest buildPartial() {
       lightpay.lnd.grpc.WalletBalanceRequest result = new lightpay.lnd.grpc.WalletBalanceRequest(this);
-      result.witnessOnly_ = witnessOnly_;
       onBuilt();
       return result;
     }
@@ -346,9 +311,6 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(lightpay.lnd.grpc.WalletBalanceRequest other) {
       if (other == lightpay.lnd.grpc.WalletBalanceRequest.getDefaultInstance()) return this;
-      if (other.getWitnessOnly() != false) {
-        setWitnessOnly(other.getWitnessOnly());
-      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -373,44 +335,6 @@ private static final long serialVersionUID = 0L;
           mergeFrom(parsedMessage);
         }
       }
-      return this;
-    }
-
-    private boolean witnessOnly_ ;
-    /**
-     * <pre>
-     *&#47; If only witness outputs should be considered when calculating the wallet's balance
-     * </pre>
-     *
-     * <code>bool witness_only = 1;</code>
-     */
-    public boolean getWitnessOnly() {
-      return witnessOnly_;
-    }
-    /**
-     * <pre>
-     *&#47; If only witness outputs should be considered when calculating the wallet's balance
-     * </pre>
-     *
-     * <code>bool witness_only = 1;</code>
-     */
-    public Builder setWitnessOnly(boolean value) {
-      
-      witnessOnly_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     *&#47; If only witness outputs should be considered when calculating the wallet's balance
-     * </pre>
-     *
-     * <code>bool witness_only = 1;</code>
-     */
-    public Builder clearWitnessOnly() {
-      
-      witnessOnly_ = false;
-      onChanged();
       return this;
     }
     public final Builder setUnknownFields(

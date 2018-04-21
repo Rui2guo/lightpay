@@ -54,7 +54,7 @@ public interface OpenChannelRequestOrBuilder extends
 
   /**
    * <pre>
-   *&#47; The target number of blocks that the closure transaction should be confirmed by.
+   *&#47; The target number of blocks that the funding transaction should be confirmed by.
    * </pre>
    *
    * <code>int32 target_conf = 6;</code>
@@ -63,7 +63,7 @@ public interface OpenChannelRequestOrBuilder extends
 
   /**
    * <pre>
-   *&#47; A manual fee rate set in sat/byte that should be used when crafting the closure transaction.
+   *&#47; A manual fee rate set in sat/byte that should be used when crafting the funding transaction.
    * </pre>
    *
    * <code>int64 sat_per_byte = 7;</code>
@@ -87,4 +87,13 @@ public interface OpenChannelRequestOrBuilder extends
    * <code>int64 min_htlc_msat = 9[json_name = "min_htlc_msat"];</code>
    */
   long getMinHtlcMsat();
+
+  /**
+   * <pre>
+   *&#47; The delay we require on the remote's commitment transaction. If this is not set, it will be scaled automatically with the channel size.
+   * </pre>
+   *
+   * <code>uint32 remote_csv_delay = 10[json_name = "remote_csv_delay"];</code>
+   */
+  int getRemoteCsvDelay();
 }

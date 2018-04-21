@@ -4,18 +4,18 @@
 package lightpay.lnd.grpc;
 
 /**
- * Protobuf type {@code lnrpc.CreateWalletResponse}
+ * Protobuf type {@code lnrpc.InitWalletResponse}
  */
-public  final class CreateWalletResponse extends
+public  final class InitWalletResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:lnrpc.CreateWalletResponse)
-    CreateWalletResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:lnrpc.InitWalletResponse)
+    InitWalletResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use CreateWalletResponse.newBuilder() to construct.
-  private CreateWalletResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use InitWalletResponse.newBuilder() to construct.
+  private InitWalletResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private CreateWalletResponse() {
+  private InitWalletResponse() {
   }
 
   @java.lang.Override
@@ -23,7 +23,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private CreateWalletResponse(
+  private InitWalletResponse(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -62,14 +62,14 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletResponse_descriptor;
+    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_InitWalletResponse_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletResponse_fieldAccessorTable
+    return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_InitWalletResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            lightpay.lnd.grpc.CreateWalletResponse.class, lightpay.lnd.grpc.CreateWalletResponse.Builder.class);
+            lightpay.lnd.grpc.InitWalletResponse.class, lightpay.lnd.grpc.InitWalletResponse.Builder.class);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -102,10 +102,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof lightpay.lnd.grpc.CreateWalletResponse)) {
+    if (!(obj instanceof lightpay.lnd.grpc.InitWalletResponse)) {
       return super.equals(obj);
     }
-    lightpay.lnd.grpc.CreateWalletResponse other = (lightpay.lnd.grpc.CreateWalletResponse) obj;
+    lightpay.lnd.grpc.InitWalletResponse other = (lightpay.lnd.grpc.InitWalletResponse) obj;
 
     boolean result = true;
     result = result && unknownFields.equals(other.unknownFields);
@@ -124,69 +124,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(byte[] data)
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(java.io.InputStream input)
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseDelimitedFrom(java.io.InputStream input)
+  public static lightpay.lnd.grpc.InitWalletResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseDelimitedFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static lightpay.lnd.grpc.CreateWalletResponse parseFrom(
+  public static lightpay.lnd.grpc.InitWalletResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -198,7 +198,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(lightpay.lnd.grpc.CreateWalletResponse prototype) {
+  public static Builder newBuilder(lightpay.lnd.grpc.InitWalletResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -213,25 +213,25 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code lnrpc.CreateWalletResponse}
+   * Protobuf type {@code lnrpc.InitWalletResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:lnrpc.CreateWalletResponse)
-      lightpay.lnd.grpc.CreateWalletResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:lnrpc.InitWalletResponse)
+      lightpay.lnd.grpc.InitWalletResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletResponse_descriptor;
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_InitWalletResponse_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletResponse_fieldAccessorTable
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_InitWalletResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              lightpay.lnd.grpc.CreateWalletResponse.class, lightpay.lnd.grpc.CreateWalletResponse.Builder.class);
+              lightpay.lnd.grpc.InitWalletResponse.class, lightpay.lnd.grpc.InitWalletResponse.Builder.class);
     }
 
-    // Construct using lightpay.lnd.grpc.CreateWalletResponse.newBuilder()
+    // Construct using lightpay.lnd.grpc.InitWalletResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -253,23 +253,23 @@ private static final long serialVersionUID = 0L;
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_CreateWalletResponse_descriptor;
+      return lightpay.lnd.grpc.Rpc.internal_static_lnrpc_InitWalletResponse_descriptor;
     }
 
-    public lightpay.lnd.grpc.CreateWalletResponse getDefaultInstanceForType() {
-      return lightpay.lnd.grpc.CreateWalletResponse.getDefaultInstance();
+    public lightpay.lnd.grpc.InitWalletResponse getDefaultInstanceForType() {
+      return lightpay.lnd.grpc.InitWalletResponse.getDefaultInstance();
     }
 
-    public lightpay.lnd.grpc.CreateWalletResponse build() {
-      lightpay.lnd.grpc.CreateWalletResponse result = buildPartial();
+    public lightpay.lnd.grpc.InitWalletResponse build() {
+      lightpay.lnd.grpc.InitWalletResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public lightpay.lnd.grpc.CreateWalletResponse buildPartial() {
-      lightpay.lnd.grpc.CreateWalletResponse result = new lightpay.lnd.grpc.CreateWalletResponse(this);
+    public lightpay.lnd.grpc.InitWalletResponse buildPartial() {
+      lightpay.lnd.grpc.InitWalletResponse result = new lightpay.lnd.grpc.InitWalletResponse(this);
       onBuilt();
       return result;
     }
@@ -301,16 +301,16 @@ private static final long serialVersionUID = 0L;
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof lightpay.lnd.grpc.CreateWalletResponse) {
-        return mergeFrom((lightpay.lnd.grpc.CreateWalletResponse)other);
+      if (other instanceof lightpay.lnd.grpc.InitWalletResponse) {
+        return mergeFrom((lightpay.lnd.grpc.InitWalletResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(lightpay.lnd.grpc.CreateWalletResponse other) {
-      if (other == lightpay.lnd.grpc.CreateWalletResponse.getDefaultInstance()) return this;
+    public Builder mergeFrom(lightpay.lnd.grpc.InitWalletResponse other) {
+      if (other == lightpay.lnd.grpc.InitWalletResponse.getDefaultInstance()) return this;
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -324,11 +324,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      lightpay.lnd.grpc.CreateWalletResponse parsedMessage = null;
+      lightpay.lnd.grpc.InitWalletResponse parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (lightpay.lnd.grpc.CreateWalletResponse) e.getUnfinishedMessage();
+        parsedMessage = (lightpay.lnd.grpc.InitWalletResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -348,39 +348,39 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:lnrpc.CreateWalletResponse)
+    // @@protoc_insertion_point(builder_scope:lnrpc.InitWalletResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:lnrpc.CreateWalletResponse)
-  private static final lightpay.lnd.grpc.CreateWalletResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:lnrpc.InitWalletResponse)
+  private static final lightpay.lnd.grpc.InitWalletResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new lightpay.lnd.grpc.CreateWalletResponse();
+    DEFAULT_INSTANCE = new lightpay.lnd.grpc.InitWalletResponse();
   }
 
-  public static lightpay.lnd.grpc.CreateWalletResponse getDefaultInstance() {
+  public static lightpay.lnd.grpc.InitWalletResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<CreateWalletResponse>
-      PARSER = new com.google.protobuf.AbstractParser<CreateWalletResponse>() {
-    public CreateWalletResponse parsePartialFrom(
+  private static final com.google.protobuf.Parser<InitWalletResponse>
+      PARSER = new com.google.protobuf.AbstractParser<InitWalletResponse>() {
+    public InitWalletResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new CreateWalletResponse(input, extensionRegistry);
+      return new InitWalletResponse(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<CreateWalletResponse> parser() {
+  public static com.google.protobuf.Parser<InitWalletResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<CreateWalletResponse> getParserForType() {
+  public com.google.protobuf.Parser<InitWalletResponse> getParserForType() {
     return PARSER;
   }
 
-  public lightpay.lnd.grpc.CreateWalletResponse getDefaultInstanceForType() {
+  public lightpay.lnd.grpc.InitWalletResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

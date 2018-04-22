@@ -17,17 +17,17 @@ export module PaymentAction {
     paymentPreimage: string;
     paymentRoute: {
       totalTimeLock: number;
-      totalAmt: number;
+      totalAmtMsat: number;
       hops: [
         { 
           chanId: number;
           chanCapacity: number;
-          amtToForward: number;
-          fee: number;
+          amtToForwardMsat: number;
+          feeMsat: number;
           expiry: number;
         }
       ];
-      totalFees: number;
+      totalFeesMsat: number;
     };
   }
 

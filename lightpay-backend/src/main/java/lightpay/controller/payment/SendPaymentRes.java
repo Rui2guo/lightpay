@@ -18,9 +18,9 @@ public class SendPaymentRes {
 
         private Integer totalTimeLock;
 
-        private Long totalFees;
+        private Long totalFeesMsat;
 
-        private Long totalAmt;
+        private Long totalAmtMsat;
 
         private List<Hop> hops;
 
@@ -31,9 +31,9 @@ public class SendPaymentRes {
 
             private Long chanCapacity;
 
-            private Long amtToForward;
+            private Long amtToForwardMsat;
 
-            private Long fee;
+            private Long feeMsat;
 
             private Integer expiry;
 

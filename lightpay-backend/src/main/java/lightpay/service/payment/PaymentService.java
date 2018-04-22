@@ -65,16 +65,16 @@ public class PaymentService {
 
         Route paymentRoute = new Route();
         paymentRoute.setTotalTimeLock(sendResponse.getPaymentRoute().getTotalTimeLock());
-        paymentRoute.setTotalFees(sendResponse.getPaymentRoute().getTotalFees());
-        paymentRoute.setTotalAmt(sendResponse.getPaymentRoute().getTotalAmt());
+        paymentRoute.setTotalFeesMsat(sendResponse.getPaymentRoute().getTotalFeesMsat());
+        paymentRoute.setTotalAmtMsat(sendResponse.getPaymentRoute().getTotalAmtMsat());
 
         List<Hop> hops = new ArrayList<>();
         for (lightpay.lnd.grpc.Hop h : sendResponse.getPaymentRoute().getHopsList()) {
             Hop hop = new Hop();
             hop.setChanId(h.getChanId());
             hop.setChanCapacity(h.getChanCapacity());
-            hop.setAmtToForward(h.getAmtToForward());
-            hop.setFee(h.getFee());
+            hop.setAmtToForwardMsat(h.getAmtToForwardMsat());
+            hop.setFeeMsat(h.getFeeMsat());
             hop.setExpiry(h.getExpiry());
             hops.add(hop);
         }

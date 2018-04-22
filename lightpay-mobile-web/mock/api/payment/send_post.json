@@ -3,16 +3,16 @@
   "paymentPreimage": "b1b667904a6876608baf759a7c083b225ddc8addbfbbdb1a87e4dba0fcbadbe0",
   "paymentRoute": {
     "totalTimeLock": 1034,
-    "totalAmt": 1000,
+    "totalAmtMsat": 1000,
     "hops": [
       {
         "chanId": 973067790647296,
         "chanCapacity": 1000000,
-        "amtToForward": 1000,
-        "fee": 0,
+        "amtToForwardMsat": 1000,
+        "feeMsat": 0,
         "expiry": 1034
       }
     ],
-    "totalFees": 0
+    "totalFeesMsat": 0
   }
 }

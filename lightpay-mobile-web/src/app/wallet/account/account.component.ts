@@ -10,13 +10,13 @@ import { DispatcherService } from '../../common/services/dispatcher.service';
 import { WalletComponent } from 'app/wallet/wallet.component';
 
 @Component({
-  selector: 'lp-balance',
-  templateUrl: './balance.component.html',
-  styleUrls: ['./balance.component.scss']
+  selector: 'lp-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss']
 })
-export class BalanceComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AccountComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  static readonly PAGE_NAME: string = "balance";
+  static readonly PAGE_NAME: string = "account";
 
   @ViewChild(LoadingMaskComponent)
   loadingMaskComponent: LoadingMaskComponent;
@@ -67,8 +67,14 @@ export class BalanceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dispatcherService.unregister(this.dispatcherRegisterId);
   }
 
-  onSelectPage(pageName: string) {
-    if (pageName == "balance") {
+  moveReceiveCoinPage() {
+    this.dispatcherService.emit({
+      eventType: WalletComponent.MOVE_RECEIVE_COIN_PAGE_EVENT
+    });
+  }
+
+  private onSelectPage(pageName: string) {
+    if (pageName == "account") {
       if (!this.selected) {
         this.onActive();
       }

@@ -2,7 +2,7 @@
   <div [style.display]="'none'" class="back">
     <i class="icon flaticon-arrows"></i>
   </div>
-  <div class="title">残高情報</div>
+  <div class="title">口座情報</div>
 </div>
 <div class="page-contents">
   <div *ngIf="balance" class="scroll-container">
@@ -13,7 +13,7 @@
             <div class="icon icon-wrapper">
               <span class="coin-out flaticon-up-arrow"></span>
             </div>
-            <div class="icon icon-wrapper">
+            <div (click)="moveReceiveCoinPage()" class="icon icon-wrapper">
               <span class="coin-in flaticon-arrows-1"></span>
             </div>
             <span class="icon history flaticon-history"></span>
@@ -42,5 +42,5 @@
       </div>
     </div>
   </div>
-  <lp-loading-mask [name]="'balance'" [show]="loading"></lp-loading-mask>
+  <lp-loading-mask [name]="'account'" [show]="loading"></lp-loading-mask>
 </div>

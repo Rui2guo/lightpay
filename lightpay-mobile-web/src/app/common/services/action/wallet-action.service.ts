@@ -8,8 +8,9 @@ import { UUID } from 'app/common/utils/uuid';
 @Injectable()
 export class WalletActionService {
 
-  static EVENT_PREFIX: string = "WalletActionService.";
-  static GET_BALANCE_EVENT: string = WalletActionService.EVENT_PREFIX + "get-balance";
+  static readonly EVENT_PREFIX: string = "WalletActionService.";
+  static readonly GET_BALANCE_EVENT: string = WalletActionService.EVENT_PREFIX + "get-balance";
+  static readonly GET_NEW_ADDRESS_EVENT: string = WalletActionService.EVENT_PREFIX + "get-new-address";
 
   constructor(
     private dispatcherService: DispatcherService,
@@ -29,6 +30,24 @@ export class WalletActionService {
       },
       (error: Response) => {
         console.log("getBalance error");
+      }
+    );
+    return emitId;
+  }
+
+  getNewAddress(): string {
+    var emitId: string = UUID.v4();
+    this.apiService.get("/api/wallet/newaddress", {}).subscribe(
+      (res: Response) => {
+        var json: WalletAction.NewAddress = res.json();
+        this.dispatcherService.emit({
+          eventType: WalletActionService.GET_NEW_ADDRESS_EVENT,
+          data: json,
+          emitId: emitId
+        });
+      },
+      (error: Response) => {
+        console.log("getNewAddress error");
       }
     );
     return emitId;

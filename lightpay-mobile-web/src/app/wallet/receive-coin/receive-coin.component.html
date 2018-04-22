@@ -1,0 +1,19 @@
+<div class="toolbar">
+  <div class="close" (click)="close()">
+    <i class="icon flaticon-cancel"></i>
+  </div>
+  <div class="title">ビットコイン受取りアドレス</div>
+</div>
+<div class="page-contents">
+  <div class="scroll-container">
+    <div [style.display]="address === '' ? 'none' : 'block'" class="address-wrapper">
+      <div class="info-block">
+        <div class="description">このアドレスにビットコインを入金すると、ウォレットにビットコインがチャージされます</div>
+        <lp-qr-code class="qr-code" [value]="address" [size]="200"></lp-qr-code>
+        <textarea readonly #addressArea class="address">{{address}}</textarea>
+        <button (click)="copyAddress()" class="btn-copy">クリップボードに貼付け</button>
+      </div>
+    </div>
+  </div>
+  <lp-loading-mask [name]="loadingName" [show]="loading"></lp-loading-mask>
+</div>

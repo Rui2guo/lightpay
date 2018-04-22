@@ -11,4 +11,8 @@ export module WalletAction {
     };
   }
 
+  export interface NewAddress {
+    address: string;
+  }
+
 }

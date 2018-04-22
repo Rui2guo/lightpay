@@ -1,0 +1,97 @@
+.toolbar {
+  width: 100%;
+  height: 50px;
+  background-color: #33343a;
+  position: relative;
+
+  .close {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 50px;
+    text-align: center;
+    color: #f7f7f7;
+    line-height: 50px;
+
+    .icon {
+      display: block;
+      text-align: center;
+
+      &:before {
+        margin-left: 0;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .title {
+    width: 100%;
+    text-align: center;
+    color: #f7f7f7;
+    font-size: 1.1rem;
+    line-height: 50px;
+  }
+}
+
+.page-contents {
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow: hidden;
+  background-color: #e0b854;
+  position: relative;
+
+  .scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .address-wrapper {
+      padding: 15px;
+      text-align: center;
+  
+      .info-block {
+        text-align: center;
+
+        .description {
+          display: inline-block;
+          text-align: left;
+          font-size: 0.8rem;
+          margin-bottom: 20px;
+          color: #f5f5f5;
+        }
+
+        .qr-code {
+          margin-bottom: 15px;
+        }
+
+        .address {
+          width: 100%;
+          text-align: center;
+          font-size: 0.9rem;
+          margin-bottom: 10px;
+          background-color: #e0b854;
+          color: #f5f5f5;
+          border: none;
+          border-radius: 0;
+          resize: none;
+        }
+
+        .btn-copy {
+          width: 200px;
+          height: 50px;
+          background-color: #f5f5f5;
+          color: #b58f30;
+          border: none;
+          border-radius: 25px;
+          font-size: 0.9rem;
+        }
+
+      }
+    }
+  }
+}

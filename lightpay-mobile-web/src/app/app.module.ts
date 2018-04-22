@@ -12,7 +12,7 @@ import { RootComponent } from './root/root.component';
 import { MainComponent } from './main/main.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { PaymentComponent } from './wallet/payment/payment.component';
-import { BalanceComponent } from './wallet/balance/balance.component';
+import { AccountComponent } from './wallet/account/account.component';
 import { PagingComponent } from './paging/paging.component';
 import { ReceivingComponent } from './wallet/receiving/receiving.component';
 import { LoadingMaskComponent } from 'app/loading-mask/loading-mask.component';
@@ -37,6 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationActionService } from './common/services/action/authentication-action.service';
 import { AuthenticationStoreService } from './common/services/store/authentication-store.service';
 import { AutoRefreshTokenService } from 'app/common/services/auto-refresh-token.service';
+import { ReceiveCoinComponent } from './wallet/receive-coin/receive-coin.component';
 
 @NgModule({
   schemas: [
@@ -48,7 +49,7 @@ import { AutoRefreshTokenService } from 'app/common/services/auto-refresh-token.
     MainComponent,
     WalletComponent,
     PaymentComponent,
-    BalanceComponent,
+    AccountComponent,
     PagingComponent,
     ReceivingComponent,
     ReadInvoiceComponent,
@@ -60,7 +61,8 @@ import { AutoRefreshTokenService } from 'app/common/services/auto-refresh-token.
     ToBtcStringPipe,
     EmptyPipe,
     MomentPipe,
-    LoginComponent
+    LoginComponent,
+    ReceiveCoinComponent
   ],
   entryComponents: [
     LoadingMaskComponent,
@@ -69,7 +71,8 @@ import { AutoRefreshTokenService } from 'app/common/services/auto-refresh-token.
     CompletePaymentComponent,
     InvoiceFormComponent,
     OutputInvoiceComponent,
-    QrCodeComponent
+    QrCodeComponent,
+    ReceiveCoinComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 {
   "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZCI6IlJPTEVfVVNFUiIsImlzcyI6ImxpZ2h0cGF5IiwiZXhwIjoxNTIxMzg4NDYyLCJpYXQiOjE1MjEzODg0MDJ9.nMFvKlqs1_Ajqa6ex9x3HiEHD2FR0x94lrFX0WFW7pk",
-  "accessTokenExpirationTime": 1531983769122,
+  "accessTokenExpirationTime": 1534385954120,
   "refreshToken": "2a5f0344adfacdaf83e45f6cabe9e9e7225689e92aabd6e535d65c3b2a1458fa",
-  "refreshTokenExpirationTime": 1531983769122
+  "refreshTokenExpirationTime": 1534385954120
 }

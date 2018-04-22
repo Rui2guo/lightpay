@@ -3,15 +3,21 @@ package lightpay.service.wallet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lightpay.controller.wallet.NewAddressRes;
 import lightpay.controller.wallet.WalletBalanceRes;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.ChannelBalanceRequest;
 import lightpay.lnd.grpc.ChannelBalanceResponse;
+import lightpay.lnd.grpc.NewAddressRequest;
+import lightpay.lnd.grpc.NewAddressRequest.AddressType;
+import lightpay.lnd.grpc.NewAddressResponse;
 import lightpay.lnd.grpc.WalletBalanceRequest;
 import lightpay.lnd.grpc.WalletBalanceResponse;
 
 @Service
 public class WalletService {
+
+    public static final AddressType DEFAULT_ADDRESS_TYPE = AddressType.NESTED_PUBKEY_HASH;
 
     @Autowired
     private LndBlockingStub lndBlockingStub;
@@ -45,6 +51,17 @@ public class WalletService {
             .build();
     }
 
+    public NewAddressRes getNewAddress() {
+        NewAddressRequest newAddressRequest = NewAddressRequest.newBuilder()
+            .setType(DEFAULT_ADDRESS_TYPE)
+            .build();
 
+        NewAddressResponse newAddressResponse = lndBlockingStub.getInstance()
+            .newAddress(newAddressRequest);
+
+        return NewAddressRes.builder()
+            .address(newAddressResponse.getAddress())
+            .build();
+    }
 
 }

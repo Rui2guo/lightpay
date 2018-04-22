@@ -21,4 +21,9 @@ public class WalletController {
         return walletService.getWalletBalance();
     }
 
+    @GetMapping("/newaddress")
+    public NewAddressRes getNewAddress() {
+        return walletService.getNewAddress();
+    }
+
 }

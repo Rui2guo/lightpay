@@ -1,7 +1,7 @@
 <div class="wallet-container">
   <lp-receiving [style.display]="currentPage === pageNameReceiving ? 'block' : 'none'" class="wallet-page"></lp-receiving>
   <lp-payment [style.display]="currentPage === pageNamePayment ? 'block' : 'none'" class="wallet-page"></lp-payment>
-  <lp-balance [style.display]="currentPage === pageNameBalance ? 'block' : 'none'" class="wallet-page"></lp-balance>
+  <lp-account [style.display]="currentPage === pageNameAccount ? 'block' : 'none'" class="wallet-page"></lp-account>
 </div>
 <div class="tabbar">
   <div class="tab">
@@ -16,8 +16,12 @@
     <i class="icon flaticon-credit-card"></i>
     <div class="label">支払い</div>
   </div>
-  <div (click)="selectBalance()" class="tab" [class.selected]="currentPage === pageNameBalance">
+  <div (click)="selectAccount()" class="tab" [class.selected]="currentPage === pageNameAccount">
     <i class="icon flaticon-wallet"></i>
-    <div class="label">残高</div>
+    <div class="label">口座</div>
   </div>
+</div>
+<div [style.display]="displayPaging ? 'block' : 'none'"
+      class="page-contents">
+  <lp-paging [pagingName]="pagingName"></lp-paging>
 </div>

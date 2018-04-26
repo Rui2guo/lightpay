@@ -91,8 +91,20 @@ export class PagingComponent implements OnInit, AfterViewInit {
   }
 
   private startMovePage(action: PagingAction.Move) {
-    if (action.pagingName != this.pagingName) {
+    if (action.pagingName !== this.pagingName) {
       return;
+    }
+
+    if (action.component) {
+      var componentFactory: ComponentFactory<{}> = this.componentFactoryResolver.resolveComponentFactory(action.component);
+      var componentRef: ComponentRef<{}>;
+      if (this.currentPage === Page.A) {
+          componentRef = this.vcrB.createComponent(componentFactory);
+      } else if (this.currentPage === Page.B) {
+          componentRef = this.vcrA.createComponent(componentFactory);
+      }
+      (<PageBaseComponent>componentRef.instance).pageData = action.pageData;
+      componentRef.changeDetectorRef.detectChanges();
     }
 
     this.pageMoved = false;
@@ -102,71 +114,129 @@ export class PagingComponent implements OnInit, AfterViewInit {
     this.widthA = this.widthB = width;
     this.heightA = this.heightB = height;
 
-    var isNext: number = 1;
     switch (action.animation) {
       case PagingAction.PageAnimation.NEXT:
-        this._transitionDuration = this.transitionDuration;
-        this._transitionDelay = this.transitionDelay;
+        this.prepareMoveNext(action);
         break;
       case PagingAction.PageAnimation.BACK:
-        this._transitionDuration = this.transitionDuration;
-        this._transitionDelay = this.transitionDelay;
-        isNext = -2;
+        this.prepareMoveBack(action);
         break;
       case PagingAction.PageAnimation.IMMEDIATE:
-        this._transitionDuration = 0;
-        this._transitionDelay = 0;
+        this.prepareMoveImmediate(action);
         break;
     }
+  }
 
-    var componentFactory: ComponentFactory<{}> = this.componentFactoryResolver.resolveComponentFactory(action.component);
-    var componentRef: ComponentRef<{}>;
+  private  prepareMoveNext(action: PagingAction.Move) {
+    this._transitionDuration = this.transitionDuration;
+    this._transitionDelay = this.transitionDelay;
+
     if (this.currentPage === Page.A) {
       this.topA = this.leftA = 0;
       this.topB = 0;
-      this.leftB = width * isNext;
+      this.leftB = this.widthA;
       this.zIndexA = 1;
       this.zIndexB = 2;
       this.currentPage = Page.B;
-      componentRef = this.vcrB.createComponent(componentFactory);
     } else if (this.currentPage === Page.B) {
       this.topB = this.leftB = 0;
       this.topA = 0;
-      this.leftA = width * isNext;
+      this.leftA = this.widthB;
       this.zIndexA = 2;
       this.zIndexB = 1;
       this.currentPage = Page.A;
-      componentRef = this.vcrA.createComponent(componentFactory);
     }
-    (<PageBaseComponent>componentRef.instance).pageData = action.pageData;
-    componentRef.changeDetectorRef.detectChanges();
 
     _.delay(() => {
-      this.endMovePage()
+      this.startMoveNext(action);
     }, 0);
   }
 
-  private endMovePage() {
+  private startMoveNext(action: PagingAction.Move) {
     if (this.currentPage === Page.A) {
-      this.topA = this.leftA = 0;
+      this.leftA = 0;
     } else if (this.currentPage === Page.B) {
-      this.topB = this.leftB = 0;
+      this.leftB = 0;
     }
 
     _.delay(() => {
-      this.pageMoved = true;
-      this.topA = this.topB = this.leftA = this.leftB = null;
-      this.widthA = this.widthB = this.heightA = this.heightB = null;
-      if (this.currentPage === Page.A) {
-        this.displayA = true;
-        this.displayB = false;
-        this.vcrB.clear();
-      } else if (this.currentPage === Page.B) {
-        this.displayA = false;
-        this.displayB = true;
-        this.vcrA.clear();
-      }
-    }, this._transitionDelay + this._transitionDuration);
+      this.endMove(action);
+    }, this.transitionDelay + this.transitionDuration);
+  }
+
+  private prepareMoveBack(action: PagingAction.Move) {
+    this._transitionDuration = this.transitionDuration;
+    this._transitionDelay = this.transitionDelay;
+
+    this.topA = this.leftA = 0;
+    this.topB = this.leftB = 0;
+
+    if (this.currentPage === Page.A) {
+      this.zIndexA = 2;
+      this.zIndexB = 1;
+      this.currentPage = Page.B;
+    } else if (this.currentPage === Page.B) {
+      this.zIndexA = 1;
+      this.zIndexB = 2;
+      this.currentPage = Page.A;
+    }
+
+    _.delay(() => {
+      this.startMoveBack(action);
+    }, 0);
+  }
+
+  private startMoveBack(action: PagingAction.Move) {
+    if (this.currentPage === Page.A) {
+      this.leftB = this.widthB;
+    } else if (this.currentPage === Page.B) {
+      this.leftA = this.widthA;
+    }
+
+    _.delay(() => {
+      this.endMove(action);
+    }, this.transitionDelay + this.transitionDuration);
+  }
+
+  private prepareMoveImmediate(action: PagingAction.Move) {
+    this.topA = this.leftA = 0;
+    this.topB = this.leftB = 0;
+
+    if (this.currentPage === Page.A) {
+      this.zIndexA = 1;
+      this.zIndexB = 2;
+      this.currentPage = Page.B;
+    } else if (this.currentPage === Page.B) {
+      this.zIndexA = 2;
+      this.zIndexB = 1;
+      this.currentPage = Page.A;
+    }
+
+    _.delay(() => {
+      this.endMove(action);
+    }, 0);
+  }
+
+  private endMove(action: PagingAction.Move) {
+    this.pageMoved = true;
+    this.topA = this.topB = this.leftA = this.leftB = null;
+    this.widthA = this.heightA = this.widthB = this.heightB = null;
+    this._transitionDuration = 0;
+    this._transitionDelay = 0;
+
+    if (this.currentPage === Page.A) {
+      this.displayA = true;
+      this.displayB = false;
+      this.vcrB.clear();
+    } else if (this.currentPage === Page.B) {
+      this.displayA = false;
+      this.displayB = true;
+      this.vcrA.clear();
+    }
+
+    if (action.after) {
+      action.after.apply(null);
+    }
   }
 
   private clearPage(action: PagingAction.Clear) {

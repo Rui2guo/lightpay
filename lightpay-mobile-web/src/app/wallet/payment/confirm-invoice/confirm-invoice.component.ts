@@ -9,6 +9,7 @@ import { DispatcherService } from '../../../common/services/dispatcher.service';
 import { PagingActionService } from 'app/paging/paging-action.service';
 import { CompletePaymentComponent } from '../complete-payment/complete-payment.component';
 import { _ } from 'app';
+import { PagingAction } from 'app/paging/paging-action';
 
 @Component({
   selector: 'lp-confirm-invoice',
@@ -56,7 +57,7 @@ export class ConfirmInvoiceComponent extends PageBaseComponent implements OnInit
   }
 
   onSubmit() {
-    this.pagingActionService.move(PaymentComponent.PAGING_NAME, CompletePaymentComponent, this.pageData);
+    this.pagingActionService.move(PaymentComponent.PAGING_NAME, CompletePaymentComponent, this.pageData, PagingAction.PageAnimation.NEXT);
   }
 
   private updateCurrentPayReq(payload: Payload) {

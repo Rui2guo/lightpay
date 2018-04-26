@@ -4,6 +4,7 @@ import { ReceivingComponent, ReceivingForm } from '../receiving.component';
 import { OutputInvoiceComponent } from '../output-invoice/output-invoice.component';
 import { PageBaseComponent } from '../../../paging/page-base.component';
 import { _s } from 'app';
+import { PagingAction } from 'app/paging/paging-action';
 
 @Component({
   selector: 'lp-invoice-form',
@@ -48,7 +49,7 @@ export class InvoiceFormComponent extends PageBaseComponent implements OnInit {
     var form: ReceivingForm = {
       numSatoshis: Number(this.inputSatoshis)
     };
-    this.pagingActionService.move(ReceivingComponent.PAGING_NAME, OutputInvoiceComponent, form);
+    this.pagingActionService.move(ReceivingComponent.PAGING_NAME, OutputInvoiceComponent, form, PagingAction.PageAnimation.NEXT);
   }
 
 }

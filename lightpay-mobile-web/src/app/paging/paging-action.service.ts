@@ -14,12 +14,13 @@ export class PagingActionService {
     private dispatcherService: DispatcherService,
   ) { }
 
-  move(pagingName: string, component: any, pageData: any, animation: PagingAction.PageAnimation = PagingAction.PageAnimation.NEXT) {
+  move(pagingName: string, component: any, pageData: any, animation: PagingAction.PageAnimation, after: () => void = null) {
     var action: PagingAction.Move = {
       pagingName: pagingName,
       component: component,
       pageData: pageData,
-      animation: animation
+      animation: animation,
+      after: after
     }
 
     this.dispatcherService.emit({

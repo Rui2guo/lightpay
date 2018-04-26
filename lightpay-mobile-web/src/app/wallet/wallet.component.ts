@@ -103,8 +103,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private closeReceiveCoinPage() {
-    this.displayPaging = false;
-    this.pagingActionService.clear(WalletComponent.PAGING_NAME);
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
+      this.displayPaging = false;
+    });
   }
 
 }

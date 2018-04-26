@@ -11,6 +11,7 @@ export module PagingAction {
     component: any;
     pageData: any;
     animation: PageAnimation;
+    after: () => void;
   }
 
   export interface Clear {

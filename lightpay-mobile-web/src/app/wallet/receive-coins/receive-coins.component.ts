@@ -8,13 +8,13 @@ import { _ } from "app";
 import { WalletComponent } from 'app/wallet/wallet.component';
 
 @Component({
-  selector: 'lp-receive-coin',
-  templateUrl: './receive-coin.component.html',
-  styleUrls: ['./receive-coin.component.scss']
+  selector: 'lp-receive-coins',
+  templateUrl: './receive-coins.component.html',
+  styleUrls: ['./receive-coins.component.scss']
 })
-export class ReceiveCoinComponent extends PageBaseComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ReceiveCoinsComponent extends PageBaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  readonly loadingName: string = "receive-coin";
+  readonly loadingName: string = "receive-coins";
 
   @ViewChild("addressArea")
   addressAreaRef: ElementRef;
@@ -71,7 +71,7 @@ export class ReceiveCoinComponent extends PageBaseComponent implements OnInit, A
 
   close() {
     this.dispatcherService.emit({
-      eventType: WalletComponent.CLOSE_RECEIVE_COIN_PAGE_EVENT
+      eventType: WalletComponent.CLOSE_RECEIVE_COINS_PAGE_EVENT
     });
   }
 

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lightpay.controller.wallet.NewAddressRes;
+import lightpay.controller.wallet.SendCoinsReq;
+import lightpay.controller.wallet.SendCoinsRes;
 import lightpay.controller.wallet.WalletBalanceRes;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.ChannelBalanceRequest;
@@ -11,6 +13,8 @@ import lightpay.lnd.grpc.ChannelBalanceResponse;
 import lightpay.lnd.grpc.NewAddressRequest;
 import lightpay.lnd.grpc.NewAddressRequest.AddressType;
 import lightpay.lnd.grpc.NewAddressResponse;
+import lightpay.lnd.grpc.SendCoinsRequest;
+import lightpay.lnd.grpc.SendCoinsResponse;
 import lightpay.lnd.grpc.WalletBalanceRequest;
 import lightpay.lnd.grpc.WalletBalanceResponse;
 
@@ -61,6 +65,20 @@ public class WalletService {
 
         return NewAddressRes.builder()
             .address(newAddressResponse.getAddress())
+            .build();
+    }
+
+    public SendCoinsRes sendCoins(SendCoinsReq sendCoinsReq) {
+        SendCoinsRequest sendCoinsRequest = SendCoinsRequest.newBuilder()
+            .setAddr(sendCoinsReq.getAddress())
+            .setAmount(sendCoinsReq.getAmount())
+            .build();
+
+        SendCoinsResponse sendCoinsResponse = lndBlockingStub.getInstance()
+            .sendCoins(sendCoinsRequest);
+
+        return SendCoinsRes.builder()
+            .txid(sendCoinsResponse.getTxid())
             .build();
     }
 

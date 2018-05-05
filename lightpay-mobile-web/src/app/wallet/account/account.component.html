@@ -10,11 +10,11 @@
       <div class="info-block">
         <div class="payable-amount">
           <div class="menu-icons">
-            <div class="icon icon-wrapper">
-              <span class="coin-out flaticon-up-arrow"></span>
+            <div (click)="moveSendCoinsPage()" class="icon icon-wrapper">
+              <span class="send-coins flaticon-up-arrow"></span>
             </div>
-            <div (click)="moveReceiveCoinPage()" class="icon icon-wrapper">
-              <span class="coin-in flaticon-arrows-1"></span>
+            <div (click)="moveReceiveCoinsPage()" class="icon icon-wrapper">
+              <span class="receive-coins flaticon-arrows-1"></span>
             </div>
             <span class="icon history flaticon-history"></span>
           </div>

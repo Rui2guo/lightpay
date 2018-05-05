@@ -67,9 +67,15 @@ export class AccountComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dispatcherService.unregister(this.dispatcherRegisterId);
   }
 
-  moveReceiveCoinPage() {
+  moveReceiveCoinsPage() {
     this.dispatcherService.emit({
-      eventType: WalletComponent.MOVE_RECEIVE_COIN_PAGE_EVENT
+      eventType: WalletComponent.MOVE_RECEIVE_COINS_PAGE_EVENT
+    });
+  }
+
+  moveSendCoinsPage() {
+    this.dispatcherService.emit({
+      eventType: WalletComponent.MOVE_SEND_COINS_PAGE_EVENT
     });
   }
 

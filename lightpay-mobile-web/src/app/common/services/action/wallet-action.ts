@@ -15,4 +15,8 @@ export module WalletAction {
     address: string;
   }
 
+  export interface SendCoins {
+    txid: string;
+  }
+
 }

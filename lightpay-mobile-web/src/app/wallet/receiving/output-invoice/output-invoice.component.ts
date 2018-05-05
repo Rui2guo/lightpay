@@ -86,7 +86,7 @@ export class OutputInvoiceComponent extends PageBaseComponent implements OnInit,
     }
 
     var invoice: Invoice = <Invoice>message.body;
-    if (invoice.paymentRequest === this.paymentRequest) {
+    if (invoice.paymentRequest === this.paymentRequest && invoice.settled) {
       this.received = true;
       _.delay(() => {
         this.checkAnimation = true;

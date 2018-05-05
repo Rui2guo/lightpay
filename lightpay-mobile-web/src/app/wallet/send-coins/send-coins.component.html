@@ -47,7 +47,7 @@
         <button *ngIf="!sending" (click)="onSubmit()" class="submit-button" [class.disabled]="buttonDisabled" [disabled]="buttonDisabled">送る</button>
         <button *ngIf="sending"
                 type="button" 
-                class="submit-button loading" 
+                class="submit-button sending" 
                 [disabled]="true">
           <div class="sk-cube-grid">
             <div class="sk-cube sk-cube1"></div>

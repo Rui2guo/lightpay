@@ -1,4 +1,6 @@
-package lightpay.service.wallet;
+package lightpay.wallet;
+
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,9 @@ import lightpay.controller.wallet.NewAddressRes;
 import lightpay.controller.wallet.SendCoinsReq;
 import lightpay.controller.wallet.SendCoinsRes;
 import lightpay.controller.wallet.WalletBalanceRes;
+import lightpay.history.wallet.WalletHistory;
+import lightpay.history.wallet.WalletHistory.Direction;
+import lightpay.history.wallet.WalletHistoryRepository;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.ChannelBalanceRequest;
 import lightpay.lnd.grpc.ChannelBalanceResponse;
@@ -25,6 +30,9 @@ public class WalletService {
 
     @Autowired
     private LndBlockingStub lndBlockingStub;
+
+    @Autowired
+    private WalletHistoryRepository walletHistoryRepository;
 
     public WalletBalanceRes getWalletBalance() {
         WalletBalanceRequest walletBalanceRequest = WalletBalanceRequest.newBuilder()
@@ -77,9 +85,22 @@ public class WalletService {
         SendCoinsResponse sendCoinsResponse = lndBlockingStub.getInstance()
             .sendCoins(sendCoinsRequest);
 
+        writePaymentHistory(sendCoinsReq);
+
         return SendCoinsRes.builder()
             .txid(sendCoinsResponse.getTxid())
             .build();
+    }
+
+    private void writePaymentHistory(SendCoinsReq sendCoinsReq) {
+        WalletHistory walletHistory = WalletHistory.builder()
+            .direction(Direction.SendCoins)
+            .destination(sendCoinsReq.getAddress())
+            .value(sendCoinsReq.getAmount())
+            .settleDatetime(LocalDateTime.now())
+            .build();
+
+        walletHistoryRepository.save(walletHistory);
     }
 
 }

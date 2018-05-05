@@ -42,8 +42,6 @@ public class InitialDataComponent {
             return;
         }
 
-        log.info("================ Create initial user ================");
-
         String password = generatePassword();
         User user = new User();
         user.setName("admin");
@@ -56,8 +54,8 @@ public class InitialDataComponent {
         user.getAuthorities().add(authority);
 
         userRepository.save(user);
+        log.info("================ Create initial user ================");
         log.info("User: " + user.getName() + " Password: " + password);
-
         log.info("=====================================================");
     }
 

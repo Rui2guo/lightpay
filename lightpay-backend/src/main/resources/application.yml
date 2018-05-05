@@ -11,6 +11,22 @@ server:
     cookie:
       name: "SessionId"
       secure: true
+      
+spring:
+  profiles:
+    active: production
+
+  devtools:
+    restart:
+      enabled: false
+      
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: true
+      
+  h2:
+    console:
+      enabled: false
 
 security:
   basic:

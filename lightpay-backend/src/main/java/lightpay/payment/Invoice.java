@@ -1,4 +1,4 @@
-package lightpay.service.payment;
+package lightpay.payment;
 
 import lombok.Data;
 

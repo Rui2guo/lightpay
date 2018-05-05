@@ -5,6 +5,20 @@ server:
     key-store-type: PKCS12
     key-alias: tomcat
 
+spring:
+  datasource:
+    url: jdbc:h2:mem:lightpay
+    driverClassName: org.h2.Driver
+    
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+  devtools:
+    restart:
+      enabled: true
+
 lightpay-backend:
   jwt:
     secret-key: "test"

@@ -1,5 +1,6 @@
-package lightpay.service.payment;
+package lightpay.payment;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,9 @@ import lightpay.controller.payment.SendPaymentReq;
 import lightpay.controller.payment.SendPaymentRes;
 import lightpay.controller.payment.SendPaymentRes.Route;
 import lightpay.controller.payment.SendPaymentRes.Route.Hop;
+import lightpay.history.wallet.WalletHistory;
+import lightpay.history.wallet.WalletHistory.Direction;
+import lightpay.history.wallet.WalletHistoryRepository;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.AddInvoiceResponse;
 import lightpay.lnd.grpc.Invoice;
@@ -28,6 +32,9 @@ public class PaymentService {
 
     @Autowired
     private LndBlockingStub lndBlockingStub;
+
+    @Autowired
+    private WalletHistoryRepository walletHistoryRepository;
 
     public DecodePayReqRes decodePayReq(String payreq) {
         PayReqString.Builder payreqStr = PayReqString.newBuilder();
@@ -82,7 +89,21 @@ public class PaymentService {
         paymentRoute.setHops(hops);
         response.setPaymentRoute(paymentRoute);
 
+        writePaymentHistory(request.getPaymentRequest());
+
         return response;
+    }
+
+    private void writePaymentHistory(String payreq) {
+        DecodePayReqRes decodePayReqRes = decodePayReq(payreq);
+        WalletHistory walletHistory = WalletHistory.builder()
+            .direction(Direction.LightningSend)
+            .destination(decodePayReqRes.getDestination())
+            .value(decodePayReqRes.getNumSatoshis())
+            .settleDatetime(LocalDateTime.now())
+            .build();
+
+        walletHistoryRepository.save(walletHistory);
     }
 
     public AddInvoiceRes addInvoice(AddInvoiceReq request) {

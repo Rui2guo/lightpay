@@ -1,4 +1,6 @@
-package lightpay.service.payment;
+package lightpay.payment;
+
+import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import io.grpc.stub.StreamObserver;
+import lightpay.history.wallet.WalletHistory;
+import lightpay.history.wallet.WalletHistory.Direction;
+import lightpay.history.wallet.WalletHistoryRepository;
 import lightpay.lnd.LndStub;
 import lightpay.lnd.grpc.Invoice;
 import lightpay.lnd.grpc.InvoiceSubscription;
@@ -28,6 +33,9 @@ public class SubscribeInvoicesService {
     @Autowired
     private LightPayWebSocket lightPayWebSocket;
 
+    @Autowired
+    private WalletHistoryRepository walletHistoryRepository;
+
     @PostConstruct
     private void init() {
         connect();
@@ -38,7 +46,7 @@ public class SubscribeInvoicesService {
 
             @Override
             public void onNext(Invoice value) {
-                lightpay.service.payment.Invoice invoice = new lightpay.service.payment.Invoice();
+                lightpay.payment.Invoice invoice = new lightpay.payment.Invoice();
                 invoice.setMemo(value.getMemo());
                 invoice.setReceipt(Hex.encodeHexString(value.getReceipt().toByteArray()));
                 invoice.setRPreimage(Hex.encodeHexString(value.getRPreimage().toByteArray()));
@@ -62,6 +70,10 @@ public class SubscribeInvoicesService {
                 } catch (JsonProcessingException e) {
                     log.warn("JsonProcessingException !", e);
                 }
+
+                if (invoice.getSettled()) {
+                    writePaymentHistory(value);
+                }
             }
 
             @Override
@@ -73,6 +85,17 @@ public class SubscribeInvoicesService {
             public void onCompleted() {
                 log.error("subscribeInvoices is completed.");
             }
+
+            private void writePaymentHistory(Invoice invoice) {
+                WalletHistory walletHistory = WalletHistory.builder()
+                    .direction(Direction.LightningReceive)
+                    .value(invoice.getValue())
+                    .settleDatetime(LocalDateTime.now())
+                    .build();
+
+                walletHistoryRepository.save(walletHistory);
+            }
+
         });
 
         log.info("subscribeInvoices has been started.");

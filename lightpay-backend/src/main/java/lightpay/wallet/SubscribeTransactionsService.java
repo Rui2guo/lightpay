@@ -38,6 +38,10 @@ public class SubscribeTransactionsService {
             @Override
             @Transactional
             public void onNext(Transaction value) {
+                if (value.getNumConfirmations() == 0) {
+                    return;
+                }
+
                 TransactionHistory history = transactionHistoryRepository.findOne(value.getTxHash());
                 if (history == null) {
                     if (value.getAmount() <= 0) {

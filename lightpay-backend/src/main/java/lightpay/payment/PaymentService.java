@@ -16,9 +16,9 @@ import lightpay.controller.payment.SendPaymentReq;
 import lightpay.controller.payment.SendPaymentRes;
 import lightpay.controller.payment.SendPaymentRes.Route;
 import lightpay.controller.payment.SendPaymentRes.Route.Hop;
-import lightpay.history.wallet.WalletHistory;
-import lightpay.history.wallet.WalletHistory.Direction;
-import lightpay.history.wallet.WalletHistoryRepository;
+import lightpay.history.wallet.PaymentHistory;
+import lightpay.history.wallet.PaymentHistory.Direction;
+import lightpay.history.wallet.PaymentHistoryRepository;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.AddInvoiceResponse;
 import lightpay.lnd.grpc.Invoice;
@@ -34,7 +34,7 @@ public class PaymentService {
     private LndBlockingStub lndBlockingStub;
 
     @Autowired
-    private WalletHistoryRepository walletHistoryRepository;
+    private PaymentHistoryRepository paymentHistoryRepository;
 
     public DecodePayReqRes decodePayReq(String payreq) {
         PayReqString.Builder payreqStr = PayReqString.newBuilder();
@@ -89,21 +89,21 @@ public class PaymentService {
         paymentRoute.setHops(hops);
         response.setPaymentRoute(paymentRoute);
 
-        writePaymentHistory(request.getPaymentRequest());
+        writePaymentHistory(request.getPaymentRequest(), paymentRoute);
 
         return response;
     }
 
-    private void writePaymentHistory(String payreq) {
+    private void writePaymentHistory(String payreq, Route paymentRoute) {
         DecodePayReqRes decodePayReqRes = decodePayReq(payreq);
-        WalletHistory walletHistory = WalletHistory.builder()
-            .direction(Direction.LightningSend)
-            .destination(decodePayReqRes.getDestination())
-            .value(decodePayReqRes.getNumSatoshis())
-            .settleDatetime(LocalDateTime.now())
-            .build();
+        PaymentHistory paymentHistory = new PaymentHistory();
+        paymentHistory.setDirection(Direction.Send);
+        paymentHistory.setDestination(decodePayReqRes.getDestination());
+        paymentHistory.setTotalAmountMsat(paymentRoute.getTotalAmtMsat());
+        paymentHistory.setTotalFeesMsat(paymentRoute.getTotalFeesMsat());
+        paymentHistory.setTimeStamp(LocalDateTime.now());
 
-        walletHistoryRepository.save(walletHistory);
+        paymentHistoryRepository.save(paymentHistory);
     }
 
     public AddInvoiceRes addInvoice(AddInvoiceReq request) {

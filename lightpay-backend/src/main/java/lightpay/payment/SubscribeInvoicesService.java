@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import io.grpc.stub.StreamObserver;
-import lightpay.history.wallet.WalletHistory;
-import lightpay.history.wallet.WalletHistory.Direction;
-import lightpay.history.wallet.WalletHistoryRepository;
+import lightpay.history.wallet.PaymentHistory;
+import lightpay.history.wallet.PaymentHistory.Direction;
+import lightpay.history.wallet.PaymentHistoryRepository;
 import lightpay.lnd.LndStub;
 import lightpay.lnd.grpc.Invoice;
 import lightpay.lnd.grpc.InvoiceSubscription;
@@ -34,7 +34,7 @@ public class SubscribeInvoicesService {
     private LightPayWebSocket lightPayWebSocket;
 
     @Autowired
-    private WalletHistoryRepository walletHistoryRepository;
+    private PaymentHistoryRepository paymentHistoryRepository;
 
     @PostConstruct
     private void init() {
@@ -78,7 +78,7 @@ public class SubscribeInvoicesService {
 
             @Override
             public void onError(Throwable t) {
-                log.warn("subscribeInvoices error.", t);
+                log.error("subscribeInvoices error.", t);
             }
 
             @Override
@@ -87,13 +87,13 @@ public class SubscribeInvoicesService {
             }
 
             private void writePaymentHistory(Invoice invoice) {
-                WalletHistory walletHistory = WalletHistory.builder()
-                    .direction(Direction.LightningReceive)
-                    .value(invoice.getValue())
-                    .settleDatetime(LocalDateTime.now())
-                    .build();
+                PaymentHistory paymentHistory = new PaymentHistory();
+                paymentHistory.setDirection(Direction.Receive);
+                paymentHistory.setTotalAmountMsat(invoice.getValue() * 1000L);
+                paymentHistory.setTotalFeesMsat(0L);
+                paymentHistory.setTimeStamp(LocalDateTime.now());
 
-                walletHistoryRepository.save(walletHistory);
+                paymentHistoryRepository.save(paymentHistory);
             }
 
         });

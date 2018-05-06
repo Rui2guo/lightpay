@@ -9,9 +9,9 @@ import lightpay.controller.wallet.NewAddressRes;
 import lightpay.controller.wallet.SendCoinsReq;
 import lightpay.controller.wallet.SendCoinsRes;
 import lightpay.controller.wallet.WalletBalanceRes;
-import lightpay.history.wallet.WalletHistory;
-import lightpay.history.wallet.WalletHistory.Direction;
-import lightpay.history.wallet.WalletHistoryRepository;
+import lightpay.history.wallet.TransactionHistory;
+import lightpay.history.wallet.TransactionHistory.TransactionType;
+import lightpay.history.wallet.TransactionHistoryRepository;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.ChannelBalanceRequest;
 import lightpay.lnd.grpc.ChannelBalanceResponse;
@@ -32,7 +32,7 @@ public class WalletService {
     private LndBlockingStub lndBlockingStub;
 
     @Autowired
-    private WalletHistoryRepository walletHistoryRepository;
+    private TransactionHistoryRepository transactionHistoryRepository;
 
     public WalletBalanceRes getWalletBalance() {
         WalletBalanceRequest walletBalanceRequest = WalletBalanceRequest.newBuilder()
@@ -85,22 +85,21 @@ public class WalletService {
         SendCoinsResponse sendCoinsResponse = lndBlockingStub.getInstance()
             .sendCoins(sendCoinsRequest);
 
-        writePaymentHistory(sendCoinsReq);
+        writePaymentHistory(sendCoinsReq, sendCoinsResponse);
 
         return SendCoinsRes.builder()
             .txid(sendCoinsResponse.getTxid())
             .build();
     }
 
-    private void writePaymentHistory(SendCoinsReq sendCoinsReq) {
-        WalletHistory walletHistory = WalletHistory.builder()
-            .direction(Direction.SendCoins)
-            .destination(sendCoinsReq.getAddress())
-            .value(sendCoinsReq.getAmount())
-            .settleDatetime(LocalDateTime.now())
-            .build();
+    private void writePaymentHistory(SendCoinsReq sendCoinsReq, SendCoinsResponse sendCoinsResponse) {
+        TransactionHistory history = new TransactionHistory();
+        history.setTxHash(sendCoinsResponse.getTxid());
+        history.setTransactionType(TransactionType.SendCoins);
+        history.setDestAddress(sendCoinsReq.getAddress());
+        history.setTimeStamp(LocalDateTime.now());
 
-        walletHistoryRepository.save(walletHistory);
+        transactionHistoryRepository.save(history);
     }
 
 }

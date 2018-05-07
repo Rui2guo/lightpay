@@ -1,7 +1,5 @@
 package lightpay.wallet;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +9,8 @@ import lightpay.controller.wallet.SendCoinsRes;
 import lightpay.controller.wallet.WalletBalanceRes;
 import lightpay.history.wallet.TransactionHistory;
 import lightpay.history.wallet.TransactionHistory.TransactionType;
-import lightpay.history.wallet.TransactionHistoryRepository;
+import lightpay.history.wallet.WalletHistory;
+import lightpay.history.wallet.WalletHistoryRepository;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.ChannelBalanceRequest;
 import lightpay.lnd.grpc.ChannelBalanceResponse;
@@ -32,7 +31,7 @@ public class WalletService {
     private LndBlockingStub lndBlockingStub;
 
     @Autowired
-    private TransactionHistoryRepository transactionHistoryRepository;
+    private WalletHistoryRepository walletHistoryRepository;
 
     public WalletBalanceRes getWalletBalance() {
         WalletBalanceRequest walletBalanceRequest = WalletBalanceRequest.newBuilder()
@@ -93,13 +92,14 @@ public class WalletService {
     }
 
     private void writePaymentHistory(SendCoinsReq sendCoinsReq, SendCoinsResponse sendCoinsResponse) {
-        TransactionHistory history = new TransactionHistory();
-        history.setTxHash(sendCoinsResponse.getTxid());
-        history.setTransactionType(TransactionType.SendCoins);
-        history.setDestAddress(sendCoinsReq.getAddress());
-        history.setTimeStamp(LocalDateTime.now());
+        WalletHistory walletHistory = new WalletHistory();
+        TransactionHistory transactionHistory = new TransactionHistory();
+        transactionHistory.setTxHash(sendCoinsResponse.getTxid());
+        transactionHistory.setTransactionType(TransactionType.SendCoins);
+        transactionHistory.setDestAddress(sendCoinsReq.getAddress());
+        walletHistory.setTransactionHistory(transactionHistory);
 
-        transactionHistoryRepository.save(history);
+        walletHistoryRepository.save(walletHistory);
     }
 
 }

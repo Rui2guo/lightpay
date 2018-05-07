@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import io.grpc.stub.StreamObserver;
 import lightpay.history.wallet.TransactionHistory;
 import lightpay.history.wallet.TransactionHistory.TransactionType;
-import lightpay.history.wallet.TransactionHistoryRepository;
+import lightpay.history.wallet.WalletHistory;
+import lightpay.history.wallet.WalletHistoryRepository;
 import lightpay.lnd.LndStub;
 import lightpay.lnd.grpc.GetTransactionsRequest;
 import lightpay.lnd.grpc.Transaction;
@@ -25,7 +26,7 @@ public class SubscribeTransactionsService {
     private LndStub lndStub;
 
     @Autowired
-    private TransactionHistoryRepository transactionHistoryRepository;
+    private WalletHistoryRepository walletHistoryRepository;
 
     @PostConstruct
     private void init() {
@@ -42,29 +43,30 @@ public class SubscribeTransactionsService {
                     return;
                 }
 
-                TransactionHistory history = transactionHistoryRepository.findOne(value.getTxHash());
-                if (history == null) {
-                    if (value.getAmount() <= 0) {
-                        return;
-                    }
-
-                    history = new TransactionHistory();
-                    history.setTxHash(value.getTxHash());
-                    history.setTransactionType(TransactionType.ReceiveCoins);
-                    history.setAmount(value.getAmount());
-                    history.setTotalFees(value.getTotalFees());
-                    history.setTimeStamp(LocalDateTime.now());
-
-                    transactionHistoryRepository.save(history);
+                WalletHistory walletHistory = walletHistoryRepository.findWalletHistoryByTxHash(value.getTxHash());
+                TransactionHistory transactionHistory;
+                if (walletHistory != null
+                    && value.getBlockHash().equals(walletHistory.getTransactionHistory().getBlockHash())) {
                     return;
+                } else if (walletHistory == null) {
+                    walletHistory = new WalletHistory();
+                    transactionHistory = new TransactionHistory();
+                    transactionHistory.setTxHash(value.getTxHash());
+                    walletHistory.setTransactionHistory(transactionHistory);
                 }
 
-                history.setAmount(value.getAmount());
-                history.setTotalFees(value.getTotalFees());
-                if (history.getTimeStamp() == null) {
-                    history.setTimeStamp(LocalDateTime.now());
+                transactionHistory = walletHistory.getTransactionHistory();
+                transactionHistory.setBlockHash(value.getBlockHash());
+                if (value.getAmount() <= 0) {
+                    transactionHistory.setTransactionType(TransactionType.SendCoins);
+                } else {
+                    transactionHistory.setTransactionType(TransactionType.ReceiveCoins);
                 }
-                transactionHistoryRepository.save(history);
+                transactionHistory.setAmount(value.getAmount());
+                transactionHistory.setTotalFees(value.getTotalFees());
+                walletHistory.setTimeStamp(LocalDateTime.now());
+
+                walletHistoryRepository.save(walletHistory);
             }
 
             @Override

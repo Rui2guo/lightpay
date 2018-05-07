@@ -1,9 +1,10 @@
 package lightpay.history.wallet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import lightpay.controller.wallet.WalletHistoryRes;
@@ -12,19 +13,10 @@ import lightpay.controller.wallet.WalletHistoryRes;
 public class WalletHistoryService {
 
     @Autowired
-    private PaymentHistoryRepository paymentHistoryRepository;
-
-    @Autowired
-    private TransactionHistoryRepository transactionHistoryRepository;
+    private WalletHistoryRepository walletHistoryRepository;
 
     public WalletHistoryRes getWalletHistory() {
-        List<WalletHistory> histories = new ArrayList<>();
-        histories.addAll(paymentHistoryRepository.findAll());
-        histories.addAll(transactionHistoryRepository.findByTotalFeesIsNotNull());
-
-        histories.sort((h1, h2) -> {
-            return h2.getTimeStamp().compareTo(h1.getTimeStamp());
-        });
+        List<WalletHistory> histories = walletHistoryRepository.findWalletHistoryByTimeStampIsNotNull(new Sort(new Order(Sort.Direction.DESC, "timeStamp")));
 
         return WalletHistoryRes.builder()
         .histories(histories)

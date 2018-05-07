@@ -13,7 +13,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.grpc.stub.StreamObserver;
 import lightpay.history.wallet.PaymentHistory;
 import lightpay.history.wallet.PaymentHistory.Direction;
-import lightpay.history.wallet.PaymentHistoryRepository;
+import lightpay.history.wallet.WalletHistory;
+import lightpay.history.wallet.WalletHistoryRepository;
 import lightpay.lnd.LndStub;
 import lightpay.lnd.grpc.Invoice;
 import lightpay.lnd.grpc.InvoiceSubscription;
@@ -34,7 +35,7 @@ public class SubscribeInvoicesService {
     private LightPayWebSocket lightPayWebSocket;
 
     @Autowired
-    private PaymentHistoryRepository paymentHistoryRepository;
+    private WalletHistoryRepository walletHistoryRepository;
 
     @PostConstruct
     private void init() {
@@ -87,13 +88,15 @@ public class SubscribeInvoicesService {
             }
 
             private void writePaymentHistory(Invoice invoice) {
+                WalletHistory walletHistory = new WalletHistory();
                 PaymentHistory paymentHistory = new PaymentHistory();
                 paymentHistory.setDirection(Direction.Receive);
                 paymentHistory.setTotalAmountMsat(invoice.getValue() * 1000L);
                 paymentHistory.setTotalFeesMsat(0L);
-                paymentHistory.setTimeStamp(LocalDateTime.now());
+                walletHistory.setPaymentHistory(paymentHistory);
+                walletHistory.setTimeStamp(LocalDateTime.now());
 
-                paymentHistoryRepository.save(paymentHistory);
+                walletHistoryRepository.save(walletHistory);
             }
 
         });

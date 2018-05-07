@@ -18,7 +18,8 @@ import lightpay.controller.payment.SendPaymentRes.Route;
 import lightpay.controller.payment.SendPaymentRes.Route.Hop;
 import lightpay.history.wallet.PaymentHistory;
 import lightpay.history.wallet.PaymentHistory.Direction;
-import lightpay.history.wallet.PaymentHistoryRepository;
+import lightpay.history.wallet.WalletHistory;
+import lightpay.history.wallet.WalletHistoryRepository;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.AddInvoiceResponse;
 import lightpay.lnd.grpc.Invoice;
@@ -34,7 +35,7 @@ public class PaymentService {
     private LndBlockingStub lndBlockingStub;
 
     @Autowired
-    private PaymentHistoryRepository paymentHistoryRepository;
+    private WalletHistoryRepository walletHistoryRepository;
 
     public DecodePayReqRes decodePayReq(String payreq) {
         PayReqString.Builder payreqStr = PayReqString.newBuilder();
@@ -96,14 +97,17 @@ public class PaymentService {
 
     private void writePaymentHistory(String payreq, Route paymentRoute) {
         DecodePayReqRes decodePayReqRes = decodePayReq(payreq);
+
+        WalletHistory walletHistory = new WalletHistory();
         PaymentHistory paymentHistory = new PaymentHistory();
         paymentHistory.setDirection(Direction.Send);
         paymentHistory.setDestination(decodePayReqRes.getDestination());
         paymentHistory.setTotalAmountMsat(paymentRoute.getTotalAmtMsat());
         paymentHistory.setTotalFeesMsat(paymentRoute.getTotalFeesMsat());
-        paymentHistory.setTimeStamp(LocalDateTime.now());
+        walletHistory.setPaymentHistory(paymentHistory);
+        walletHistory.setTimeStamp(LocalDateTime.now());
 
-        paymentHistoryRepository.save(paymentHistory);
+        walletHistoryRepository.save(walletHistory);
     }
 
     public AddInvoiceRes addInvoice(AddInvoiceReq request) {

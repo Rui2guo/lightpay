@@ -1,7 +1,7 @@
 package lightpay.payment;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Hex;
@@ -102,10 +102,10 @@ public class PaymentService {
         PaymentHistory paymentHistory = new PaymentHistory();
         paymentHistory.setDirection(Direction.Send);
         paymentHistory.setDestination(decodePayReqRes.getDestination());
-        paymentHistory.setTotalAmountMsat(paymentRoute.getTotalAmtMsat());
+        paymentHistory.setTotalAmountMsat(-1L * paymentRoute.getTotalAmtMsat());
         paymentHistory.setTotalFeesMsat(paymentRoute.getTotalFeesMsat());
         walletHistory.setPaymentHistory(paymentHistory);
-        walletHistory.setTimeStamp(LocalDateTime.now());
+        walletHistory.setTimeStamp(new Date());
 
         walletHistoryRepository.save(walletHistory);
     }

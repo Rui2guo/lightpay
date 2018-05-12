@@ -1,7 +1,7 @@
 package lightpay.history.wallet;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -27,11 +27,11 @@ public class WalletHistory implements Serializable {
         table = "seq_table",
         pkColumnName = "seq_name",
         valueColumnName = "seq_value",
-        pkColumnValue = "payment_history")
+        pkColumnValue = "wallet_history")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "seqTable")
     private Long id;
 
-    private LocalDateTime timeStamp;
+    private Date timeStamp;
 
     @OneToOne(cascade = {CascadeType.ALL})
     private PaymentHistory paymentHistory;

@@ -12,7 +12,7 @@ export abstract class PageBaseComponent {
   height: number = 100;
 
   @HostBinding('style.background-color')
-  backgroundColor: string = "#f5f5f5";
+  backgroundColor: string = "#f7f7f7";
 
   pageData: any;
 

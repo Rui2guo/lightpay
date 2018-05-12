@@ -12,7 +12,8 @@ export class WalletActionService {
   static readonly GET_BALANCE_EVENT: string = WalletActionService.EVENT_PREFIX + "get-balance";
   static readonly GET_NEW_ADDRESS_EVENT: string = WalletActionService.EVENT_PREFIX + "get-new-address";
   static readonly SEND_COINS_EVENT: string = WalletActionService.EVENT_PREFIX + "send-coins";
-  
+  static readonly GET_WALLET_HISTORY_EVENT: string = WalletActionService.EVENT_PREFIX + "get-wallet-history";
+
   constructor(
     private dispatcherService: DispatcherService,
     private apiService: ApiService
@@ -72,6 +73,33 @@ export class WalletActionService {
         console.log("sendCoins error");
       }
     );
+    return emitId;
+  }
+
+  getWalletHistory(page: number, size: number, firstId: number = null): string {
+    var emitId: string = UUID.v4();
+
+    var params;
+    if (firstId === null) {
+      params = {"page": page, "size": size};
+    } else {
+      params = {"page": page, "size": size, "firstId": firstId};
+    }
+
+    this.apiService.get("/api/wallet/history", params).subscribe(
+      (res: Response) => {
+        var json: WalletAction.Histories = res.json();
+        this.dispatcherService.emit({
+          eventType: WalletActionService.GET_WALLET_HISTORY_EVENT,
+          data: json,
+          emitId: emitId
+        });
+      },
+      (error: Response) => {
+        console.log("getWalletHistory error");
+      }
+    );
+    
     return emitId;
   }
 

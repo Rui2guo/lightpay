@@ -12,4 +12,8 @@ public class WalletHistoryRes {
 
     private List<WalletHistory> histories;
 
+    private int totalPages;
+
+    private long totalHistories;
+
 }

@@ -78,6 +78,11 @@ export class AccountComponent implements OnInit, AfterViewInit, OnDestroy {
       eventType: WalletComponent.MOVE_SEND_COINS_PAGE_EVENT
     });
   }
+  moveWalletHistoryPage() {
+    this.dispatcherService.emit({
+      eventType: WalletComponent.MOVE_WALLET_HISTORY_PAGE_EVENT
+    });
+  }
 
   private onSelectPage(pageName: string) {
     if (pageName == "account") {

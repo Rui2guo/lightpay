@@ -30,7 +30,7 @@ public class PaymentHistory implements Serializable {
         table = "seq_table",
         pkColumnName = "seq_name",
         valueColumnName = "seq_value",
-        pkColumnValue = "payment_history")
+        pkColumnValue = "wallet_history")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "seqTable")
     private Long id;
 

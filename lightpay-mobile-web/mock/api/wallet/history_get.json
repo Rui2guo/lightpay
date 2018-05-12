@@ -1,0 +1,267 @@
+{
+  "histories": [
+    {
+      "id": 4,
+      "timeStamp": 1525953889527,
+      "paymentHistory": {
+        "id": 103,
+        "direction": "Send",
+        "destination": "03c3635589c49fe75c0e8130e005a5bbe4be272e2425f4d4f32bb0a93d261c4de0",
+        "totalAmountMsat": -1001001,
+        "totalFeesMsat": 1001
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 3,
+      "timeStamp": 1525953695508,
+      "paymentHistory": {
+        "id": 102,
+        "direction": "Receive",
+        "destination": null,
+        "totalAmountMsat": 10000000,
+        "totalFeesMsat": 0
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 2,
+      "timeStamp": 1525953322147,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 53,
+        "txHash": "464cea4da5bda8038ecc8ccf1766b7f979209039221d551a385cdc2c7c6442ee",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "ReceiveCoins",
+        "destAddress": null,
+        "amount": 10000000,
+        "totalFees": 0
+      }
+    },
+    {
+      "id": 1,
+      "timeStamp": 1525953322121,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 52,
+        "txHash": "362f73c92230519761d06ae4c81a1f9f12f01a6cd3103b4365939bf119abe05f",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "SendCoins",
+        "destAddress": "2N11Zbte1KRzKbYmE2QUQagX4sYkgCJa654",
+        "amount": -10007100,
+        "totalFees": 7100
+      }
+    },
+    {
+      "id": 4,
+      "timeStamp": 1525953889527,
+      "paymentHistory": {
+        "id": 103,
+        "direction": "Send",
+        "destination": "03c3635589c49fe75c0e8130e005a5bbe4be272e2425f4d4f32bb0a93d261c4de0",
+        "totalAmountMsat": -1001001,
+        "totalFeesMsat": 1001
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 3,
+      "timeStamp": 1525953695508,
+      "paymentHistory": {
+        "id": 102,
+        "direction": "Receive",
+        "destination": null,
+        "totalAmountMsat": 10000000,
+        "totalFeesMsat": 0
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 2,
+      "timeStamp": 1525953322147,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 53,
+        "txHash": "464cea4da5bda8038ecc8ccf1766b7f979209039221d551a385cdc2c7c6442ee",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "ReceiveCoins",
+        "destAddress": null,
+        "amount": 10000000,
+        "totalFees": 0
+      }
+    },
+    {
+      "id": 1,
+      "timeStamp": 1525953322121,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 52,
+        "txHash": "362f73c92230519761d06ae4c81a1f9f12f01a6cd3103b4365939bf119abe05f",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "SendCoins",
+        "destAddress": "2N11Zbte1KRzKbYmE2QUQagX4sYkgCJa654",
+        "amount": -10007100,
+        "totalFees": 7100
+      }
+    },
+    {
+      "id": 4,
+      "timeStamp": 1525953889527,
+      "paymentHistory": {
+        "id": 103,
+        "direction": "Send",
+        "destination": "03c3635589c49fe75c0e8130e005a5bbe4be272e2425f4d4f32bb0a93d261c4de0",
+        "totalAmountMsat": -1001001,
+        "totalFeesMsat": 1001
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 3,
+      "timeStamp": 1525953695508,
+      "paymentHistory": {
+        "id": 102,
+        "direction": "Receive",
+        "destination": null,
+        "totalAmountMsat": 10000000,
+        "totalFeesMsat": 0
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 2,
+      "timeStamp": 1525953322147,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 53,
+        "txHash": "464cea4da5bda8038ecc8ccf1766b7f979209039221d551a385cdc2c7c6442ee",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "ReceiveCoins",
+        "destAddress": null,
+        "amount": 10000000,
+        "totalFees": 0
+      }
+    },
+    {
+      "id": 1,
+      "timeStamp": 1525953322121,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 52,
+        "txHash": "362f73c92230519761d06ae4c81a1f9f12f01a6cd3103b4365939bf119abe05f",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "SendCoins",
+        "destAddress": "2N11Zbte1KRzKbYmE2QUQagX4sYkgCJa654",
+        "amount": -10007100,
+        "totalFees": 7100
+      }
+    },
+    {
+      "id": 4,
+      "timeStamp": 1525953889527,
+      "paymentHistory": {
+        "id": 103,
+        "direction": "Send",
+        "destination": "03c3635589c49fe75c0e8130e005a5bbe4be272e2425f4d4f32bb0a93d261c4de0",
+        "totalAmountMsat": -1001001,
+        "totalFeesMsat": 1001
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 3,
+      "timeStamp": 1525953695508,
+      "paymentHistory": {
+        "id": 102,
+        "direction": "Receive",
+        "destination": null,
+        "totalAmountMsat": 10000000,
+        "totalFeesMsat": 0
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 2,
+      "timeStamp": 1525953322147,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 53,
+        "txHash": "464cea4da5bda8038ecc8ccf1766b7f979209039221d551a385cdc2c7c6442ee",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "ReceiveCoins",
+        "destAddress": null,
+        "amount": 10000000,
+        "totalFees": 0
+      }
+    },
+    {
+      "id": 1,
+      "timeStamp": 1525953322121,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 52,
+        "txHash": "362f73c92230519761d06ae4c81a1f9f12f01a6cd3103b4365939bf119abe05f",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "SendCoins",
+        "destAddress": "2N11Zbte1KRzKbYmE2QUQagX4sYkgCJa654",
+        "amount": -10007100,
+        "totalFees": 7100
+      }
+    },
+    {
+      "id": 4,
+      "timeStamp": 1525953889527,
+      "paymentHistory": {
+        "id": 103,
+        "direction": "Send",
+        "destination": "03c3635589c49fe75c0e8130e005a5bbe4be272e2425f4d4f32bb0a93d261c4de0",
+        "totalAmountMsat": -1001001,
+        "totalFeesMsat": 1001
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 3,
+      "timeStamp": 1525953695508,
+      "paymentHistory": {
+        "id": 102,
+        "direction": "Receive",
+        "destination": null,
+        "totalAmountMsat": 10000000,
+        "totalFeesMsat": 0
+      },
+      "transactionHistory": null
+    },
+    {
+      "id": 2,
+      "timeStamp": 1525953322147,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 53,
+        "txHash": "464cea4da5bda8038ecc8ccf1766b7f979209039221d551a385cdc2c7c6442ee",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "ReceiveCoins",
+        "destAddress": null,
+        "amount": 10000000,
+        "totalFees": 0
+      }
+    },
+    {
+      "id": 1,
+      "timeStamp": 1525953322121,
+      "paymentHistory": null,
+      "transactionHistory": {
+        "id": 52,
+        "txHash": "362f73c92230519761d06ae4c81a1f9f12f01a6cd3103b4365939bf119abe05f",
+        "blockHash": "40e1868c5546db9ecda9eb7218088785e2899511bcc15ef1ea17d9283481e322",
+        "transactionType": "SendCoins",
+        "destAddress": "2N11Zbte1KRzKbYmE2QUQagX4sYkgCJa654",
+        "amount": -10007100,
+        "totalFees": 7100
+      }
+    }
+  ],
+  "pageNum": #{page},
+  "totalPages": 5,
+  "totalHistories": 100
+}

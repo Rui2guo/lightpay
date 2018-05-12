@@ -1,6 +1,6 @@
 package lightpay.payment;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -94,7 +94,7 @@ public class SubscribeInvoicesService {
                 paymentHistory.setTotalAmountMsat(invoice.getValue() * 1000L);
                 paymentHistory.setTotalFeesMsat(0L);
                 walletHistory.setPaymentHistory(paymentHistory);
-                walletHistory.setTimeStamp(LocalDateTime.now());
+                walletHistory.setTimeStamp(new Date());
 
                 walletHistoryRepository.save(walletHistory);
             }

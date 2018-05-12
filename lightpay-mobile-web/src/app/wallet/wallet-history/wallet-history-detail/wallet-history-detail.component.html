@@ -1,0 +1,119 @@
+<div class="page-contents">
+  <div class="scroll-container">
+    <ng-template *ngIf="pageData.paymentHistory; then thenBlock; else elseBlock"></ng-template>
+    <ng-template #thenBlock>
+      <div class="row">
+        <div class="info-wrapper">
+          <div class="label">種別</div>
+          <div class="value">{{toHistoryType(pageData.paymentHistory.direction)}}</div>
+        </div>
+      </div>
+      <ng-container *ngIf="pageData.paymentHistory.direction === 'Send'">
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">送り先</div>
+            <div class="value">{{pageData.paymentHistory.destination | empty: '-'}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">支払い合計</div>
+            <div class="value">
+              <span>{{toSatoshi(pageData.paymentHistory.totalAmountMsat) * -1 | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">手数料</div>
+            <div class="value">
+              <span>{{toSatoshi(pageData.paymentHistory.totalFeesMsat) | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="pageData.paymentHistory.direction === 'Receive'">
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">受取り額</div>
+            <div class="value">
+              <span>{{toSatoshi(pageData.paymentHistory.totalAmountMsat) | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="row">
+        <div class="info-wrapper">
+          <div class="label">日時</div>
+          <div class="value">{{pageData.timeStamp | moment: 'YYYY/MM/DD HH:mm:ss'}}</div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <div class="row">
+        <div class="info-wrapper">
+          <div class="label">種別</div>
+          <div class="value">{{toHistoryType(pageData.transactionHistory.transactionType)}}</div>
+        </div>
+      </div>
+      <ng-container *ngIf="pageData.transactionHistory.transactionType === 'SendCoins'">
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">送り先</div>
+            <div class="value">{{pageData.transactionHistory.destAddress | empty: '-'}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">支払い合計</div>
+            <div class="value">
+              <span>{{pageData.transactionHistory.amount * -1 | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">手数料</div>
+            <div class="value">
+              <span>{{pageData.transactionHistory.totalFees | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="pageData.transactionHistory.transactionType === 'ReceiveCoins'">
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">受取り額</div>
+            <div class="value">
+              <span>{{pageData.transactionHistory.amount | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="row">
+        <div class="info-wrapper">
+          <div class="label">日時</div>
+          <div class="value">{{pageData.timeStamp | moment: 'YYYY/MM/DD HH:mm:ss'}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="info-wrapper">
+          <div class="label">トランザクションID</div>
+          <div class="value">{{pageData.transactionHistory.txHash}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="info-wrapper">
+          <div class="label">ブロックハッシュ</div>
+          <div class="value">{{pageData.transactionHistory.blockHash}}</div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

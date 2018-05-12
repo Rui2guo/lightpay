@@ -1,0 +1,108 @@
+<div class="toolbar">
+  <div *ngIf="!displayDetailPaging" class="reload" (click)="reloadHistory()">
+    <i class="icon flaticon-update-arrows"></i>
+  </div>
+  <div *ngIf="!displayDetailPaging" class="close" (click)="close()">
+    <i class="icon flaticon-cancel"></i>
+  </div>
+  <div *ngIf="displayDetailPaging" class="back" (click)="closeDetailPage()">
+    <i class="icon flaticon-arrows"></i>
+  </div>
+  <ng-template *ngIf="displayDetailPaging; then thenBlock; else elseBlock"></ng-template>
+  <ng-template #thenBlock>
+    <div class="title">履歴詳細</div>
+  </ng-template>
+  <ng-template #elseBlock>
+    <div class="title">入出金履歴</div>
+  </ng-template>
+</div>
+<div class="contents">
+  <div #scrollContainer class="scroll-container" (scroll)="onScroll($event)">
+    <ng-container *ngFor="let history of histories">
+      <ng-template *ngIf="history.paymentHistory; then thenBlock; else elseBlock"></ng-template>
+      <ng-template #thenBlock>
+        <div (click)="onClickRow(history)" class="payment-history-row">
+          <div class="amount">
+            <div class="icon-wrapper">
+              <ng-container *ngIf="history.paymentHistory.direction === 'Send'">
+                <div class="circle send">
+                  <span class="icon flaticon-credit-card"></span>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="history.paymentHistory.direction === 'Receive'">
+                <div class="circle receive">
+                  <span class="icon flaticon-cash"></span>
+                </div>
+              </ng-container>
+            </div>
+            <div [class.minus]="history.paymentHistory.totalAmountMsat < 0" class="amount-wrapper">
+              <span class="value">{{toSatoshi(history.paymentHistory.totalAmountMsat) | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+          </div>
+          <div class="detail">
+            <div class="timestamp">
+              <span>{{history.timeStamp | moment: 'YYYY/MM/DD HH:mm:ss'}}</span>
+            </div>
+            <div class="fees" [style.visibility]="history.paymentHistory.totalFeesMsat === 0 ? 'hidden' : null">
+              <span class="label">手数料:</span>
+              <span class="value">{{toSatoshi(history.paymentHistory.totalFeesMsat) | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div (click)="onClickRow(history)" class="transaction-history-row">
+          <div class="amount">
+            <div class="icon-wrapper">
+              <div class="circle">
+                <ng-container *ngIf="history.transactionHistory.transactionType === 'SendCoins'">
+                  <div class="circle send-coins">
+                    <span class="icon flaticon-up-arrow"></span>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="history.transactionHistory.transactionType === 'ReceiveCoins'">
+                  <div class="circle receive-coins">
+                    <span class="icon flaticon-arrows-1"></span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+            <div [class.minus]="history.transactionHistory.amount < 0" class="amount-wrapper">
+              <span class="value">{{history.transactionHistory.amount | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+          </div>
+          <div class="detail">
+            <div class="timestamp">
+              <span>{{history.timeStamp | moment: 'YYYY/MM/DD HH:mm:ss'}}</span>
+            </div>
+            <div class="fees" [style.visibility]="history.transactionHistory.totalFees === 0 ? 'hidden' : null">
+              <span class="label">手数料:</span>
+              <span class="value">{{history.transactionHistory.totalFees | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <div *ngIf="totalPages > currentPageNum + 1" class="loading">
+      <div class="sk-cube-grid">
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div [style.display]="displayDetailPaging ? 'block' : 'none'"
+      class="page-contents">
+  <lp-paging [pagingName]="pagingName"></lp-paging>
+</div>

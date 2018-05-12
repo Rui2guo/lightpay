@@ -39,6 +39,8 @@ import { AuthenticationStoreService } from './common/services/store/authenticati
 import { AutoRefreshTokenService } from 'app/common/services/auto-refresh-token.service';
 import { ReceiveCoinsComponent } from './wallet/receive-coins/receive-coins.component';
 import { SendCoinsComponent } from './wallet/send-coins/send-coins.component';
+import { WalletHistoryComponent } from './wallet/wallet-history/wallet-history.component';
+import { WalletHistoryDetailComponent } from './wallet/wallet-history/wallet-history-detail/wallet-history-detail.component';
 
 @NgModule({
   schemas: [
@@ -64,7 +66,9 @@ import { SendCoinsComponent } from './wallet/send-coins/send-coins.component';
     MomentPipe,
     LoginComponent,
     ReceiveCoinsComponent,
-    SendCoinsComponent
+    SendCoinsComponent,
+    WalletHistoryComponent,
+    WalletHistoryDetailComponent
   ],
   entryComponents: [
     LoadingMaskComponent,
@@ -75,7 +79,9 @@ import { SendCoinsComponent } from './wallet/send-coins/send-coins.component';
     OutputInvoiceComponent,
     QrCodeComponent,
     ReceiveCoinsComponent,
-    SendCoinsComponent
+    SendCoinsComponent,
+    WalletHistoryComponent,
+    WalletHistoryDetailComponent
   ],
   imports: [
     BrowserModule,

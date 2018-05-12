@@ -1,0 +1,282 @@
+:host {
+  position: relative;
+}
+
+.toolbar {
+  width: 100%;
+  height: 50px;
+  background-color: #33343a;
+  position: relative;
+
+  .reload {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 50px;
+    text-align: center;
+    color: #f7f7f7;
+    line-height: 50px;
+
+    .icon {
+      display: block;
+      text-align: center;
+
+      &:before {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 50px;
+    text-align: center;
+    color: #f7f7f7;
+    line-height: 50px;
+
+    .icon {
+      display: block;
+      text-align: center;
+
+      &:before {
+        margin-left: 0;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .back {
+    position: absolute;
+    height: 100%;
+    width: 50px;
+    left: 0;
+    text-align: center;
+    color: #f7f7f7;
+    line-height: 50px;
+
+    .icon {
+      display: block;
+      text-align: center;
+
+      &:before {
+        margin-left: 0;
+        font-size: 22px;
+      }
+    }
+  }
+
+  .title {
+    width: 100%;
+    text-align: center;
+    color: #f7f7f7;
+    font-size: 1.1rem;
+    line-height: 50px;
+  }
+}
+
+.contents {
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow: hidden;
+  background-color: #f7f7f7;
+
+  .scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .payment-history-row,
+    .transaction-history-row {
+      width: 100%;
+      min-height: 67px;
+      overflow: hidden;
+      padding: 5px 8px;
+      border-bottom: 1px solid #bdbdbd;
+
+      .amount {
+        overflow: hidden;
+
+        .icon-wrapper {
+          float: left;
+
+          .circle {
+            position: relative;
+            width: 34px;
+            height: 34px;
+            border-radius: 17px;
+
+            &.send {
+              background-color: #009de8;
+            }
+
+            &.receive {
+              background-color: #009de8;
+            }
+
+            &.send-coins {
+              background-color: #f39117;
+            }
+
+            &.receive-coins {
+              background-color: #f39117;
+            }
+          }
+
+          .icon {
+            position: absolute;
+            top: 5px;
+            left: 6px;
+            color: #f7f7f7;
+
+            &:before {
+              margin: 0;
+            }
+
+            &.flaticon-up-arrow {
+              top: 6px;
+              left: 7px;
+            }
+
+            &.flaticon-arrows-1 {
+              top: 6px;
+              left: 7px;
+            }
+          }
+        }
+
+        .amount-wrapper {
+          float: right;
+          color: #45ab2e;
+          padding: 6px 0 0 0;
+
+          &.minus {
+            color: #ef6363;
+          }
+
+          .value {
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+          }
+  
+          .unit {
+            font-size: 1rem;
+            line-height: 1rem;
+          }
+        }
+      }
+
+      .detail {
+        overflow: hidden;
+        color: #888888;
+        line-height: 1rem;
+        margin-top: 4px;
+
+        .timestamp {
+          float: left;
+
+          span {
+            font-size: 0.8rem;
+            line-height: 1rem;
+          }
+        }
+
+        .fees {
+          float: right;
+
+          .label {
+            font-size: 0.8rem;
+            line-height: 0.8rem;
+            margin-right: 8px;
+          }
+
+          .value {
+            font-size: 1rem;
+            line-height: 1rem;
+          }
+
+          .unit {
+            font-size: 0.8rem;
+            line-height: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .loading {
+      padding: 15px 0 15px 0;
+    }
+  }
+}
+
+.page-contents {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+.sk-cube-grid {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  float: left;
+  background-color: #e0b854;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+}
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s; }
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1); 
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+  } 
+}

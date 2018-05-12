@@ -1,6 +1,6 @@
 package lightpay.wallet;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -45,17 +45,21 @@ public class SubscribeTransactionsService {
 
                 WalletHistory walletHistory = walletHistoryRepository.findWalletHistoryByTxHash(value.getTxHash());
                 TransactionHistory transactionHistory;
-                if (walletHistory != null
-                    && value.getBlockHash().equals(walletHistory.getTransactionHistory().getBlockHash())) {
-                    return;
+                if (walletHistory != null) {
+                    if (value.getBlockHash().equals(walletHistory.getTransactionHistory().getBlockHash())) {
+                        return;
+                    } else if (walletHistory.getTransactionHistory().getBlockHash() != null) {
+                        walletHistoryRepository.delete(walletHistory.getId());
+                        walletHistory.setId(null);
+                    }
                 } else if (walletHistory == null) {
                     walletHistory = new WalletHistory();
                     transactionHistory = new TransactionHistory();
-                    transactionHistory.setTxHash(value.getTxHash());
                     walletHistory.setTransactionHistory(transactionHistory);
                 }
 
                 transactionHistory = walletHistory.getTransactionHistory();
+                transactionHistory.setTxHash(value.getTxHash());
                 transactionHistory.setBlockHash(value.getBlockHash());
                 if (value.getAmount() <= 0) {
                     transactionHistory.setTransactionType(TransactionType.SendCoins);
@@ -64,7 +68,7 @@ public class SubscribeTransactionsService {
                 }
                 transactionHistory.setAmount(value.getAmount());
                 transactionHistory.setTotalFees(value.getTotalFees());
-                walletHistory.setTimeStamp(LocalDateTime.now());
+                walletHistory.setTimeStamp(new Date());
 
                 walletHistoryRepository.save(walletHistory);
             }

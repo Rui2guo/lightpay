@@ -9,6 +9,7 @@ import { Payload } from 'app/common/base/emitter';
 import { ReceiveCoinsComponent } from './receive-coins/receive-coins.component';
 import { PagingAction } from 'app/paging/paging-action';
 import { SendCoinsComponent } from 'app/wallet/send-coins/send-coins.component';
+import { WalletHistoryComponent } from './wallet-history/wallet-history.component';
 
 @Component({
   selector: 'lp-wallet',
@@ -19,10 +20,12 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
 
   static readonly EVENT_PREFIX: string = "WalletComponent.";
   static readonly SELECT_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "select-page";
-  static readonly MOVE_RECEIVE_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-receive-coins-page-event";
-  static readonly CLOSE_RECEIVE_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-receive-coins-page-event";
-  static readonly MOVE_SEND_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-send-coins-page-event";
-  static readonly CLOSE_SEND_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-send-coins-page-event";
+  static readonly MOVE_RECEIVE_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-receive-coins-page";
+  static readonly CLOSE_RECEIVE_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-receive-coins-page";
+  static readonly MOVE_SEND_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-send-coins-page";
+  static readonly CLOSE_SEND_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-send-coins-page";
+  static readonly MOVE_WALLET_HISTORY_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-wallet-history-page";
+  static readonly CLOSE_WALLET_HISTORY_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-wallet-history-page";
 
   static readonly PAGING_NAME: string = "wallet";
   pagingName: string = WalletComponent.PAGING_NAME;
@@ -66,6 +69,12 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
             break;
           case WalletComponent.CLOSE_SEND_COINS_PAGE_EVENT:
             this.closeSendCoinsPage();
+            break;
+          case WalletComponent.MOVE_WALLET_HISTORY_PAGE_EVENT:
+            this.moveWalletHistoryPage();
+            break;
+          case WalletComponent.CLOSE_WALLET_HISTORY_PAGE_EVENT:
+            this.closeWalletHistoryPage();
             break;
         }
       }
@@ -123,6 +132,17 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private closeSendCoinsPage() {
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
+      this.displayPaging = false;
+    });
+  }
+
+  private moveWalletHistoryPage() {
+    this.displayPaging = true;
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, WalletHistoryComponent, null, PagingAction.PageAnimation.NEXT);
+  }
+
+  private closeWalletHistoryPage() {
     this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
       this.displayPaging = false;
     });

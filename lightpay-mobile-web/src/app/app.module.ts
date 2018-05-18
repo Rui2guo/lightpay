@@ -41,6 +41,7 @@ import { ReceiveCoinsComponent } from './wallet/receive-coins/receive-coins.comp
 import { SendCoinsComponent } from './wallet/send-coins/send-coins.component';
 import { WalletHistoryComponent } from './wallet/wallet-history/wallet-history.component';
 import { WalletHistoryDetailComponent } from './wallet/wallet-history/wallet-history-detail/wallet-history-detail.component';
+import { WalletMenuComponent } from './wallet/wallet-menu/wallet-menu.component';
 
 @NgModule({
   schemas: [
@@ -68,7 +69,8 @@ import { WalletHistoryDetailComponent } from './wallet/wallet-history/wallet-his
     ReceiveCoinsComponent,
     SendCoinsComponent,
     WalletHistoryComponent,
-    WalletHistoryDetailComponent
+    WalletHistoryDetailComponent,
+    WalletMenuComponent
   ],
   entryComponents: [
     LoadingMaskComponent,
@@ -81,7 +83,8 @@ import { WalletHistoryDetailComponent } from './wallet/wallet-history/wallet-his
     ReceiveCoinsComponent,
     SendCoinsComponent,
     WalletHistoryComponent,
-    WalletHistoryDetailComponent
+    WalletHistoryDetailComponent,
+    WalletMenuComponent
   ],
   imports: [
     BrowserModule,

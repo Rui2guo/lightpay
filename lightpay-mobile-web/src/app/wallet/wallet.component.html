@@ -4,7 +4,7 @@
   <lp-account [style.display]="currentPage === pageNameAccount ? 'block' : 'none'" class="wallet-page"></lp-account>
 </div>
 <div class="tabbar">
-  <div class="tab">
+  <div (click)="selectWalletMenu()" class="tab">
     <i class="icon flaticon-menu"></i>
     <div class="label">メニュー</div>
   </div>

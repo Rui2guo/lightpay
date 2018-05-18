@@ -7,13 +7,14 @@ import { Payload } from 'app/common/base/emitter';
 import { _ } from 'app';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { PageBaseComponent } from 'app/paging/page-base.component';
 
 @Component({
   selector: 'lp-send-coins',
   templateUrl: './send-coins.component.html',
   styleUrls: ['./send-coins.component.scss']
 })
-export class SendCoinsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SendCoinsComponent extends PageBaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   addressFormCtrl: FormControl = new FormControl();
 
@@ -39,7 +40,9 @@ export class SendCoinsComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private dispatcherService: DispatcherService,
     private walletActionService: WalletActionService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.registerId = this.dispatcherService.register(

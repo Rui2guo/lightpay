@@ -10,6 +10,7 @@ import { ReceiveCoinsComponent } from './receive-coins/receive-coins.component';
 import { PagingAction } from 'app/paging/paging-action';
 import { SendCoinsComponent } from 'app/wallet/send-coins/send-coins.component';
 import { WalletHistoryComponent } from './wallet-history/wallet-history.component';
+import { WalletMenuComponent } from './wallet-menu/wallet-menu.component';
 
 @Component({
   selector: 'lp-wallet',
@@ -26,6 +27,7 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   static readonly CLOSE_SEND_COINS_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-send-coins-page";
   static readonly MOVE_WALLET_HISTORY_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-wallet-history-page";
   static readonly CLOSE_WALLET_HISTORY_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-wallet-history-page";
+  static readonly CLOSE_WALLET_MENU_EVENT: string = WalletComponent.EVENT_PREFIX + "close-wallet-menu";
 
   static readonly PAGING_NAME: string = "wallet";
   pagingName: string = WalletComponent.PAGING_NAME;
@@ -76,6 +78,9 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
           case WalletComponent.CLOSE_WALLET_HISTORY_PAGE_EVENT:
             this.closeWalletHistoryPage();
             break;
+          case WalletComponent.CLOSE_WALLET_MENU_EVENT:
+            this.closeWalletMenu();
+            break;
         }
       }
     );
@@ -89,6 +94,10 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     _.defer(() => {
       this.selectAccount();
     });
+    // FIXME!!! /////////////////
+    _.delay(() => {            //
+      this.selectWalletMenu(); //
+    }, 1);                     //
   }
 
   selectAccount() {
@@ -112,6 +121,17 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dispatcherService.emit({
       eventType: WalletComponent.SELECT_PAGE_EVENT,
       data: this.currentPage
+    });
+  }
+
+  selectWalletMenu() {
+    this.displayPaging = true;
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, WalletMenuComponent, null, PagingAction.PageAnimation.IMMEDIATE);
+  }
+
+  private closeWalletMenu() {
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.IMMEDIATE, () => {
+      this.displayPaging = false;
     });
   }
 

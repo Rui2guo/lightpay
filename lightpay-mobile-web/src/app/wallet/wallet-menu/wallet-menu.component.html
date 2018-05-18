@@ -1,6 +1,6 @@
 <div class="side-menu" [style.width.px]="sideMenuWidth" [style.left.px]="sideMenuLeft" (click)="onClickSideMenu($event)">
   <div class="scroll-container">
-    <div class="menu-row">
+    <div (click)="moveApplicationSettingPage()" class="menu-row">
       <div class="icon-wrapper">
         <i class="flaticon-gear"></i>
       </div>
@@ -8,7 +8,7 @@
         <span class="label">設定</span>
       </div>
     </div>
-    <div class="menu-row">
+    <div (click)="moveChannelListPage()" class="menu-row">
       <div class="icon-wrapper">
         <i class="flaticon-business-affiliate-network"></i>
       </div>

@@ -51,4 +51,16 @@ export class WalletMenuComponent extends PageBaseComponent implements OnInit, Af
     event.stopPropagation();
   }
 
+  moveApplicationSettingPage() {
+    this.dispatcherService.emit({
+      eventType: WalletComponent.MOVE_APPLICATION_SETTING_PAGE_EVENT
+    });
+  }
+  
+  moveChannelListPage() {
+    this.dispatcherService.emit({
+      eventType: WalletComponent.MOVE_CHANNEL_LIST_PAGE_EVENT
+    });
+  }
+
 }

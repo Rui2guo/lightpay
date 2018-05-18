@@ -124,10 +124,16 @@ export class PagingComponent implements OnInit, AfterViewInit {
       case PagingAction.PageAnimation.IMMEDIATE:
         this.prepareMoveImmediate(action);
         break;
+      case PagingAction.PageAnimation.UP:
+        this.prepareMoveUp(action);
+        break;
+      case PagingAction.PageAnimation.DOWN:
+        this.prepareMoveDown(action);
+        break;
     }
   }
 
-  private  prepareMoveNext(action: PagingAction.Move) {
+  private prepareMoveNext(action: PagingAction.Move) {
     this._transitionDuration = this.transitionDuration;
     this._transitionDelay = this.transitionDelay;
 
@@ -215,6 +221,77 @@ export class PagingComponent implements OnInit, AfterViewInit {
     _.delay(() => {
       this.endMove(action);
     }, 0);
+  }
+
+  private prepareMoveUp(action: PagingAction.Move) {
+    this._transitionDuration = this.transitionDuration;
+    this._transitionDelay = this.transitionDelay;
+
+    if (this.currentPage === Page.A) {
+      this.topA = this.leftA = 0;
+      this.topB = this.heightA;
+      this.leftB = 0;
+      this.zIndexA = 1;
+      this.zIndexB = 2;
+      this.currentPage = Page.B;
+    } else if (this.currentPage === Page.B) {
+      this.topB = this.leftB = 0;
+      this.topA = this.heightB;
+      this.leftA = 0;
+      this.zIndexA = 2;
+      this.zIndexB = 1;
+      this.currentPage = Page.A;
+    }
+
+    _.delay(() => {
+      this.startMoveUp(action);
+    }, 0);
+  }
+
+  private startMoveUp(action: PagingAction.Move) {
+    if (this.currentPage === Page.A) {
+      this.topA = 0;
+    } else if (this.currentPage === Page.B) {
+      this.topB = 0;
+    }
+
+    _.delay(() => {
+      this.endMove(action);
+    }, this.transitionDelay + this.transitionDuration);
+  }
+
+  private prepareMoveDown(action: PagingAction.Move) {
+    this._transitionDuration = this.transitionDuration;
+    this._transitionDelay = this.transitionDelay;
+
+    this.topA = this.leftA = 0;
+    this.topB = this.leftB = 0;
+
+    if (this.currentPage === Page.A) {
+      this.zIndexA = 2;
+      this.zIndexB = 1;
+      this.currentPage = Page.B;
+    } else if (this.currentPage === Page.B) {
+      this.zIndexA = 1;
+      this.zIndexB = 2;
+      this.currentPage = Page.A;
+    }
+
+    _.delay(() => {
+      this.startMoveDown(action);
+    }, 0);
+  }
+
+  private startMoveDown(action: PagingAction.Move) {
+    if (this.currentPage === Page.A) {
+      this.topB = this.heightB;
+    } else if (this.currentPage === Page.B) {
+      this.topA = this.heightA;
+    }
+
+    _.delay(() => {
+      this.endMove(action);
+    }, this.transitionDelay + this.transitionDuration);
   }
 
   private endMove(action: PagingAction.Move) {

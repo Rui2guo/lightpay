@@ -11,6 +11,8 @@ import { PagingAction } from 'app/paging/paging-action';
 import { SendCoinsComponent } from 'app/wallet/send-coins/send-coins.component';
 import { WalletHistoryComponent } from './wallet-history/wallet-history.component';
 import { WalletMenuComponent } from './wallet-menu/wallet-menu.component';
+import { ApplicationSettingComponent } from './application-setting/application-setting.component';
+import { ChannelListComponent } from './channel-list/channel-list.component';
 
 @Component({
   selector: 'lp-wallet',
@@ -28,6 +30,10 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
   static readonly MOVE_WALLET_HISTORY_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-wallet-history-page";
   static readonly CLOSE_WALLET_HISTORY_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-wallet-history-page";
   static readonly CLOSE_WALLET_MENU_EVENT: string = WalletComponent.EVENT_PREFIX + "close-wallet-menu";
+  static readonly MOVE_APPLICATION_SETTING_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-application-setting-page";
+  static readonly CLOSE_APPLICATION_SETTING_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-application-setting-page";
+  static readonly MOVE_CHANNEL_LIST_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "move-channel-list-page";
+  static readonly CLOSE_CHANNEL_LIST_PAGE_EVENT: string = WalletComponent.EVENT_PREFIX + "close-channel-list-page";
 
   static readonly PAGING_NAME: string = "wallet";
   pagingName: string = WalletComponent.PAGING_NAME;
@@ -81,6 +87,18 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
           case WalletComponent.CLOSE_WALLET_MENU_EVENT:
             this.closeWalletMenu();
             break;
+          case WalletComponent.MOVE_APPLICATION_SETTING_PAGE_EVENT:
+            this.moveApplicationSettingPage();
+            break;
+          case WalletComponent.CLOSE_APPLICATION_SETTING_PAGE_EVENT:
+            this.closeApplicationSettingPage();
+            break;
+          case WalletComponent.MOVE_CHANNEL_LIST_PAGE_EVENT:
+            this.moveChannelListPage();
+            break;
+          case WalletComponent.CLOSE_CHANNEL_LIST_PAGE_EVENT:
+            this.closeChannelListPage();
+            break;
         }
       }
     );
@@ -94,10 +112,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     _.defer(() => {
       this.selectAccount();
     });
-    // FIXME!!! /////////////////
-    _.delay(() => {            //
-      this.selectWalletMenu(); //
-    }, 1);                     //
   }
 
   selectAccount() {
@@ -137,33 +151,55 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private moveReceiveCoinsPage() {
     this.displayPaging = true;
-    this.pagingActionService.move(WalletComponent.PAGING_NAME, ReceiveCoinsComponent, null, PagingAction.PageAnimation.NEXT);
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, ReceiveCoinsComponent, null, PagingAction.PageAnimation.UP);
   }
 
   private closeReceiveCoinsPage() {
-    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.DOWN, () => {
       this.displayPaging = false;
     });
   }
 
   private moveSendCoinsPage() {
     this.displayPaging = true;
-    this.pagingActionService.move(WalletComponent.PAGING_NAME, SendCoinsComponent, null, PagingAction.PageAnimation.NEXT);
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, SendCoinsComponent, null, PagingAction.PageAnimation.UP);
   }
 
   private closeSendCoinsPage() {
-    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.DOWN, () => {
       this.displayPaging = false;
     });
   }
 
   private moveWalletHistoryPage() {
     this.displayPaging = true;
-    this.pagingActionService.move(WalletComponent.PAGING_NAME, WalletHistoryComponent, null, PagingAction.PageAnimation.NEXT);
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, WalletHistoryComponent, null, PagingAction.PageAnimation.UP);
   }
 
   private closeWalletHistoryPage() {
-    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.DOWN, () => {
+      this.displayPaging = false;
+    });
+  }
+
+  private moveApplicationSettingPage() {
+    this.displayPaging = true;
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, ApplicationSettingComponent, null, PagingAction.PageAnimation.UP);
+  }
+
+  private closeApplicationSettingPage() {
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.DOWN, () => {
+      this.displayPaging = false;
+    });
+  }
+
+  private moveChannelListPage() {
+    this.displayPaging = true;
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, ChannelListComponent, null, PagingAction.PageAnimation.UP);
+  }
+
+  private closeChannelListPage() {
+    this.pagingActionService.move(WalletComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.DOWN, () => {
       this.displayPaging = false;
     });
   }

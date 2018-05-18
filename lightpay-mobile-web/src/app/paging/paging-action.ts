@@ -4,6 +4,8 @@ export module PagingAction {
     NEXT,
     BACK,
     IMMEDIATE,
+    UP,
+    DOWN
   }
 
   export interface Move {

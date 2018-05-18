@@ -42,6 +42,9 @@ import { SendCoinsComponent } from './wallet/send-coins/send-coins.component';
 import { WalletHistoryComponent } from './wallet/wallet-history/wallet-history.component';
 import { WalletHistoryDetailComponent } from './wallet/wallet-history/wallet-history-detail/wallet-history-detail.component';
 import { WalletMenuComponent } from './wallet/wallet-menu/wallet-menu.component';
+import { ApplicationSettingComponent } from './wallet/application-setting/application-setting.component';
+import { ChannelListComponent } from './wallet/channel-list/channel-list.component';
+import { OpenChannelComponent } from './wallet/open-channel/open-channel.component';
 
 @NgModule({
   schemas: [
@@ -70,7 +73,10 @@ import { WalletMenuComponent } from './wallet/wallet-menu/wallet-menu.component'
     SendCoinsComponent,
     WalletHistoryComponent,
     WalletHistoryDetailComponent,
-    WalletMenuComponent
+    WalletMenuComponent,
+    ApplicationSettingComponent,
+    ChannelListComponent,
+    OpenChannelComponent
   ],
   entryComponents: [
     LoadingMaskComponent,
@@ -84,7 +90,10 @@ import { WalletMenuComponent } from './wallet/wallet-menu/wallet-menu.component'
     SendCoinsComponent,
     WalletHistoryComponent,
     WalletHistoryDetailComponent,
-    WalletMenuComponent
+    WalletMenuComponent,
+    ApplicationSettingComponent,
+    ChannelListComponent,
+    OpenChannelComponent
   ],
   imports: [
     BrowserModule,

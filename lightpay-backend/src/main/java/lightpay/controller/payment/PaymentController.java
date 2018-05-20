@@ -1,7 +1,6 @@
 package lightpay.controller.payment;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,6 @@ import lightpay.payment.PaymentService;
 
 @RestController
 @RequestMapping("/api/payment")
-@PreAuthorize("isAuthenticated()")
 public class PaymentController {
 
     @Autowired

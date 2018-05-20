@@ -32,7 +32,7 @@ import { PagingActionService } from 'app/paging/paging-action.service';
 import { WalletActionService } from 'app/common/services/action/wallet-action.service';
 import { WalletStoreService } from 'app/common/services/store/wallet-store.service';
 import { PaymentActionService } from 'app/common/services/action/payment-action.service';
-import { PaymentStoreService } from 'app/common/services/store/payment-store.service';
+import { NetworkActionService } from 'app/common/services/action/network-action.service';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationActionService } from './common/services/action/authentication-action.service';
 import { AuthenticationStoreService } from './common/services/store/authentication-store.service';
@@ -44,7 +44,8 @@ import { WalletHistoryDetailComponent } from './wallet/wallet-history/wallet-his
 import { WalletMenuComponent } from './wallet/wallet-menu/wallet-menu.component';
 import { ApplicationSettingComponent } from './wallet/application-setting/application-setting.component';
 import { ChannelListComponent } from './wallet/channel-list/channel-list.component';
-import { OpenChannelComponent } from './wallet/open-channel/open-channel.component';
+import { ChannelDetailComponent } from './wallet/channel-list/channel-detail/channel-detail.component';
+import { OpenChannelComponent } from './wallet/channel-list/open-channel/open-channel.component';
 
 @NgModule({
   schemas: [
@@ -76,6 +77,7 @@ import { OpenChannelComponent } from './wallet/open-channel/open-channel.compone
     WalletMenuComponent,
     ApplicationSettingComponent,
     ChannelListComponent,
+    ChannelDetailComponent,
     OpenChannelComponent
   ],
   entryComponents: [
@@ -93,6 +95,7 @@ import { OpenChannelComponent } from './wallet/open-channel/open-channel.compone
     WalletMenuComponent,
     ApplicationSettingComponent,
     ChannelListComponent,
+    ChannelDetailComponent,
     OpenChannelComponent
   ],
   imports: [
@@ -111,7 +114,7 @@ import { OpenChannelComponent } from './wallet/open-channel/open-channel.compone
     WalletActionService,
     WalletStoreService,
     PaymentActionService,
-    PaymentStoreService,
+    NetworkActionService,
     AuthenticationActionService,
     AuthenticationStoreService,
     AutoRefreshTokenService

@@ -6,7 +6,7 @@ import { PageBaseComponent } from 'app/paging/page-base.component';
   templateUrl: './open-channel.component.html',
   styleUrls: ['./open-channel.component.scss']
 })
-export class OpenChannelComponent extends PageBaseComponent implements OnInit {
+export class OpenChannelComponent extends PageBaseComponent  implements OnInit {
 
   constructor() {
     super();

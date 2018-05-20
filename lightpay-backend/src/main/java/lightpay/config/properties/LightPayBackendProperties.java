@@ -24,6 +24,24 @@ public class LightPayBackendProperties {
     @NestedConfigurationProperty
     private RestTemplate restTemplate = new RestTemplate();
 
+    @NestedConfigurationProperty
+    private Security security = new Security();
+
+    @Data
+    public static class Security {
+
+        @NestedConfigurationProperty
+        private Authentication authentication = new Authentication();
+
+        @Data
+        public static class Authentication {
+
+            private boolean enabled = true;
+
+        }
+
+    }
+
     @Data
     public static class Lnd {
 

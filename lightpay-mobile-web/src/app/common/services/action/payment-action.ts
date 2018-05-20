@@ -15,20 +15,22 @@ export module PaymentAction {
   export interface SendPayment {
     paymentError: string;
     paymentPreimage: string;
-    paymentRoute: {
-      totalTimeLock: number;
-      totalAmtMsat: number;
-      hops: [
-        { 
-          chanId: number;
-          chanCapacity: number;
-          amtToForwardMsat: number;
-          feeMsat: number;
-          expiry: number;
-        }
-      ];
-      totalFeesMsat: number;
-    };
+    paymentRoute: Route;
+  }
+
+  export interface Route {
+    totalTimeLock: number;
+    totalAmtMsat: number;
+    totalFeesMsat: number;
+    hops: Hop[];
+  }
+
+  export interface Hop {
+    chanId: number;
+    chanCapacity: number;
+    amtToForwardMsat: number;
+    feeMsat: number;
+    expiry: number;
   }
 
   export interface AddInvoice {

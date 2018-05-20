@@ -25,7 +25,7 @@ export class LoadingMaskComponent implements OnInit, OnChanges {
 
   @Input()
   @HostBinding('style.background-color')
-  backgroundColor: string = "#f5f5f5";
+  backgroundColor: string = "#f7f7f7";
 
   @Input()
   loadingColor: string = "#e0b854";

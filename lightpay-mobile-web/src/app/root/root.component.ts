@@ -5,11 +5,11 @@ import { PagingActionService } from 'app/paging/paging-action.service';
 import { WalletActionService } from 'app/common/services/action/wallet-action.service';
 import { WalletStoreService } from 'app/common/services/store/wallet-store.service';
 import { PaymentActionService } from 'app/common/services/action/payment-action.service';
-import { PaymentStoreService } from 'app/common/services/store/payment-store.service';
 import { WebsocketService } from '../common/services/websocket.service';
 import { AuthenticationActionService } from '../common/services/action/authentication-action.service';
 import { AuthenticationStoreService } from '../common/services/store/authentication-store.service';
 import { AutoRefreshTokenService } from 'app/common/services/auto-refresh-token.service';
+import { NetworkActionService } from 'app/common/services/action/network-action.service';
 
 @Component({
   selector: 'lp-root',
@@ -26,7 +26,7 @@ export class RootComponent implements OnInit {
     private walletActionService: WalletActionService,
     private walletStoreService: WalletStoreService,
     private paymentActionService: PaymentActionService,
-    private paymentStoreService: PaymentStoreService,
+    private networkActionService: NetworkActionService,
     private authenticationActionService: AuthenticationActionService,
     private authenticationStoreService: AuthenticationStoreService,
     private autoRefreshTokenService: AutoRefreshTokenService

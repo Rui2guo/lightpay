@@ -10,6 +10,7 @@ export class NetworkActionService {
 
   static readonly EVENT_PREFIX: string = "NetworkActionService.";
   static readonly LIST_CHANNELS_EVENT: string = NetworkActionService.EVENT_PREFIX + "list-channels";
+  static readonly CLOSE_CHANNEL_EVENT: string = NetworkActionService.EVENT_PREFIX + "close-channel";
 
   constructor(
     private dispatcherService: DispatcherService,
@@ -29,6 +30,24 @@ export class NetworkActionService {
       },
       (error: Response) => {
         console.log("listChannels error");
+      }
+    );
+    return emitId;
+  }
+
+  closeChannel(fundingTxId: string, outputIndex: number): string {
+    var emitId: string = UUID.v4();
+    this.apiService.delete("/api/network/closechannel/" + fundingTxId + "/" + outputIndex.toString(), {}).subscribe(
+      (res: Response) => {
+        var json: NetworkAction.CloseChannel = res.json();
+        this.dispatcherService.emit({
+          eventType: NetworkActionService.CLOSE_CHANNEL_EVENT,
+          data: json,
+          emitId: emitId
+        });
+      },
+      (error: Response) => {
+        console.log("closeChannel error");
       }
     );
     return emitId;

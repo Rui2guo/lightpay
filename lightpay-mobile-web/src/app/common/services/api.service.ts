@@ -87,6 +87,28 @@ export class ApiService {
     return Observable.from(response);
   }
 
+  delete(
+    url: string,
+    params?: string | URLSearchParams | { [key: string]: any | any[]; } | null,
+    options?: { [key: string]: any; }
+  ): Observable<Response> {
+    var headers: Headers = this.createHeader(
+      _.extend(options, {applicationJson: false})
+    );
+
+    var response: Observable<Response> =
+    this.http.delete(
+      this.apiUrlRoot + url,
+      {
+        params: params,
+        headers: headers,
+        withCredentials: true
+      }
+    );
+
+    return Observable.from(response);
+  }
+
   private createHeader(options: { [key: string]: any; }): Headers {
     var headers: Headers = new Headers();
 

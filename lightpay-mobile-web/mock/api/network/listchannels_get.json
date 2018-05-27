@@ -15,7 +15,20 @@
       "totalSatoshisSent": 79785,
       "totalSatoshisReceived": 13340,
       "numUpdates": 16,
-      "pendingHtlcs": [],
+      "pendingHtlcs": [
+        {
+          "incoming": true,
+          "amount": 50000,
+          "hashLock": "d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+          "expirationHeight": "10"
+        },
+        {
+          "incoming": false,
+          "amount": 50000,
+          "hashLock": "d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+          "expirationHeight": "9"
+        }
+      ],
       "csvDelay": 144,
       "private": false
     },

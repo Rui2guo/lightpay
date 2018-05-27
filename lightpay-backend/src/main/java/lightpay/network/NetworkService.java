@@ -7,10 +7,13 @@ import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lightpay.controller.network.CloseChannelRes;
 import lightpay.controller.network.ListChannelsRes;
 import lightpay.controller.network.ListChannelsRes.Channel;
 import lightpay.controller.network.ListChannelsRes.Channel.HTLC;
 import lightpay.lnd.LndBlockingStub;
+import lightpay.lnd.grpc.ChannelPoint;
+import lightpay.lnd.grpc.CloseChannelRequest;
 import lightpay.lnd.grpc.ListChannelsRequest;
 import lightpay.lnd.grpc.ListChannelsResponse;
 
@@ -62,6 +65,24 @@ public class NetworkService {
 
         return ListChannelsRes.builder()
             .channels(channels)
+            .build();
+    }
+
+    public CloseChannelRes closeChannel(String fundingTxId, int outputIndex) {
+        ChannelPoint channelPoint = ChannelPoint.newBuilder()
+            .setFundingTxidStr(fundingTxId)
+            .setOutputIndex(outputIndex)
+            .build();
+
+        CloseChannelRequest request = CloseChannelRequest.newBuilder()
+            .setChannelPoint(channelPoint)
+            .build();
+
+        lndBlockingStub.getInstance().closeChannel(request);
+
+        return CloseChannelRes.builder()
+            .fundingTxId(fundingTxId)
+            .outputIndex(outputIndex)
             .build();
     }
 

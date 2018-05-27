@@ -31,4 +31,9 @@ export module NetworkAction {
     expirationHeight: number;
   }
 
+  export interface CloseChannel {
+    fundingTxId: string;
+    outputIndex: number;
+  }
+
 }

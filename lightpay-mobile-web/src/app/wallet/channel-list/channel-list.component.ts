@@ -7,7 +7,7 @@ import { PagingActionService } from 'app/paging/paging-action.service';
 import { Payload } from 'app/common/base/emitter';
 import { _ } from 'app';
 import { WalletComponent } from '../wallet.component';
-import { ChannelDetailComponent } from './channel-detail/channel-detail.component';
+import { ChannelDetailComponent, ChannelDetailForm } from './channel-detail/channel-detail.component';
 import { PagingAction } from 'app/paging/paging-action';
 import { OpenChannelComponent } from './open-channel/open-channel.component';
 
@@ -17,6 +17,9 @@ import { OpenChannelComponent } from './open-channel/open-channel.component';
   styleUrls: ['./channel-list.component.scss']
 })
 export class ChannelListComponent extends PageBaseComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  static readonly EVENT_PREFIX: string = "ChannelListComponent.";
+  static readonly CLOSE_CHANNEL_DETAIL_PAGE_EVENT: string = ChannelListComponent.EVENT_PREFIX + "close-channel-detail-page";
 
   static readonly PAGING_NAME: string = "channel-list";
   pagingName: string = ChannelListComponent.PAGING_NAME;
@@ -49,6 +52,9 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
           case NetworkActionService.LIST_CHANNELS_EVENT:
             this.updateChannels(payload);
             break;
+          case ChannelListComponent.CLOSE_CHANNEL_DETAIL_PAGE_EVENT:
+            this.closeDetailPage();
+            break;
         }
       }
     );
@@ -78,7 +84,10 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   onClickRow(channel: NetworkAction.Channel) {
     this.displayDetailPaging = true;
     this.displayNewChannelPaging = false;
-    this.pagingActionService.move(ChannelListComponent.PAGING_NAME, ChannelDetailComponent, channel, PagingAction.PageAnimation.NEXT);
+    var form :ChannelDetailForm = {
+      openChannel: channel
+    };
+    this.pagingActionService.move(ChannelListComponent.PAGING_NAME, ChannelDetailComponent, form, PagingAction.PageAnimation.NEXT);
   }
 
   closeDetailPage() {

@@ -6,6 +6,7 @@
     
   },
   "routes": [
-    "/api/payment/payreq/decode/:payreq"
+    "/api/payment/payreq/decode/:payreq",
+    "/api/network/closechannel/:fundingtxid/:outputindex"
   ]
 }

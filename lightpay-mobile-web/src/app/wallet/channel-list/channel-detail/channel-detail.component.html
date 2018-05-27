@@ -1,1 +1,175 @@
-channel-detail works!
+<div class="page-contents">
+  <div class="scroll-container">
+    <ng-container *ngIf="pageData.openChannel">
+      <div class="row-group">
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">状態</div>
+            <div *ngIf="pageData.openChannel.active" class="value">アクティブ</div>
+            <div *ngIf="!pageData.openChannel.active" class="value">非アクティブ</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">接続先公開鍵</div>
+            <div class="value">{{pageData.openChannel.remotePubkey}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">チャンネルポイント</div>
+            <div class="value">{{pageData.openChannel.channelPoint}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">チャンネルID</div>
+            <div class="value">{{pageData.openChannel.chanId}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">容量</div>
+            <div class="value">
+              <span>{{pageData.openChannel.capacity | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">ローカル残高</div>
+            <div class="value">
+              <span>{{pageData.openChannel.localBalance | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">リモート残高</div>
+            <div class="value">
+              <span>{{pageData.openChannel.remoteBalance | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">コミット手数料</div>
+            <div class="value">
+              <span>{{pageData.openChannel.commitFee | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">コミットトランザクションのウェイト</div>
+            <div class="value">{{pageData.openChannel.commitWeight}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">1キロウェイト当り手数料</div>
+            <div class="value">
+              <span>{{pageData.openChannel.feePerKw | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">未決済の合計額</div>
+            <div class="value">
+              <span>{{pageData.openChannel.unsettledBalance | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">総支払額</div>
+            <div class="value">
+              <span>{{pageData.openChannel.totalSatoshisSent | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">総受取り額</div>
+            <div class="value">
+              <span>{{pageData.openChannel.totalSatoshisReceived | toBtcString}}</span>
+              <span>BTC</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">更新数合計</div>
+            <div class="value">{{pageData.openChannel.numUpdates}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="info-wrapper">
+            <div class="label">CSVブロック数</div>
+            <div class="value">{{pageData.openChannel.csvDelay}}</div>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="pageData.openChannel.pendingHtlcs.length != 0">
+        <ng-container *ngFor="let htlc of pageData.openChannel.pendingHtlcs; let i = index">
+          <div class="htlc-title">未解決のHTLC: {{i+1}}</div>
+          <div class="row-group htlc">
+            <div class="row">
+              <div class="info-wrapper">
+                <div class="label">タイプ</div>
+                <div *ngIf="htlc.incoming" class="value">IN</div>
+                <div *ngIf="!htlc.incoming" class="value">OUT</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="info-wrapper">
+                <div class="label">総額</div>
+                <div class="value">
+                  <span>{{htlc.amount | toBtcString}}</span>
+                  <span>BTC</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="info-wrapper">
+                <div class="label">ハッシュロック</div>
+                <div class="value">{{htlc.hashLock}}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="info-wrapper">
+                <div class="label">期限切れブロック高さ</div>
+                <div class="value">{{htlc.expirationHeight}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <button *ngIf="!closing" (click)="closeChannel()" class="close-button" [class.disabled]="buttonDisabled" [disabled]="buttonDisabled">チャンネルを閉じる</button>
+        <button *ngIf="closing"
+                type="button" 
+                class="close-button closing" 
+                [disabled]="true">
+          <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+          </div>
+        </button>
+    </ng-container>
+  </div>
+</div>

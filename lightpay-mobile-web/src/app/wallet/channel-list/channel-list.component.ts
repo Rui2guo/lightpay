@@ -21,6 +21,8 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   static readonly EVENT_PREFIX: string = "ChannelListComponent.";
   static readonly CLOSE_CHANNEL_DETAIL_PAGE_EVENT: string = ChannelListComponent.EVENT_PREFIX + "close-channel-detail-page";
 
+  static readonly PAGE_NAME: string = "channel-list";
+
   static readonly PAGING_NAME: string = "channel-list";
   pagingName: string = ChannelListComponent.PAGING_NAME;
 
@@ -30,9 +32,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
 
   emitId: string = null;
 
-  displayDetailPaging: boolean = false;
-
-  displayNewChannelPaging: boolean = false;
+  currentPageName: string = ChannelListComponent.PAGE_NAME;
 
   isSelectedOpen: boolean = true;
   isSelectedPending: boolean = false;
@@ -82,8 +82,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   }
 
   onClickRow(channel: NetworkAction.Channel) {
-    this.displayDetailPaging = true;
-    this.displayNewChannelPaging = false;
+    this.currentPageName = "channel-detail";
     var form :ChannelDetailForm = {
       openChannel: channel
     };
@@ -92,8 +91,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
 
   closeDetailPage() {
     this.pagingActionService.move(ChannelListComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
-      this.displayDetailPaging = false;
-      this.displayNewChannelPaging = false;
+      this.currentPageName = "channel-list";
     });
   }
 
@@ -116,15 +114,13 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   }
 
   openChannel() {
-    this.displayDetailPaging = false;
-    this.displayNewChannelPaging = true;
+    this.currentPageName = "open-channel";
     this.pagingActionService.move(ChannelListComponent.PAGING_NAME, OpenChannelComponent, null, PagingAction.PageAnimation.NEXT);
   }
 
   closeOpenChannelPage() {
     this.pagingActionService.move(ChannelListComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
-      this.displayDetailPaging = false;
-      this.displayNewChannelPaging = false;
+      this.currentPageName = "channel-list";
     });
   }
 

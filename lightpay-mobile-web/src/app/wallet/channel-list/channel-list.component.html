@@ -1,20 +1,20 @@
 <div class="toolbar">
-  <div *ngIf="!displayDetailPaging && !displayNewChannelPaging" class="new" (click)="openChannel()">
+  <div *ngIf="currentPageName === 'channel-list'" class="new" (click)="openChannel()">
     <i class="icon flaticon-link"></i>
     <span class="plus">＋</span>
   </div>
-  <div *ngIf="!displayDetailPaging && !displayNewChannelPaging" class="close" (click)="close()">
+  <div *ngIf="currentPageName === 'channel-list'" class="close" (click)="close()">
     <i class="icon flaticon-cancel"></i>
   </div>
-  <div *ngIf="displayDetailPaging && !displayNewChannelPaging" class="back" (click)="closeDetailPage()">
+  <div *ngIf="currentPageName === 'channel-detail'" class="back" (click)="closeDetailPage()">
     <i class="icon flaticon-arrows"></i>
   </div>
-  <div *ngIf="!displayDetailPaging && displayNewChannelPaging" class="back" (click)="closeOpenChannelPage()">
+  <div *ngIf="currentPageName === 'open-channel'" class="back" (click)="closeOpenChannelPage()">
     <i class="icon flaticon-arrows"></i>
   </div>
-  <div *ngIf="!displayDetailPaging && !displayNewChannelPaging" class="title">チャンネル一覧</div>
-  <div *ngIf="displayDetailPaging && !displayNewChannelPaging" class="title">チャンネル詳細</div>
-  <div *ngIf="!displayDetailPaging && displayNewChannelPaging" class="title">新規チャンネル</div>
+  <div *ngIf="currentPageName === 'channel-list'" class="title">チャンネル一覧</div>
+  <div *ngIf="currentPageName === 'channel-detail'" class="title">チャンネル詳細</div>
+  <div *ngIf="currentPageName === 'open-channel'" class="title">新規チャンネル</div>
 </div>
 <div class="contents">
   <div class="channel-type">
@@ -62,6 +62,6 @@
     </div>
   </div>
 </div>
-<div [style.display]="displayDetailPaging || displayNewChannelPaging ? 'block' : 'none'" class="page-contents">
+<div [style.display]="currentPageName !== 'channel-list' ? 'block' : 'none'" class="page-contents">
   <lp-paging [pagingName]="pagingName"></lp-paging>
 </div>

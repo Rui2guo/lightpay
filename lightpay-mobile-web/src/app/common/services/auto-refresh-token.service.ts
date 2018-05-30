@@ -4,6 +4,8 @@ import { DispatcherService } from 'app/common/services/dispatcher.service';
 import { Payload } from 'app/common/base/emitter';
 import { AuthenticationStoreService } from 'app/common/services/store/authentication-store.service';
 import { AuthenticationActionService } from 'app/common/services/action/authentication-action.service';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable()
 export class AutoRefreshTokenService {
@@ -34,12 +36,17 @@ export class AutoRefreshTokenService {
       this.timerId = null;
     }
 
-    var now: number = (new Date()).getTime();
-    var next: number = this.authenticationStoreService.accessTokenExpirationTime - now - AutoRefreshTokenService.UPDATE_MARGIN;
-    if (next <= 0) {
-      next = 0;
+    var next: number;
+    if (environment.production) {
+      var now: number = (new Date()).getTime();
+      next = this.authenticationStoreService.accessTokenExpirationTime - now - AutoRefreshTokenService.UPDATE_MARGIN;
+      if (next < 0) {
+        next = 0;
+      }
+    } else {
+      next = AutoRefreshTokenService.UPDATE_MARGIN;
     }
-
+    
     this.timerId = setTimeout(() => {
       this.timerId = null;
       this.authenticationActionService.refreshToken(this.authenticationStoreService.refreshToken);

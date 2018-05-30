@@ -93,7 +93,6 @@
   .channel-type {
     height: 50px;
     overflow: hidden;
-    border-bottom: 1px solid #d8d8d8;
 
     .open,
     .pending {
@@ -104,12 +103,13 @@
       line-height: 50px;
 
       &.active {
-        background-color: #e0b854;
-        color: #f7f7f7;
+        color: #e0b854;
+        border-bottom: 3px solid #e0b854;
       }
 
       &.inactive {
-        color: #888888;
+        color: #adadad;
+        border-bottom: 1px solid #d8d8d8;
       }
     }
   }

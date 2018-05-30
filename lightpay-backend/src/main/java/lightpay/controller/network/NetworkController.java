@@ -21,6 +21,11 @@ public class NetworkController {
         return networkService.listChannels();
     }
 
+    @GetMapping("/pendingchannels")
+    public PendingChannelsRes getPendingChannels() {
+        return networkService.getPendingChannels();
+    }
+
     @DeleteMapping("/closechannel/{fundingTxId}/{outputIndex}")
     public CloseChannelRes closeChannel(
         @PathVariable("fundingTxId") String fundingTxId,

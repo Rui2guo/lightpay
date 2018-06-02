@@ -36,8 +36,8 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
 
   currentPageName: string = ChannelListComponent.PAGE_NAME;
 
-  isSelectedOpen: boolean = false;
-  isSelectedPending: boolean = true;
+  isSelectedOpen: boolean = true;
+  isSelectedPending: boolean = false;
 
   constructor(
     private dispatcherService: DispatcherService,
@@ -66,7 +66,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   }
 
   ngAfterViewInit() {
-    this.emitId = this.networkActionService.getPendingChannels();
+    this.emitId = this.networkActionService.listChannels();
   }
 
   ngOnDestroy() {

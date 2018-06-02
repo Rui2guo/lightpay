@@ -1,0 +1,119 @@
+{
+  "totalLimboBalance": 490950,
+  "pendingOpenChannels": [
+    {
+      "channel": {
+        "remoteNodePub": "028d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+        "channelPoint": "f907349e15dd841459903204b16b0f6aedea345f036e2204faea209979c7acf7:1",
+        "capacity": 500000,
+        "localBalance": 480951,
+        "remoteBalance": 10000
+      },
+      "confirmationHeight": 0,
+      "commitFee": 9050,
+      "commitWeight": 600,
+      "feePerKw": 12500
+    },
+    {
+      "channel": {
+        "remoteNodePub": "028d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+        "channelPoint": "f907349e15dd841459903204b16b0f6aedea345f036e2204faea209979c7acf7:1",
+        "capacity": 500000,
+        "localBalance": 250000,
+        "remoteBalance": 250000
+      },
+      "confirmationHeight": 0,
+      "commitFee": 9050,
+      "commitWeight": 600,
+      "feePerKw": 12500
+    }
+  ],
+  "pendingClosingChannels": [
+    {
+      "channel": {
+        "remoteNodePub": "028d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+        "channelPoint": "d6ebc9b6cd920c540d4d430665dacd526a58b8585d6986881e9ac3459ea20b5f:1",
+        "capacity": 500000,
+        "localBalance": 300000,
+        "remoteBalance": 200000
+      },
+      "closingTxid": "ce41ff5733d7951ca520cde190ac5fb4cb7eafcd3dbf7e020ae0678c495d33ad"
+    },
+    {
+      "channel": {
+        "remoteNodePub": "028d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+        "channelPoint": "d6ebc9b6cd920c540d4d430665dacd526a58b8585d6986881e9ac3459ea20b5f:1",
+        "capacity": 500000,
+        "localBalance": 100000,
+        "remoteBalance": 400000
+      },
+      "closingTxid": "ce41ff5733d7951ca520cde190ac5fb4cb7eafcd3dbf7e020ae0678c495d33ad"
+    }
+  ],
+  "pendingForceClosingChannels": [
+    {
+      "channel": {
+        "remoteNodePub": "028d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+        "channelPoint": "f907349e15dd841459903204b16b0f6aedea345f036e2204faea209979c7acf7:1",
+        "capacity": 500000,
+        "localBalance": 490955,
+        "remoteBalance": 5
+      },
+      "closingTxid": "279c1d800189b4eb00cf9da616ddfbad8fb38c3ef3c977bef7d95efe6a65d9b1",
+      "limboBalance": 490950,
+      "maturityHeight": 3533,
+      "blocksTilMaturity": 144,
+      "recoveredBalance": 0,
+      "pendingHTLCs": [
+        {
+          "incoming": true,
+          "amount": 12345,
+          "outpoint": "test",
+          "maturityHeight": 3533,
+          "blocksTilMaturity": 144,
+          "stage": 1
+        },
+        {
+          "incoming": false,
+          "amount": 12345,
+          "outpoint": "test",
+          "maturityHeight": 3533,
+          "blocksTilMaturity": 144,
+          "stage": 2
+        }
+      ]
+    },
+    {
+      "channel": {
+        "remoteNodePub": "028d8783c24f7ec48364006e62895b98ca191b5ec42cb887567934ca28602350ff",
+        "channelPoint": "f907349e15dd841459903204b16b0f6aedea345f036e2204faea209979c7acf7:1",
+        "capacity": 500000,
+        "localBalance": 490956,
+        "remoteBalance": 6
+      },
+      "closingTxid": "279c1d800189b4eb00cf9da616ddfbad8fb38c3ef3c977bef7d95efe6a65d9b1",
+      "limboBalance": 490950,
+      "maturityHeight": 0,
+      "blocksTilMaturity": 0,
+      "recoveredBalance": 0,
+      "pendingHTLCs": [
+        {
+          "incoming": true,
+          "amount": 12345,
+          "outpoint": "test",
+          "maturityHeight": 3533,
+          "blocksTilMaturity": 144,
+          "stage": 2
+        },
+        {
+          "incoming": false,
+          "amount": 12345,
+          "outpoint": "test",
+          "maturityHeight": 3533,
+          "blocksTilMaturity": 144,
+          "stage": 1
+        }
+      ]
+    }
+  ]
+}

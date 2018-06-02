@@ -28,14 +28,16 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
 
   channels: NetworkAction.Channel[] = [];
 
+  pendingChannels: NetworkAction.PendingChannels = null;
+
   private registerId: string;
 
   emitId: string = null;
 
   currentPageName: string = ChannelListComponent.PAGE_NAME;
 
-  isSelectedOpen: boolean = true;
-  isSelectedPending: boolean = false;
+  isSelectedOpen: boolean = false;
+  isSelectedPending: boolean = true;
 
   constructor(
     private dispatcherService: DispatcherService,
@@ -52,6 +54,9 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
           case NetworkActionService.LIST_CHANNELS_EVENT:
             this.updateChannels(payload);
             break;
+          case NetworkActionService.GET_PENDING_CHANNEL_EVENT:
+            this.updatePendingChannels(payload);
+            break;
           case ChannelListComponent.CLOSE_CHANNEL_DETAIL_PAGE_EVENT:
             this.closeDetailPage();
             break;
@@ -61,7 +66,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   }
 
   ngAfterViewInit() {
-    this.emitId = this.networkActionService.listChannels();
+    this.emitId = this.networkActionService.getPendingChannels();
   }
 
   ngOnDestroy() {
@@ -77,6 +82,15 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
     this.emitId = null;
   }
 
+  private updatePendingChannels(payload: Payload) {
+    if (_.isEmpty(payload.emitId) || payload.emitId !== this.emitId) {
+      return;
+    }
+
+    this.pendingChannels = <NetworkAction.PendingChannels>payload.data;
+    this.emitId = null;
+  }
+
   close() {
     this.dispatcherService.emit({ eventType: WalletComponent.CLOSE_CHANNEL_LIST_PAGE_EVENT });
   }
@@ -89,28 +103,64 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
     this.pagingActionService.move(ChannelListComponent.PAGING_NAME, ChannelDetailComponent, form, PagingAction.PageAnimation.NEXT);
   }
 
+  onClickPendingOpenChannelRow(pendingOpenChannel: NetworkAction.PendingOpenChannel) {
+    this.currentPageName = "channel-detail";
+    var form :ChannelDetailForm = {
+      pendingOpenChannel: pendingOpenChannel
+    };
+    this.pagingActionService.move(ChannelListComponent.PAGING_NAME, ChannelDetailComponent, form, PagingAction.PageAnimation.NEXT);
+  }
+
+  onClickPendingClosingChannelRow(pendingClosingChannel: NetworkAction.ClosedChannel) {
+    this.currentPageName = "channel-detail";
+    var form :ChannelDetailForm = {
+      pendingClosingChannel: pendingClosingChannel
+    };
+    this.pagingActionService.move(ChannelListComponent.PAGING_NAME, ChannelDetailComponent, form, PagingAction.PageAnimation.NEXT);
+  }
+
+  onClickPendingForceClosingChannelRow(pendingForceClosingChannel: NetworkAction.ForceClosedChannel) {
+    this.currentPageName = "channel-detail";
+    var form :ChannelDetailForm = {
+      pendingForceClosingChannel: pendingForceClosingChannel
+    };
+    this.pagingActionService.move(ChannelListComponent.PAGING_NAME, ChannelDetailComponent, form, PagingAction.PageAnimation.NEXT);
+  }
+
   closeDetailPage() {
     this.pagingActionService.move(ChannelListComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
       this.currentPageName = "channel-list";
     });
   }
 
-  calcLocalBalanceMeter(channel: NetworkAction.Channel): number {
-    return Math.round(channel.localBalance / (channel.localBalance + channel.remoteBalance) * 100);
+  calcLocalBalanceMeter(localBalance: number, remoteBalance: number): number {
+    return Math.round(localBalance / (localBalance + remoteBalance) * 100);
   }
 
-  calcRemoteBalanceMeter(channel: NetworkAction.Channel): number {
-    return 100 - this.calcLocalBalanceMeter(channel);
+  calcRemoteBalanceMeter(localBalance: number, remoteBalance: number): number {
+    return 100 - this.calcLocalBalanceMeter(localBalance, remoteBalance);
   }
 
   onClickOpen() {
+    if (this.emitId || this.isSelectedOpen) {
+      return;
+    }
+
     this.isSelectedOpen = true;
     this.isSelectedPending = false;
+    this.channels = [];
+    this.emitId = this.networkActionService.listChannels();
   }
 
   onClickPending() {
+    if (this.emitId || this.isSelectedPending) {
+      return;
+    }
+
     this.isSelectedOpen = false;
     this.isSelectedPending = true;
+    this.pendingChannels = null;
+    this.emitId = this.networkActionService.getPendingChannels();
   }
 
   openChannel() {

@@ -36,4 +36,51 @@ export module NetworkAction {
     outputIndex: number;
   }
 
+  export interface PendingChannels {
+    totalLimboBalance: number;
+    pendingOpenChannels: PendingOpenChannel[];
+    pendingClosingChannels: ClosedChannel[];
+    pendingForceClosingChannels: ForceClosedChannel[];
+  }
+
+  export interface PendingChannel {
+    remoteNodePub: string;
+    channelPoint: string;
+    capacity: number;
+    localBalance: number;
+    remoteBalance: number;
+  }
+
+  export interface PendingOpenChannel {
+    channel: PendingChannel;
+    confirmationHeight: number;
+    commitFee: number;
+    commitWeight: number;
+    feePerKw: number;
+  }
+
+  export interface ClosedChannel {
+    channel: PendingChannel;
+    closingTxid: string;
+  }
+
+  export interface ForceClosedChannel {
+    channel: PendingChannel;
+    closingTxid: string;
+    limboBalance: number;
+    maturityHeight: number;
+    blocksTilMaturity: number;
+    recoveredBalance: number;
+    pendingHTLCs: PendingHTLC[];
+  }
+
+  export interface PendingHTLC {
+    incoming: boolean;
+    amount: number;
+    outpoint: string;
+    maturityHeight: number;
+    blocksTilMaturity: number;
+    stage: number;
+  }
+
 }

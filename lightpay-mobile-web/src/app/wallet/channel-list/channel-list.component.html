@@ -21,7 +21,7 @@
     <div (click)="onClickOpen()" [class.active]="isSelectedOpen" [class.inactive]="!isSelectedOpen" class="open">オープン</div>
     <div (click)="onClickPending()" [class.active]="isSelectedPending" [class.inactive]="!isSelectedPending" class="pending">ペンディング</div>
   </div>
-  <div class="scroll-container">
+  <div *ngIf="isSelectedOpen" class="scroll-container">
     <ng-container *ngFor="let channel of channels">
       <div (click)="onClickRow(channel)" class="channel-row">
         <div class="channel-info">
@@ -41,11 +41,109 @@
             <span class="unit">BTC</span>
           </div>
           <div class="balance-meter">
-            <div [style.width.%]="calcLocalBalanceMeter(channel)" class="local"></div>
-            <div [style.width.%]="calcRemoteBalanceMeter(channel)" class="remote"></div>
+            <div [style.width.%]="calcLocalBalanceMeter(channel.localBalance, channel.remoteBalance)" class="local"></div>
+            <div [style.width.%]="calcRemoteBalanceMeter(channel.localBalance, channel.remoteBalance)" class="remote"></div>
           </div>
         </div>
       </div>
+    </ng-container>
+    <div *ngIf="emitId !== null" class="loading">
+      <div class="sk-cube-grid">
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isSelectedPending" class="scroll-container">
+    <ng-container *ngIf="pendingChannels !== null">
+      <ng-container *ngFor="let pendingOpenChannel of pendingChannels.pendingOpenChannels">
+        <div (click)="onClickPendingOpenChannelRow(pendingOpenChannel)" class="channel-row">
+          <div class="channel-info">
+            <div class="remote-pub">
+              <div class="label">接続先:</div>
+              <div class="value">{{pendingOpenChannel.channel.remoteNodePub}}</div>
+            </div>
+            <div class="channel-state">オープン前</div>
+          </div>
+          <div class="balance-info">
+            <div class="local-balance">
+              <span class="value">{{pendingOpenChannel.channel.localBalance | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+            <div class="remote-balance">
+              <span class="value">{{pendingOpenChannel.channel.remoteBalance | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+            <div class="balance-meter">
+              <div [style.width.%]="calcLocalBalanceMeter(pendingOpenChannel.channel.localBalance, pendingOpenChannel.channel.remoteBalance)"
+                class="local"></div>
+              <div [style.width.%]="calcRemoteBalanceMeter(pendingOpenChannel.channel.localBalance, pendingOpenChannel.channel.remoteBalance)"
+                class="remote"></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let pendingClosingChannel of pendingChannels.pendingClosingChannels">
+        <div (click)="onClickPendingClosingChannelRow(pendingClosingChannel)" class="channel-row">
+          <div class="channel-info">
+            <div class="remote-pub">
+              <div class="label">接続先:</div>
+              <div class="value">{{pendingClosingChannel.channel.remoteNodePub}}</div>
+            </div>
+            <div class="channel-state">クローズ中</div>
+          </div>
+          <div class="balance-info">
+            <div class="local-balance">
+              <span class="value">{{pendingClosingChannel.channel.localBalance | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+            <div class="remote-balance">
+              <span class="value">{{pendingClosingChannel.channel.remoteBalance | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+            <div class="balance-meter">
+              <div [style.width.%]="calcLocalBalanceMeter(pendingClosingChannel.channel.localBalance, pendingClosingChannel.channel.remoteBalance)"
+                class="local"></div>
+              <div [style.width.%]="calcRemoteBalanceMeter(pendingClosingChannel.channel.localBalance, pendingClosingChannel.channel.remoteBalance)"
+                class="remote"></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngFor="let pendingForceClosingChannel of pendingChannels.pendingForceClosingChannels">
+        <div (click)="onClickPendingForceClosingChannelRow(pendingForceClosingChannel)" class="channel-row">
+          <div class="channel-info">
+            <div class="remote-pub">
+              <div class="label">接続先:</div>
+              <div class="value">{{pendingForceClosingChannel.channel.remoteNodePub}}</div>
+            </div>
+            <div class="channel-state">強制クローズ中</div>
+          </div>
+          <div class="balance-info">
+            <div class="local-balance">
+              <span class="value">{{pendingForceClosingChannel.channel.localBalance | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+            <div class="remote-balance">
+              <span class="value">{{pendingForceClosingChannel.channel.remoteBalance | toBtcString}}</span>
+              <span class="unit">BTC</span>
+            </div>
+            <div class="balance-meter">
+              <div [style.width.%]="calcLocalBalanceMeter(pendingForceClosingChannel.channel.localBalance, pendingForceClosingChannel.channel.remoteBalance)"
+                class="local"></div>
+              <div [style.width.%]="calcRemoteBalanceMeter(pendingForceClosingChannel.channel.localBalance, pendingForceClosingChannel.channel.remoteBalance)"
+                class="remote"></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </ng-container>
     <div *ngIf="emitId !== null" class="loading">
       <div class="sk-cube-grid">

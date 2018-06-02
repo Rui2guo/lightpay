@@ -10,6 +10,7 @@ export class NetworkActionService {
 
   static readonly EVENT_PREFIX: string = "NetworkActionService.";
   static readonly LIST_CHANNELS_EVENT: string = NetworkActionService.EVENT_PREFIX + "list-channels";
+  static readonly GET_PENDING_CHANNEL_EVENT: string = NetworkActionService.EVENT_PREFIX + "get-pending-channel";
   static readonly CLOSE_CHANNEL_EVENT: string = NetworkActionService.EVENT_PREFIX + "close-channel";
 
   constructor(
@@ -30,6 +31,24 @@ export class NetworkActionService {
       },
       (error: Response) => {
         console.log("listChannels error");
+      }
+    );
+    return emitId;
+  }
+
+  getPendingChannels(): string {
+    var emitId: string = UUID.v4();
+    this.apiService.get("/api/network/pendingchannels", {}).subscribe(
+      (res: Response) => {
+        var json: NetworkAction.PendingChannels = res.json();
+        this.dispatcherService.emit({
+          eventType: NetworkActionService.GET_PENDING_CHANNEL_EVENT,
+          data: json,
+          emitId: emitId
+        });
+      },
+      (error: Response) => {
+        console.log("getPendingChannels error");
       }
     );
     return emitId;

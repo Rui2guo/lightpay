@@ -66,6 +66,12 @@ export class ChannelDetailComponent extends PageBaseComponent  implements OnInit
 
 export interface ChannelDetailForm {
 
-  openChannel: NetworkAction.Channel;
+  openChannel?: NetworkAction.Channel;
+
+  pendingOpenChannel?: NetworkAction.PendingOpenChannel;
+
+  pendingClosingChannel?: NetworkAction.ClosedChannel;
+
+  pendingForceClosingChannel?: NetworkAction.ForceClosedChannel;
 
 }

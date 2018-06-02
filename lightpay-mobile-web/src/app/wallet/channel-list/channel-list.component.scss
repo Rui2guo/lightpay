@@ -145,7 +145,33 @@
           float: right;
           color: #45ab2e;
           font-size: 0.8rem;
-          line-height: 24px;;
+          line-height: 24px;
+        }
+
+        .remote-pub {
+          float: left;
+          overflow: hidden;
+          color: #33343a;
+
+          .label {
+            float: left;
+            margin-right: 5px;
+          }
+
+          .value {
+            float: left;
+            width: 40vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+
+        .channel-state {
+          float: right;
+          color: #888888;
+          font-size: 0.8rem;
+          line-height: 24px;
         }
       }
 

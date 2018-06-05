@@ -7,10 +7,13 @@ import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.grpc.StatusRuntimeException;
 import lightpay.controller.network.CloseChannelRes;
 import lightpay.controller.network.ListChannelsRes;
 import lightpay.controller.network.ListChannelsRes.Channel;
 import lightpay.controller.network.ListChannelsRes.Channel.HTLC;
+import lightpay.controller.network.OpenChannelReq;
+import lightpay.controller.network.OpenChannelRes;
 import lightpay.controller.network.PendingChannelsRes;
 import lightpay.controller.network.PendingChannelsRes.ClosedChannel;
 import lightpay.controller.network.PendingChannelsRes.ForceClosedChannel;
@@ -20,11 +23,16 @@ import lightpay.controller.network.PendingChannelsRes.PendingOpenChannel;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.ChannelPoint;
 import lightpay.lnd.grpc.CloseChannelRequest;
+import lightpay.lnd.grpc.ConnectPeerRequest;
+import lightpay.lnd.grpc.LightningAddress;
 import lightpay.lnd.grpc.ListChannelsRequest;
 import lightpay.lnd.grpc.ListChannelsResponse;
+import lightpay.lnd.grpc.OpenChannelRequest;
 import lightpay.lnd.grpc.PendingChannelsRequest;
 import lightpay.lnd.grpc.PendingChannelsResponse;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class NetworkService {
 
@@ -173,6 +181,33 @@ public class NetworkService {
         return CloseChannelRes.builder()
             .fundingTxId(fundingTxId)
             .outputIndex(outputIndex)
+            .build();
+    }
+
+    public OpenChannelRes openChannel(OpenChannelReq request) {
+        try {
+            ConnectPeerRequest connectPeerRequest = ConnectPeerRequest.newBuilder()
+                .setAddr(LightningAddress.newBuilder()
+                    .setPubkey(request.getPubkey())
+                    .setHost(request.getHost() + ":" + request.getPort().toString())
+                    .build())
+                .setPerm(true)
+                .build();
+            lndBlockingStub.getInstance().connectPeer(connectPeerRequest);
+        } catch (StatusRuntimeException e) {
+            log.info(e.getMessage(), e);
+        }
+
+        OpenChannelRequest openChannelRequest = OpenChannelRequest.newBuilder()
+            .setNodePubkeyString(request.getPubkey())
+            .setLocalFundingAmount(request.getLocalFundingAmount())
+            .build();
+
+        ChannelPoint channelPoint = lndBlockingStub.getInstance().openChannelSync(openChannelRequest);
+
+        return OpenChannelRes.builder()
+            .fundingTxId(channelPoint.getFundingTxidStr())
+            .outputIndex(channelPoint.getOutputIndex())
             .build();
     }
 

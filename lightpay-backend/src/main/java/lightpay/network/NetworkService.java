@@ -1,6 +1,7 @@
 package lightpay.network;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Hex;
@@ -23,6 +24,7 @@ import lightpay.controller.network.PendingChannelsRes.PendingOpenChannel;
 import lightpay.lnd.LndBlockingStub;
 import lightpay.lnd.grpc.ChannelPoint;
 import lightpay.lnd.grpc.CloseChannelRequest;
+import lightpay.lnd.grpc.CloseStatusUpdate;
 import lightpay.lnd.grpc.ConnectPeerRequest;
 import lightpay.lnd.grpc.LightningAddress;
 import lightpay.lnd.grpc.ListChannelsRequest;
@@ -176,12 +178,18 @@ public class NetworkService {
             .setChannelPoint(channelPoint)
             .build();
 
-        lndBlockingStub.getInstance().closeChannel(request);
+        Iterator<CloseStatusUpdate> closeStatusUpdate = lndBlockingStub.getInstance().closeChannel(request);
+        CloseChannelRes response = new CloseChannelRes(null, null);
+        while (closeStatusUpdate.hasNext()) {
+            CloseStatusUpdate update = closeStatusUpdate.next();
+            if (update.hasClosePending()) {
+                response.setTxId(Hex.encodeHexString(update.getClosePending().getTxid().toByteArray()));
+                response.setOutputIndex(update.getClosePending().getOutputIndex());
+            }
+            break;
+        }
 
-        return CloseChannelRes.builder()
-            .fundingTxId(fundingTxId)
-            .outputIndex(outputIndex)
-            .build();
+        return response;
     }
 
     public OpenChannelRes openChannel(OpenChannelReq request) {

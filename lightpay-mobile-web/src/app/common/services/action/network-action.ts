@@ -32,7 +32,7 @@ export module NetworkAction {
   }
 
   export interface CloseChannel {
-    fundingTxId: string;
+    txId: string;
     outputIndex: number;
   }
 

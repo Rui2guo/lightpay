@@ -1,13 +1,15 @@
 package lightpay.controller.network;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CloseChannelRes {
 
-    private String fundingTxId;
+    private String txId;
 
     private Integer outputIndex;
 

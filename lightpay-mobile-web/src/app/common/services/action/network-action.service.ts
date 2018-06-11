@@ -12,6 +12,7 @@ export class NetworkActionService {
   static readonly LIST_CHANNELS_EVENT: string = NetworkActionService.EVENT_PREFIX + "list-channels";
   static readonly GET_PENDING_CHANNEL_EVENT: string = NetworkActionService.EVENT_PREFIX + "get-pending-channel";
   static readonly CLOSE_CHANNEL_EVENT: string = NetworkActionService.EVENT_PREFIX + "close-channel";
+  static readonly OPEN_CHANNEL_EVENT: string = NetworkActionService.EVENT_PREFIX + "open-channel";
 
   constructor(
     private dispatcherService: DispatcherService,
@@ -67,6 +68,34 @@ export class NetworkActionService {
       },
       (error: Response) => {
         console.log("closeChannel error");
+      }
+    );
+    return emitId;
+  }
+
+  openChannel(
+    pubkey: string, 
+    host: string, 
+    port: number, 
+    localFundingAmount: number
+  ): string {
+    var emitId: string = UUID.v4();
+    this.apiService.post("/api/network/openchannel", {
+      "pubkey": pubkey,
+      "host": host,
+      "port": port,
+      "localFundingAmount": localFundingAmount
+    }).subscribe(
+      (res: Response) => {
+        var json: NetworkAction.OpenChannel = res.json();
+        this.dispatcherService.emit({
+          eventType: NetworkActionService.OPEN_CHANNEL_EVENT,
+          data: json,
+          emitId: emitId
+        });
+      },
+      (error: Response) => {
+        console.log("openChannel error");
       }
     );
     return emitId;

@@ -1,1 +1,64 @@
-open-channel works!
+<div class="page-contents">
+  <div class="scroll-container">
+    <div class="send-coins-form-wrapper">
+      <div class="info-block">
+        <div class="title">接続先情報と預かり金額を入力してください</div>
+        <div class="label">接続先情報</div>
+        <div class="host-wrapper">
+          <input [formControl]="connectFormGroup.controls['host']" type="text" placeholder="ホストIP" class="host-ip">
+          <input [formControl]="connectFormGroup.controls['port']" type="text" placeholder="ポート番号" class="port">
+        </div>
+        <input [formControl]="connectFormGroup.controls['pubkey']" type="text" placeholder="公開鍵" class="pubkey">
+        <div class="label">預かり金額
+          <span class="minimum-channel-size">(最低{{20000 | toBtcString}}BTC)</span>
+        </div>
+        <div class="sending-amount-value">
+          <span class="value">{{numSatoshisView | toBtcString}}</span>
+          <span class="unit">BTC</span>
+        </div>
+        <div class="number-keyboard">
+          <table>
+            <tbody>
+              <tr>
+                <td (click)="onInputNum('1')" class="key">1</td>
+                <td (click)="onInputNum('2')" class="key">2</td>
+                <td (click)="onInputNum('3')" class="key">3</td>
+              </tr>
+              <tr>
+                <td (click)="onInputNum('4')" class="key">4</td>
+                <td (click)="onInputNum('5')" class="key">5</td>
+                <td (click)="onInputNum('6')" class="key">6</td>
+              </tr>
+              <tr>
+                <td (click)="onInputNum('7')" class="key">7</td>
+                <td (click)="onInputNum('8')" class="key">8</td>
+                <td (click)="onInputNum('9')" class="key">9</td>
+              </tr>
+              <tr>
+                <td class="key hidden"></td>
+                <td (click)="onInputNum('0')" class="key">0</td>
+                <td (click)="onInputNum('del')" class="key">
+                  <i class="backspace flaticon-backspace"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button *ngIf="!connecting" type="button" (click)="onSubmit()" class="submit-button" [class.disabled]="buttonDisabled" [disabled]="buttonDisabled">接続</button>
+        <button *ngIf="connecting" type="button" class="submit-button connecting" [disabled]="true">
+          <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

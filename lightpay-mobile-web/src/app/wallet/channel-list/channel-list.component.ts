@@ -20,6 +20,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
 
   static readonly EVENT_PREFIX: string = "ChannelListComponent.";
   static readonly CLOSE_CHANNEL_DETAIL_PAGE_EVENT: string = ChannelListComponent.EVENT_PREFIX + "close-channel-detail-page";
+  static readonly CLOSE_OPEN_CHANNEL_PAGE_EVENT: string = ChannelListComponent.EVENT_PREFIX + "close-open-channel-page";
 
   static readonly PAGE_NAME: string = "channel-list";
 
@@ -57,8 +58,14 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
           case NetworkActionService.GET_PENDING_CHANNEL_EVENT:
             this.updatePendingChannels(payload);
             break;
+          case NetworkActionService.OPEN_CHANNEL_EVENT:
+          case NetworkActionService.CLOSE_CHANNEL_EVENT:
+            this.onChannelStatusUpdate();
           case ChannelListComponent.CLOSE_CHANNEL_DETAIL_PAGE_EVENT:
             this.closeDetailPage();
+            break;
+          case ChannelListComponent.CLOSE_OPEN_CHANNEL_PAGE_EVENT:
+            this.closeOpenChannelPage();
             break;
         }
       }
@@ -142,25 +149,41 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   }
 
   onClickOpen() {
-    if (this.emitId || this.isSelectedOpen) {
+    if (this.isSelectedOpen) {
       return;
     }
 
     this.isSelectedOpen = true;
     this.isSelectedPending = false;
+    this.reloadChannels();
+  }
+
+  private reloadChannels() {
     this.channels = [];
     this.emitId = this.networkActionService.listChannels();
   }
 
   onClickPending() {
-    if (this.emitId || this.isSelectedPending) {
+    if (this.isSelectedPending) {
       return;
     }
 
     this.isSelectedOpen = false;
     this.isSelectedPending = true;
+    this.reloadPendingChannels();
+  }
+
+  private reloadPendingChannels() {
     this.pendingChannels = null;
     this.emitId = this.networkActionService.getPendingChannels();
+  }
+
+  private onChannelStatusUpdate() {
+    if (this.isSelectedOpen) {
+      this.reloadChannels();
+    } else if (this.isSelectedPending) {
+      this.reloadPendingChannels();
+    }
   }
 
   openChannel() {

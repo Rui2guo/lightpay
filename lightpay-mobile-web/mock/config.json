@@ -1,5 +1,5 @@
 {
-  "simulated-lag": 500,
+  "simulated-lag": 800,
   "cors": true,
   "jsonp": false,
   "variables": {

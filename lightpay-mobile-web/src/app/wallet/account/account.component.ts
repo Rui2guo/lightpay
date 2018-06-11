@@ -8,6 +8,7 @@ import { WalletStoreService } from '../../common/services/store/wallet-store.ser
 import { WalletAction } from '../../common/services/action/wallet-action';
 import { DispatcherService } from '../../common/services/dispatcher.service';
 import { WalletComponent } from 'app/wallet/wallet.component';
+import { NetworkActionService } from '../../common/services/action/network-action.service';
 
 @Component({
   selector: 'lp-account',
@@ -51,9 +52,13 @@ export class AccountComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dispatcherRegisterId = this.dispatcherService.register(
       (payload: Payload) => {
         switch (payload.eventType) {
+          case NetworkActionService.OPEN_CHANNEL_EVENT:
+          case NetworkActionService.CLOSE_CHANNEL_EVENT:
+            this.reloadBalance();
+            break;
           case WalletComponent.SELECT_PAGE_EVENT:
-          this.onSelectPage(payload.data);
-          break;
+            this.onSelectPage(payload.data);
+            break;
         }
       }
     );
@@ -99,12 +104,16 @@ export class AccountComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private onActive() {
-    this.loading = true;
-    this.walletActionService.getBalance();
+    this.reloadBalance();
   }
 
   private onInActive() {
     this.loading = true;
+  }
+
+  private reloadBalance() {
+    this.loading = true;
+    this.walletActionService.getBalance();
   }
 
   private updateBalance() {

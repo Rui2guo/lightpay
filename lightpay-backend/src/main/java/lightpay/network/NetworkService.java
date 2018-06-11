@@ -204,9 +204,8 @@ public class NetworkService {
             .build();
 
         ChannelPoint channelPoint = lndBlockingStub.getInstance().openChannelSync(openChannelRequest);
-
         return OpenChannelRes.builder()
-            .fundingTxId(channelPoint.getFundingTxidStr())
+            .fundingTxId(Hex.encodeHexString(channelPoint.getFundingTxidBytes().toByteArray()))
             .outputIndex(channelPoint.getOutputIndex())
             .build();
     }

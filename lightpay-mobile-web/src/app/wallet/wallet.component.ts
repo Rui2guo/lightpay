@@ -112,12 +112,6 @@ export class WalletComponent implements OnInit, AfterViewInit, OnDestroy {
     _.defer(() => {
       this.selectAccount();
     });
-
-    //FIXME//////////////////////////
-    _.delay(() => {
-      this.moveChannelListPage();
-    }, 1);
-    /////////////////////////////////
   }
 
   selectAccount() {

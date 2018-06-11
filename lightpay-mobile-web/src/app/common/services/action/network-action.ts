@@ -83,4 +83,9 @@ export module NetworkAction {
     stage: number;
   }
 
+  export interface OpenChannel {
+    fundingTxId: string;
+    outputIndex: number;
+  }
+
 }

@@ -1,0 +1,210 @@
+.page-contents {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f7f7f7;
+
+  .scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
+    .send-coins-form-wrapper {
+      padding: 15px 15px 0 15px;
+      text-align: center;
+  
+      .info-block {
+        text-align: center;
+
+        .title {
+          text-align: center;
+          font-size: 0.8rem;
+          margin: 0 0 10px 0;
+          color: #636363;
+        }
+
+        .label {
+          text-align: left;
+          font-size: 0.9rem;
+          margin-bottom: 5px;
+
+          .minimum-channel-size {
+            color: #636363;
+            font-size: 0.8rem;
+          }
+        }
+
+        input {
+          background-color: #f7f7f7;
+          border-top: none;
+          border-right: none;
+          border-bottom: 2px dashed #e0b854;
+          border-left: none;
+          margin-bottom: 15px;
+          font-size: 0.8rem;
+
+          &:focus {
+            background-color: #ececec;
+          }
+        }
+
+        .host-wrapper {
+          overflow: hidden;
+
+          .host-ip {
+            float: left;
+            width: calc(65% - 7px);
+            margin-right: 7px;
+          }
+
+          .port {
+            float: left;
+            width: calc(35% - 7px);
+            margin-left: 7px;
+          }
+        }
+
+        .pubkey {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .sending-amount-value {
+          margin-bottom: 20px;
+          border-bottom: 2px dashed #e0b854;
+          text-align: right;
+          line-height: 2rem;
+
+          .value {
+            font-size: 2rem;
+          }
+
+          .unit {
+            margin-left: 5px;
+            font-size: 1.2rem;
+          }
+        }
+
+        .number-keyboard {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 15px;
+          height: 40vh;
+          min-height: 170px;
+          max-height: 300px;
+
+          table {
+            width: 100%;
+            height: 100%;
+            max-width: 400px;
+            padding: 0 20px;
+
+            .key {
+              width: 33%;
+              height: 25%;
+              background-color: #e0b854;
+              color: #f7f7f7;
+              font-size: 1.4rem;
+              border: 1px solid #f7f7f7;
+  
+              &.hidden {
+                visibility: hidden;
+              }
+  
+              .backspace {
+                &:before {
+                  margin-left: 0;
+                  font-size: 1.4rem;
+                }
+              }
+            }
+          }
+        }
+
+        .submit-button {
+          margin-bottom: 15px;
+          background-color: #31a9af;
+          border: none;
+          color: #f7f7f7;
+          width: 190px;
+          height: 50px;
+          border-radius: 25px;
+          font-size: 1.2rem;
+
+          &.disabled {
+            background-color: #e2e2e2;
+          }
+
+          &.connecting {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sk-cube-grid {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  float: left;
+  background-color: #31a9af;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+          animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+}
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s; }
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s; }
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1); 
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1);
+  } 35% {
+    -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+  } 
+}

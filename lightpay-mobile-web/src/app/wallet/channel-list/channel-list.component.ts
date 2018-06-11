@@ -137,6 +137,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   closeDetailPage() {
     this.pagingActionService.move(ChannelListComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
       this.currentPageName = "channel-list";
+      this.pagingActionService.clear(ChannelListComponent.PAGING_NAME);
     });
   }
 
@@ -194,6 +195,7 @@ export class ChannelListComponent extends PageBaseComponent implements OnInit, A
   closeOpenChannelPage() {
     this.pagingActionService.move(ChannelListComponent.PAGING_NAME, null, null, PagingAction.PageAnimation.BACK, () => {
       this.currentPageName = "channel-list";
+      this.pagingActionService.clear(ChannelListComponent.PAGING_NAME);
     });
   }
 
